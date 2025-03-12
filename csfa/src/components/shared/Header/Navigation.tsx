@@ -64,9 +64,10 @@ export default function Navigation() {
           </a>
 
           {/* Container para menu e área restrita */}
-          <div className='flex-grow flex items-center justify-end lg:justify-between'>
+          <div className='flex-grow flex items-center justify-end relative'>
+
             {/* Menu navegação principal - visível apenas em desktop */}
-            <div className="hidden lg:block w-auto">
+            <div className="hidden lg:block w-auto mx-auto absolute">
               <ul className="flex font-medium space-x-8 rtl:space-x-reverse">
                 {navMenu.map((item, index) => (
                   <li key={index}>
