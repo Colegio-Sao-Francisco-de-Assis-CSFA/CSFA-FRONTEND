@@ -1,12 +1,13 @@
 version: '3.8'
 
 services:
-   next-app:
-   build: .
-   ports: 
-   - "3000:3000"
-   volumes:
-   - .:/app
-   - /app/node_modules
-   enviorment:
-   - NODE_ENV=development
+  next-app:
+    container_name: csfa-next-container
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
