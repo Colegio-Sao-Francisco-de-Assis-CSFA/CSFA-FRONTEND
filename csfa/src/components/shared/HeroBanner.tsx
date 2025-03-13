@@ -81,7 +81,7 @@ const HeroBannerCarousel = ({
                   isActive ? "opacity-100" : "opacity-0 pointer-events-none"
                 )}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
+                <div className="absolute inset-0" />
                 <img
                   src={item.image}
                   alt={item.alt}
