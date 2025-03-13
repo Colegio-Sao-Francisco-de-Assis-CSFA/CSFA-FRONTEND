@@ -65,7 +65,7 @@ const HeroBannerCarousel = ({
   return (
     <div
       className={cn(
-        "relative w-full overflow-hidden lg:rounded-b-3xl shadow-lg",
+        "relative w-full overflow-hidden",
         className
       )}
     >

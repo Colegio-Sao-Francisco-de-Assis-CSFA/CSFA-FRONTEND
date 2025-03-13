@@ -1,6 +1,7 @@
 import Header from '@/components/shared/Header/Header';
 import HeroBannerCarousel from '@/components/shared/HeroBanner';
 import EducationalSegments from '@/components/shared/Segments';
+import EducationSystem from '@/components/shared/EducationSystem ';
 
 export default function Home() {
 
@@ -48,13 +49,22 @@ export default function Home() {
   ];
 
   return (
-      <div>
+      <div className='overflow-hidden w-dvw flex flex-col items-center'>
 
-          <Header />
-          <HeroBannerCarousel items={carouselItems} />
-          <section className='w-dvw h-screen'>
+         <Header />
+
+         <section  className='w-dvw h-dvh'>
+            <HeroBannerCarousel items={carouselItems} />
+         </section>
+
+          <section className='w-dvw h-screen p-6'>
                 <EducationalSegments />
           </section>
+
+          <section className="w-full h-screen p-6">
+            <EducationSystem/>
+          </section>
+          
       </div>
   );
 }
