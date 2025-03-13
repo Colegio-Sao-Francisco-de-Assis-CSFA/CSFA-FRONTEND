@@ -149,15 +149,6 @@ export default function Navigation() {
           <div className="flex flex-col h-full overflow-y-auto">
             {/* Cabeçalho do menu mobile */}
             <div className="flex flex-col p-4 border-b">
-              <div className="flex justify-between items-center mb-4">
-                <button
-                  onClick={toggleMenu}
-                  className="p-2 text-gray-500 hover:text-gray-800"
-                  aria-label="Fechar menu"
-                >
-                  <Icon icon="mdi:close" className="text-xl text-red-500" />
-                </button>
-              </div>
               
               {/* Logo inserido entre o título e o botão de fechar */}
               <div className="flex justify-center mb-2">
