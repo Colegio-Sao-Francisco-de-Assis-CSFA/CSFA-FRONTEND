@@ -150,7 +150,6 @@ export default function Navigation() {
             {/* Cabeçalho do menu mobile */}
             <div className="flex flex-col p-4 border-b">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold text-blue-600">CSFA - Menu</h2>
                 <button
                   onClick={toggleMenu}
                   className="p-2 text-gray-500 hover:text-gray-800"
@@ -162,7 +161,7 @@ export default function Navigation() {
               
               {/* Logo inserido entre o título e o botão de fechar */}
               <div className="flex justify-center mb-2">
-                <img src="/logo.webp" className="w-16" alt="Logo" />
+                <img src="/logo.webp" className="w-20" alt="Logo" />
               </div>
             </div>
 
@@ -174,7 +173,7 @@ export default function Navigation() {
                   <li key={index}>
                     <Link
                       href={item.href}
-                      className="block py-2 font-medium text-gray-800 p-2 rounded-sm hover:bg-blue-600 hover:text-white transition-colors"
+                      className="block py-2 font-medium text-gray-600 p-2 rounded-sm hover:bg-blue-600 hover:text-white transition-colors"
                       onClick={toggleMenu}
                     >
                       {item.name}
