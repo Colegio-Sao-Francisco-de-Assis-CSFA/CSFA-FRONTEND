@@ -31,7 +31,8 @@ export default function Navigation() {
   // Função para alternar entre abrir e fechar o menu mobile
   const toggleMenu = () => {
     setIsTransitioning(true);
-setIsMobileMenuOpen((prev) => !prev);  };
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
   // Array com links da área restrita e suas propriedades
   const navRestrict = [
@@ -54,19 +55,18 @@ setIsMobileMenuOpen((prev) => !prev);  };
 
   return (
     <>
-      {/* Barra de navegação principal */}
-      <nav className="h-14 lg:h-20 flex items-center justify-center bg-white border border-slate-600/30 rounded-full shadow-md">
+      {/* Barra de navegação principal - somente visível em desktop */}
+      <nav className="hidden lg:flex h-20 items-center justify-center bg-white border border-slate-600/30 rounded-full shadow-md">
         <div className="w-full max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-3 ml-4 rtl:space-x-reverse">
-            <img src="/logo.webp" className="w-12 lg:w-16" alt="Logo" />
+            <img src="/logo.webp" className="w-16" alt="Logo" />
           </a>
 
           {/* Container para menu e área restrita */}
           <div className='flex-grow flex items-center justify-end relative pr-2 '>
-
             {/* Menu navegação principal - visível apenas em desktop */}
-            <div className="hidden lg:block absolute left-[50%] translate-x-[-60%] whitespace-nowrap">
+            <div className="absolute left-[50%] translate-x-[-60%] whitespace-nowrap">
               <ul className="flex font-medium space-x-8 rtl:space-x-reverse">
                 {navMenu.map((item, index) => (
                   <li key={index}>
@@ -83,7 +83,7 @@ setIsMobileMenuOpen((prev) => !prev);  };
             </div>
 
             {/* Dropdown da área restrita usando Shadcn/ui - visível apenas em desktop */}
-            <div className="hidden lg:block">
+            <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className='bg-blue-600 cursor-pointer min-w-36 rounded-md flex items-center justify-center gap-2 text-white p-2 font-medium transition-colors duration-200 hover:bg-blue-800'>
@@ -106,32 +106,33 @@ setIsMobileMenuOpen((prev) => !prev);  };
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-
-            {/* Botão Hamburguer - visível apenas em mobile */}
-            <button
-              onClick={toggleMenu}
-              className=" cursor-pointer lg:hidden p-2 text-gray-500 hover:text-gray-800 focus:outline-none"
-              aria-label="Toggle menu"
-              {...(isMobileMenuOpen !== undefined ? { "aria-expanded": isMobileMenuOpen ? "false" : "true" } : {})}
-
-            >
-              <Icon
-                icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
-                className="text-2xl"
-              />
-            </button>
           </div>
         </div>
       </nav>
 
+      {/* Botão Hamburguer fixo - visível apenas em mobile */}
+      <div className="fixed top-4 right-4 z-50 lg:hidden">
+        <button
+          onClick={toggleMenu}
+          className="flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg focus:outline-none"
+          aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen ? "true" : "false"}
+        >
+          <Icon
+            icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
+            className="text-2xl text-blue-600"
+          />
+        </button>
+      </div>
+
       {/* Menu Mobile - Overlay e Painel Deslizante */}
       <div
-        className={`fixed top-0 right-0 h-full w-full lg:hidden z-50 ${
+        className={`fixed top-0 right-0 h-full w-full lg:hidden z-40 ${
           isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'
         }`}
-        {...(isMobileMenuOpen !== undefined ? { "aria-hidden": isMobileMenuOpen ? "false" : "true" } : {})}
-        >
-         {/* Overlay escuro que aparece atrás do menu */}
+        aria-hidden={isMobileMenuOpen ? "false" : "true"}
+      >
+        {/* Overlay escuro que aparece atrás do menu */}
         <div
           className={`absolute inset-0 bg-black transition-opacity duration-300 ${
             isMobileMenuOpen ? 'opacity-50' : 'opacity-0'
@@ -147,15 +148,22 @@ setIsMobileMenuOpen((prev) => !prev);  };
         >
           <div className="flex flex-col h-full overflow-y-auto">
             {/* Cabeçalho do menu mobile */}
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-xl font-bold text-blue-600">CSFA - Menu</h2>
-              <button
-                onClick={toggleMenu}
-                className="p-2 text-gray-500 hover:text-gray-800"
-                aria-label="Fechar menu"
-              >
-                <Icon icon="mdi:close" className="text-xl text-red-500" />
-              </button>
+            <div className="flex flex-col p-4 border-b">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold text-blue-600">CSFA - Menu</h2>
+                <button
+                  onClick={toggleMenu}
+                  className="p-2 text-gray-500 hover:text-gray-800"
+                  aria-label="Fechar menu"
+                >
+                  <Icon icon="mdi:close" className="text-xl text-red-500" />
+                </button>
+              </div>
+              
+              {/* Logo inserido entre o título e o botão de fechar */}
+              <div className="flex justify-center mb-2">
+                <img src="/logo.webp" className="w-16" alt="Logo" />
+              </div>
             </div>
 
             {/* Itens do menu mobile */}
