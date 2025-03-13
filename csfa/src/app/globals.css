@@ -124,3 +124,40 @@
     @apply bg-background text-foreground;
   }
 }
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.tap-highlight {
+  position: relative;
+}
+
+.tap-highlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.tap-highlight:active::after {
+  opacity: 0.6;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

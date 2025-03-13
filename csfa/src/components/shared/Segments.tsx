@@ -1,323 +1,182 @@
 "use client";
 
-import React, { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Info, ArrowRight } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import useMediaQuery from '@/hooks/useMediaQuery';
+import '@/app/globals.css';
 
-interface SegmentCardProps {
+
+// Definição dos tipos para o segmento educacional
+type EducationalSegment = {
+  id: string;
   title: string;
-  description: string;
-  imageSrc: string;
-  longDescription: string;
+  frontDescription: string;
+  backDescription: string;
   color: string;
-  gradientFrom: string;
-  gradientTo: string;
-}
+  hoverColor: string;
+  textColor: string;
+  icon: React.ReactNode;
+};
 
-const SegmentCard: React.FC<SegmentCardProps> = ({
-  title,
-  description,
-  imageSrc,
-  longDescription,
-  color,
-  gradientFrom,
-  gradientTo
-}) => {
-  const [isFlipped, setIsFlipped] = useState<boolean>(false);
-  const [isInfoButtonHovered, setIsInfoButtonHovered] = useState<boolean>(false);
-  const [isBackButtonHovered, setIsBackButtonHovered] = useState<boolean>(false);
+// Componente para os cards dos segmentos educacionais
+const SegmentCard: React.FC<{ segment: EducationalSegment }> = ({ segment }) => {
 
-  // Enhanced animation variants
-  const cardVariants = {
-    front: {
-      rotateY: 0,
-      scale: 1,
-      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-      transition: { duration: 0.6, ease: "easeOut" }
-    },
-    flipping: {
-      rotateY: 90,
-      scale: 1.05,
-      boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
-      transition: { duration: 0.3, ease: "easeIn" }
-    },
-    back: {
-      rotateY: 180,
-      scale: 1,
-      boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-      transition: { duration: 0.3, ease: "easeOut", delay: 0.3 }
+  const [isFlipped, setIsFlipped] = useState(false);
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  const handleClick = () => {
+    if (isMobile) {
+      setIsFlipped(!isFlipped);
     }
   };
 
-  // Animation for content to fade in/out during flip
-  const contentVariants = {
-    visible: { opacity: 1, transition: { duration: 0.2, delay: 0.2 } },
-    hidden: { opacity: 0, transition: { duration: 0.2 } }
+  const handleHover = () => {
+    if (!isMobile) {
+      setIsFlipped(true);
+    }
   };
 
-  return (
-    <div className="relative h-96 w-full perspective-1000 ">
-      <motion.div
-        className="w-full h-full relative rounded-lg"
-        initial="front"
-        animate={isFlipped ? "back" : "front"}
-        variants={cardVariants}
-        style={{
-             transformStyle: 'preserve-3d',
-             backgroundColor: color,
-        }}
+  const handleHoverEnd = () => {
+    if (!isMobile) {
+      setIsFlipped(false);
+    }
+  };
 
+  // Extrair a cor base do card (sem o prefixo "bg-")
+  const baseColor = segment.color.replace('bg-', '');
+
+  return (
+    <div 
+      className={`perspective-1000 w-64 h-72 ${isMobile ? 'tap-highlight' : ''}`}
+      onClick={handleClick}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleHoverEnd}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        initial={false}
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front of card */}
-        <Card
-          className="absolute inset-0 w-full h-full rounded-lg overflow-hidden border-2"
-          style={{
-            backfaceVisibility: 'hidden',
-            borderColor: color,
-            background: color,
-          }}
+        <Card 
+          className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
+                     ${segment.color} ${segment.textColor} backface-hidden shadow-lg
+                     transition-all duration-300 
+                     ${isMobile ? 'active:scale-95 active:shadow-xl' : 'hover:shadow-xl'}`}
         >
-          <motion.div
-            className="relative h-full"
-            variants={contentVariants}
-            initial="visible"
-            animate={isFlipped ? "hidden" : "visible"}
-          >
-            <div className="absolute inset-0">
-              <img
-                src={imageSrc}
-                alt={title}
-                className="w-full h-full object-cover"
+          <div className="text-4xl mb-4">{segment.icon}</div>
+          <h3 className="text-xl font-bold mb-2">{segment.title}</h3>
+          <p className="text-center text-sm">{segment.frontDescription}</p>
+          {isMobile && (
+            <div className={`absolute top-0 right-4 flex flex-col items-center mt-4 animate-pulse`}>
+              <Icon 
+                icon={"tdesign:gesture-click-filled"} 
+                className={`text-2xl text-${baseColor}-300`} 
               />
-              <div
-                className="absolute inset-0 opacity-70"
-                style={{
-                  backgroundImage: `linear-gradient(to bottom, ${gradientFrom}, ${gradientTo})`,
-
-                }}
-              />
-              {/* Animated particles/bubbles */}
-              <div className="absolute inset-0 overflow-hidden">
-                {[...Array(10)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                      width: `${Math.random() * 30 + 10}px`,
-                      height: `${Math.random() * 30 + 10}px`,
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      y: [0, -20, 0],
-                      opacity: [0.3, 0.7, 0.3],
-                    }}
-                    transition={{
-                      duration: Math.random() * 3 + 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: Math.random() * 2,
-                    }}
-                  />
-                ))}
-              </div>
+              <span className="text-xs mt-1 font-semibold text-white">click-flip</span>
             </div>
-            <div className="absolute bottom-0 p-4 text-white z-10 w-full">
-              <h3 className="text-xl font-bold mb-1">{title}</h3>
-              <p className="text-sm text-white">{description}</p>
-            </div>
-            <div
-              className="absolute top-0 left-0 w-16 h-16"
-              style={{
-                background: color,
-                clipPath: 'polygon(0 0, 0% 100%, 100% 0)'
-              }}
-            />
-            <Button
-              className="absolute top-2 right-2 p-2 rounded-full bg-white hover:bg-white/90 backdrop-blur-sm z-20"
-              style={{ color }}
-              variant="outline"
-              size="icon"
-              onMouseEnter={() => setIsInfoButtonHovered(true)}
-              onMouseLeave={() => setIsInfoButtonHovered(false)}
-              onClick={() => setIsFlipped(true)}
-            >
-              <motion.div
-                animate={isInfoButtonHovered ?
-                  { scale: 1.1, rotate: 180, x: [0, -2, 2, -2, 0] } :
-                  { scale: 1, rotate: 0 }
-                }
-                transition={{ duration: 0.4 }}
-              >
-                <Info className="h-5 w-5" />
-              </motion.div>
-            </Button>
-          </motion.div>
+          )}
         </Card>
 
         {/* Back of card */}
-        <Card
-          className="absolute inset-0 w-full h-full rounded-lg overflow-hidden shadow-lg border-2"
-          style={{
-            backfaceVisibility: 'hidden',
-            transform: 'rotateY(180deg)',
-            borderColor: color,
-            background: `radial-gradient(circle at top right, ${gradientFrom}20, white 70%)`
-          }}
+        <Card 
+          className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
+                     ${segment.hoverColor} ${segment.textColor} backface-hidden shadow-lg 
+                     ${isMobile ? 'active:scale-95 active:shadow-xl' : 'hover:shadow-xl'}`}
+          style={{ transform: "rotateY(180deg)" }}
         >
-          <motion.div
-            className="h-full"
-            variants={contentVariants}
-            initial="hidden"
-            animate={isFlipped ? "visible" : "hidden"}
-          >
-            <CardContent className="p-4 h-full flex flex-col">
-              <div className="flex justify-between items-center mb-4">
-                <h3
-                  className="text-2xl font-bold"
-                  style={{ color }}
-                >
-                  {title}
-                </h3>
-                <Button
-                  className="p-1 rounded-full hover:bg-gray-100"
-                  style={{ color }}
-                  variant="ghost"
-                  size="icon"
-                  onMouseEnter={() => setIsBackButtonHovered(true)}
-                  onMouseLeave={() => setIsBackButtonHovered(false)}
-                  onClick={() => setIsFlipped(false)}
-                >
-                  <motion.div
-                    animate={isBackButtonHovered ?
-                      { scale: 1.1, x: [0, 5, 0] } :
-                      { scale: 1 }
-                    }
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </motion.div>
-                </Button>
-              </div>
-
-              <div className="relative flex-grow max-h-full text-sm">
-                <p className="text-gray-700 line-clamp-6 sm:line-clamp-none">{longDescription}</p>
-
-                {/* Decorative graphic element */}
-                <motion.div
-                  className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full opacity-10"
-                  style={{ background: `${color}` }}
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </div>
-
-              <div className="mt-auto pt-2 border-t" style={{ borderColor: `${color}33` }}>
-                <motion.div
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    className="w-full group transition-all duration-300 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: color }}
-                  >
-                    <span>Saiba mais</span>
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                        ease: "easeInOut",
-                        repeatDelay: 0.5
-                      }}
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </motion.div>
-                  </Button>
-                </motion.div>
-              </div>
-            </CardContent>
-          </motion.div>
+          <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
+          <p className="text-center text-sm">{segment.backDescription}</p>
+          {isMobile && (
+            <div className={`mt-4 ${segment.color}  w-full h-1 bg-white bg-opacity-20 rounded-full`}/>
+          )}
         </Card>
       </motion.div>
     </div>
   );
 };
 
+// Componente principal
 const EducationalSegments: React.FC = () => {
-  // Vibrant color scheme for each segment
-  const segments = [
+  // Dados dos segmentos educacionais
+  const segments: EducationalSegment[] = [
     {
+      id: "infantil",
       title: "Educação Infantil",
-      description: "Nesta etapa, formamos seus passos importantes para o ingresso no Ensino Fundamental.",
-      imageSrc: "/images/courses/infantil.webp",
-      longDescription: "Nossa Educação Infantil proporciona um ambiente acolhedor e estimulante para crianças de 2 a 5 anos. Trabalhamos o desenvolvimento integral através de atividades lúdicas, promovendo a autonomia, socialização e primeiras descobertas. Com professores especializados e espaços adaptados, preparamos os pequenos para uma transição tranquila ao Ensino Fundamental, respeitando seu ritmo de aprendizagem.",
-      color: "#FF5757",
-      gradientFrom: "#FF9966",
-      gradientTo: "#FF5757"
+      frontDescription: "Para crianças de 2 a 5 anos",
+      backDescription: "Foco no desenvolvimento sensorial, motor e socioafetivo através de atividades lúdicas e de descoberta do mundo.",
+      color: "bg-pink-500",
+      hoverColor: "bg-pink-600",
+      textColor: "text-white",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M9 16h6M12 3v1m0 16v1m-8-8h1m16 0h1M4.6 4.6l.7.7m12.1-.7l-.7.7" />
+            </svg>
     },
     {
+      id: "anosIniciais",
       title: "Anos Iniciais",
-      description: "Nesta etapa, formamos seus passos importantes para o progresso no Ensino Fundamental.",
-      imageSrc: "/images/courses/iniciais.webp",
-      longDescription: "Nos Anos Iniciais do Ensino Fundamental (1º ao 5º ano), consolidamos a alfabetização e o letramento matemático, desenvolvendo as habilidades essenciais para o aprendizado contínuo. Nossa metodologia equilibra conteúdos curriculares com projetos interdisciplinares, estimulando a curiosidade e o pensamento crítico. Oferecemos atenção individualizada para que cada aluno desenvolva seu potencial único, em um ambiente seguro e acolhedor.",
-      color: "#00C9A7",
-      gradientFrom: "#4FACFE",
-      gradientTo: "#00C9A7"
+      frontDescription: "1º ao 5º ano do Ensino Fundamental",
+      backDescription: "Desenvolvimento da alfabetização, leitura, escrita e raciocínio lógico-matemático através de projetos integrados.",
+      color: "bg-blue-500",
+      hoverColor: "bg-blue-600",
+      textColor: "text-white",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
     },
     {
+      id: "anosFinais",
       title: "Anos Finais",
-      description: "Nessa etapa, aprofundamos conhecimentos para o ingresso no Ensino Médio.",
-      imageSrc: "/images/courses/finais.webp",
-      longDescription: "Nos Anos Finais do Ensino Fundamental (6º ao 9º ano), aprofundamos os conhecimentos disciplinares e preparamos os estudantes para os desafios do Ensino Médio. Com professores especialistas em cada área, promovemos a autonomia nos estudos e o desenvolvimento do pensamento científico. Nossos alunos são incentivados a explorar suas aptidões através de projetos práticos e atividades extracurriculares, construindo bases sólidas para seu futuro acadêmico.",
-      color: "#8E78FF",
-      gradientFrom: "#A18CD1",
-      gradientTo: "#8E78FF"
+      frontDescription: "6º ao 9º ano do Ensino Fundamental",
+      backDescription: "Aprofundamento dos conhecimentos através de abordagem multidisciplinar e desenvolvimento do pensamento crítico.",
+      color: "bg-purple-500",
+      hoverColor: "bg-purple-600",
+      textColor: "text-white",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
     },
     {
+      id: "ensinoMedio",
       title: "Ensino Médio",
-      description: "Nessa etapa, formamos pessoas aptas para o ingresso no Ensino Superior.",
-      imageSrc: "/images/courses/medio.webp",
-      longDescription: "Nosso Ensino Médio combina excelência acadêmica com formação integral do estudante. Preparamos para os vestibulares e o ENEM com metodologias ativas de aprendizagem, desenvolvendo protagonismo e pensamento crítico. Oferecemos orientação vocacional, projetos de iniciação científica e atividades que promovem habilidades socioemocionais essenciais para o século XXI. Formamos jovens preparados tanto para o ingresso no Ensino Superior quanto para os desafios da vida contemporânea.",
-      color: "#FF3D71",
-      gradientFrom: "#F857A6",
-      gradientTo: "#FF3D71"
+      frontDescription: "1ª a 3ª série do Ensino Médio",
+      backDescription: "Preparação para o ENEM e vestibulares com aprofundamento acadêmico e orientação para escolha profissional.",
+      color: "bg-green-500",
+      hoverColor: "bg-green-600",
+      textColor: "text-white",
+      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+            </svg>
     }
   ];
 
-  return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-8" style={{ background: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)' }}>
-      <div className="mb-8 flex items-center">
-        <h2 className="text-2xl font-bold text-blue-600 relative">
-          Segmentos
-          <span className="absolute -bottom-1 left-0 w-12 h-1 bg-yellow-400"></span>
-        </h2>
-      </div>
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {segments.map((segment, index) => (
-          <SegmentCard
-            key={index}
-            title={segment.title}
-            description={segment.description}
-            imageSrc={segment.imageSrc}
-            longDescription={segment.longDescription}
-            color={segment.color}
-            gradientFrom={segment.gradientFrom}
-            gradientTo={segment.gradientTo}
-          />
-        ))}
+  return (
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-4">
+        <h1 className="text-3xl font-bold text-center mb-8">Segmentos</h1>
+        {isMobile && (
+          <p className="text-center text-gray-600 mb-6">
+            Toque nos cards para ver mais informações
+          </p>
+        )}
+        {!isMobile && (
+          <p className="text-center text-gray-600 mb-6">
+            Passe o mouse sobre os cards para ver mais informações
+          </p>
+        )}
+        <div className="flex flex-wrap gap-6 justify-center">
+          {segments.map((segment) => (
+            <SegmentCard key={segment.id} segment={segment} />
+          ))}
+        </div>
       </div>
     </div>
   );
