@@ -159,7 +159,7 @@ const EducationalSegments: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="w-full h-auto py-12 lg:h-full">
       <div className="container mx-auto px-4">
         <h1 className="text-3xl text-gray-600 font-bold text-center mb-8">Segmentos</h1>
         {isMobile && (
