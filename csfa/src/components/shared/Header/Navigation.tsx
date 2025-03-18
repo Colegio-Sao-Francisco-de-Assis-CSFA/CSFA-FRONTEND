@@ -47,10 +47,12 @@ export default function Navigation() {
   // Array com links do menu principal
   const navMenu = [
     { name: 'Inicio', href: '/'},
-    { name: 'Segmentos', href: '/courses'},
-    { name: 'Sobre nós', href: '/about'},
-    { name: 'Diferenciais', href: '/features'},
-    { name: 'Contato', href: '/contact'}
+    { name: 'Segmentos', href: '#'},
+    { name: 'Sobre nós', href: '/sobre'},
+    { name: 'Diferenciais', href: '#'},
+    { name: 'Contato', href: '#'},
+    { name: 'Acontece CSFA', href: '/acontece'},
+
   ];
 
   return (

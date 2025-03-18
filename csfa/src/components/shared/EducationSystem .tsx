@@ -184,9 +184,7 @@ export default function AboutSection() {
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                    <GraduationCap className="h-6 w-6 text-white" />
-                  </div>
+                  
                   <div className="space-y-2">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4">
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
@@ -206,9 +204,7 @@ export default function AboutSection() {
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                    <Globe className="h-6 w-6 text-white" />
-                  </div>
+                  
                   <div className="space-y-2">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4"> 
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
