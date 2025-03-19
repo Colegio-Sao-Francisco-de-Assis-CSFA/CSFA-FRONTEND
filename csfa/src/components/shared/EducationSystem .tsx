@@ -9,7 +9,6 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { GraduationCap, Globe, Play, Phone } from "lucide-react"
 
 export default function AboutSection() {
-  
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -42,23 +41,23 @@ export default function AboutSection() {
 
   return (
 
-      <div className="w-full h-auto mx-auto flex flex-col gap-12 lg:h-dvh lg:flex-row items-center justify-center">
-        {/* Container Left - Media Section */}
-        <motion.div className="w-full h-full flex flex-col overflow-hidden lg:flex-row lg:w-1/2"
+      <div className="w-full h-full mx-auto px-12 flex gap-4">
+        {/* Left Content - Video and Quote */}
+        <motion.div
+          className="w-1/2 h-full flex flex-row overflow-hidden"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
 
-          {/* InContainer Left - Video & Quote*/}
-          <div className="w-full h-full p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2 ">
+          <div className="w-1/2 h-full flex flex-col gap-4 items-center justify-center">
 
-            {/* Video */}
-            <motion.div className="relative w-full lg:h-[550px]" variants={itemVariants}>
+            {/* Video Section */}
+            <motion.div className="relative w-7/8 h-[70%]" variants={itemVariants}>
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="relative w-full h-44 rounded-tl-[35px] rounded-tr-[35px] rounded-bl-[35px] overflow-hidden lg:rounded-tl-[50px] lg:rounded-tr-[50px] lg:rounded-bl-[50px] cursor-pointer group lg:h-full " >
+                  <div className="relative w-full bg-csfaBlue h-full overflow-hidden rounded-tl-[50px] rounded-tr-[50px] rounded-bl-[50px] cursor-pointer group">
                     <Image
                       src="/images/courses/finais.webp"
                       alt="Students learning together"
@@ -66,7 +65,7 @@ export default function AboutSection() {
                       height={400}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-csfaNavy/30 flex items-center justify-center group-hover:bg-csfaNavy/40 transition-all">
                       <motion.div
                         className="bg-csfaPink rounded-full p-4 text-csfaWhite"
                         whileHover={{ scale: 1.1 }}
@@ -77,23 +76,21 @@ export default function AboutSection() {
                     </div>
                   </div>
                 </DialogTrigger>
-
-                <DialogContent className="max-w-[1000px] p-0">
+                <DialogContent className="max-w-[800px] p-0">
                   <video
                     ref={videoRef}
                     controls
-                    muted
-                    autoPlay
-                    className="w-full aspect-video"
+                    className="w-full h-auto"
                     src="/diferenciais.mp4"
-                    // poster="/video-cover.png"
+                    poster="/video-cover.png"
                   />
                 </DialogContent>
               </Dialog>
             </motion.div>
 
-            {/* Quote */}
-            <motion.div className="w-full h-20 p-4 bg-blue-600 text-csfaNavy rounded-tr-[40px] rounded-tl-[40px] rounded-br-[40px] flex items-center gap-4"
+            {/* Quote Section */}
+            <motion.div
+              className="bg-blue-600 text-csfaNavy p-4 rounded-tr-[40px] rounded-tl-[40px] rounded-br-[40px] flex items-center gap-4"
               variants={itemVariants}
             >
               <div className="bg-yellow-500 rounded-full p-3 flex-shrink-0">
@@ -107,14 +104,11 @@ export default function AboutSection() {
             </motion.div>
           </div>
 
-
-          {/* InContainer Right - Photos */}
-          <motion.div className="w-full h-full  p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2" 
-           variants={containerVariants}>
+          <motion.div className="w-1/2 h-full flex flex-col gap-4 items-center justify-center" variants={containerVariants}>
             
-            {/* Image */}
+            {/* Circle and Image */}
             <motion.div
-              className="w-full h-96 rounded-tl-[35px] rounded-tr-[35px] rounded-br-[35px] overflow-hidden lg:rounded-tl-[50px] lg:rounded-tr-[50px] lg:rounded-br-[50px]"
+              className="w-full h-56 rounded-tl-[50px] rounded-tr-[50px] rounded-br-[50px] overflow-hidden"
               variants={itemVariants}
             >
               <Image
@@ -127,10 +121,10 @@ export default function AboutSection() {
             </motion.div>
 
 
-            {/*Image- invertida */}
+            {/*Image rounded - invertida */}
 
             <motion.div
-              className="w-full h-62 rounded-tr-[35px] rounded-br-[35px] rounded-bl-[35px] overflow-hidden lg:rounded-tr-[50px] lg:rounded-br-[50px] lg:rounded-bl-[50px]"
+              className="w-full h-72 overflow-hidden rounded-tr-[50px] rounded-br-[50px] rounded-bl-[50px]"
               variants={itemVariants}
             >
               <Image
@@ -140,17 +134,16 @@ export default function AboutSection() {
                 height={300}
                 className="w-full h-auto object-cover"
                 
-              />
-
+              />scale
             </motion.div>
 
           </motion.div>
 
         </motion.div>
 
-
-        {/* Container Right - Text and Info */}
-        <motion.div className="w-full h-auto lg:w-1/2 lg:h-full lg:p-2"
+        {/* Right Content - Text and Info */}
+        <motion.div
+          className="w-1/2 h-full bg-orange-400"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -158,24 +151,17 @@ export default function AboutSection() {
         >
           <div className="space-y-4">
             <motion.span
-              className="text-blue-600 uppercase tracking-wider text-sm font-semibold underline"
+              className="text-csfaBlue uppercase tracking-wider text-sm font-semibold"
               variants={itemVariants}
             >
-             Sobre nós
+              About Us
             </motion.span>
-            <motion.h1 className="text-3xl md:text-2xl lg:text-5xl font-semibold" variants={itemVariants}>
-                Colégio São Francisco de Assis:  <span className="text-blue-600">Formação de Qualidade, Educação que transforma</span>.
+            <motion.h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-csfaNavy" variants={itemVariants}>
+              Our Edukation System <span className="text-csfaPink">Inspires</span> You More.
             </motion.h1>
-            <motion.p className="text-slate-800 text-lg" variants={itemVariants}>
-              O Colégio São Francisco de Assis tem como missão formar jovens transformadores da sociedade,
-              oferecendo educação de qualidade para um futuro melhor. Fundado pelo Pe. Tony, teve início
-              em 1985 e recebeu autorização do MEC em 1984. Inspirado na vida de São Francisco de Assis, o
-              colégio oferece Educação Infantil, Ensino Fundamental (anos iniciais e finais) e Ensino Médio,
-              além de Período Integral. <br />
-              Como instituição particular de orientação católica, busca o aperfeiçoamento constante de sua
-              proposta pedagógica, promovendo valores de dignidade, confiança e justiça. Seu currículo incentiva
-              observação, reflexão e ação, integrando professores, alunos, famílias e 
-              sociedade na responsabilidade pela educação.
+            <motion.p className="text-csfaNavy/80 max-w-2xl" variants={itemVariants}>
+              There are many variations of passages available but the majority have suffered alteration in some form by
+              injected humour or random words which don't even look believable. If you are going to use passage.
             </motion.p>
           </div>
 
@@ -183,18 +169,14 @@ export default function AboutSection() {
           <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  
+                <CardContent className="p-6 flex gap-4">
+                  <div className="bg-csfaPink rounded-full p-3 h-12 w-12 flex items-center justify-center flex-shrink-0">
+                    <GraduationCap className="h-6 w-6 text-csfaWhite" />
+                  </div>
                   <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4">
-                      <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                        <GraduationCap className="h-6 w-6 text-white" />
-                      </div>
-                      Orientação Católica
-                    </h3>
-                    <p className="text-blue-700 text-sm lg:p-2">
-                      Ocolégio promove uma educação baseada na solidariedade, respeito
-                      e fraternidade, formando cidadãos comprometidos com um mundo mais justo.
+                    <h3 className="font-semibold text-lg text-csfaNavy">Edukation Services</h3>
+                    <p className="text-csfaNavy/70 text-sm">
+                      It is a long established fact that a reader will be distracted.
                     </p>
                   </div>
                 </CardContent>
@@ -203,18 +185,14 @@ export default function AboutSection() {
 
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  
+                <CardContent className="p-6 flex gap-4">
+                  <div className="bg-csfaCyan rounded-full p-3 h-12 w-12 flex items-center justify-center flex-shrink-0">
+                    <Globe className="h-6 w-6 text-csfaWhite" />
+                  </div>
                   <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4"> 
-                      <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                        <Globe className="h-6 w-6 text-white" />
-                      </div>
-                      Formando Jovens Transformadores
-                    </h3>
-                    <p className="text-blue-700 text-sm lg:p-2">
-                      Preparamos nossos alunos para serem agentes de mudança na sociedade,
-                      desenvolvendo senso crítico, liderança e responsabilidade social.
+                    <h3 className="font-semibold text-lg text-csfaNavy">International Hubs</h3>
+                    <p className="text-csfaNavy/70 text-sm">
+                      It is a long established fact that a reader will be distracted.
                     </p>
                   </div>
                 </CardContent>
@@ -222,6 +200,28 @@ export default function AboutSection() {
             </motion.div>
           </motion.div>
 
+          {/* Contact and Testimonial */}
+          <motion.div className="flex flex-col md:flex-row gap-6 items-center" variants={containerVariants}>
+            <motion.div variants={itemVariants}>
+              <Button className="bg-csfaBlue hover:bg-csfaDarkBlue text-csfaWhite rounded-full px-6">
+                Contact Us Now
+              </Button>
+            </motion.div>
+
+            <motion.div className="flex items-center gap-3" variants={itemVariants}>
+              <div className="bg-csfaCyan rounded-full p-2">
+                <Phone className="h-4 w-4 text-csfaWhite" />
+              </div>
+              <div className="text-sm font-medium">
+                <p className="text-csfaNavy">+1 123 456 7899</p>
+              </div>
+            </motion.div>
+
+            <motion.div className="ml-auto text-right hidden md:block" variants={itemVariants}>
+              <span className="text-5xl font-bold text-csfaPink">99</span>
+              <p className="text-sm text-csfaNavy/70">Satisfied Students</p>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
 
