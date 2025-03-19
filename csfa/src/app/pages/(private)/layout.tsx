@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import AuthProvider from "@/app/provider";
 import Sidebar from "@/components/shared/SideBar";
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export default function RootLayout({
         <div className="flex">
             <Sidebar />
             <main className="ml-[60px] flex-1 p-4">
-                <AuthProvider>{children}</AuthProvider>
             </main>
         </div>
       </body>
