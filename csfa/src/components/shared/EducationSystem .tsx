@@ -169,9 +169,15 @@ export default function AboutSection() {
           <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+<<<<<<< HEAD
                 <CardContent className="p-6 flex gap-4">
                   <div className="bg-csfaPink rounded-full p-3 h-12 w-12 flex items-center justify-center flex-shrink-0">
                     <GraduationCap className="h-6 w-6 text-csfaWhite" />
+=======
+                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
+                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
+                    <GraduationCap className="h-6 w-6 text-white" />
+>>>>>>> parent of 40ec032 (feat: estrutura das páginas)
                   </div>
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg text-csfaNavy">Edukation Services</h3>
@@ -185,9 +191,15 @@ export default function AboutSection() {
 
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+<<<<<<< HEAD
                 <CardContent className="p-6 flex gap-4">
                   <div className="bg-csfaCyan rounded-full p-3 h-12 w-12 flex items-center justify-center flex-shrink-0">
                     <Globe className="h-6 w-6 text-csfaWhite" />
+=======
+                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
+                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
+                    <Globe className="h-6 w-6 text-white" />
+>>>>>>> parent of 40ec032 (feat: estrutura das páginas)
                   </div>
                   <div className="space-y-2">
                     <h3 className="font-semibold text-lg text-csfaNavy">International Hubs</h3>
