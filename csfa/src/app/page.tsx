@@ -53,18 +53,18 @@ export default function Home() {
 
          <Header />
 
-         <section  className='w-dvw '>
+         <section  className='w-dvw h-dvh'>
             <HeroBannerCarousel items={carouselItems} />
          </section>
 
-          <section className='w-dvw h-auto p-6'>
-              <EducationalSegments />
+          <section className='w-dvw h-screen p-6'>
+                <EducationalSegments />
           </section>
 
-          <section className="w-full h-auto p-6">
+          <section className="w-full h-screen p-6">
             <EducationSystem/>
           </section>
-          
+
       </div>
   );
 }

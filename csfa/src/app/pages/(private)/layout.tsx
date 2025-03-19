@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import AuthProvider from "./provider";
-
+import "@/app/globals.css";
+import Sidebar from "@/components/shared/SideBar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +15,11 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <div className="flex">
+            <Sidebar />
+            <main className="ml-[60px] flex-1 p-4">
+            </main>
+        </div>
       </body>
     </html>
   );
