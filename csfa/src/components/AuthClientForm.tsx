@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
@@ -13,17 +12,26 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BtnSignIn from "@/components/shared/BtnSignIn";
 
-
 const loginSchema = z.object({
   email: z.string().email("Email inválido"),
   password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres"),
 });
 
+type FormData = {
+  email: string;
+  password: string;
+};
+
+type FormErrors = {
+  email: string;
+  password: string;
+};
+
 export default function AuthForm() {
   const searchParams = useSearchParams();
   const error = searchParams.get("error");
-  const [formData, setFormData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState<FormData>({ email: "", password: "" });
+  const [errors, setErrors] = useState<FormErrors>({ email: "", password: "" });
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

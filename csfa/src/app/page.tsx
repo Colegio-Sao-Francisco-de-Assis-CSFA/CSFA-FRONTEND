@@ -64,7 +64,7 @@ export default function Home() {
           <section className="w-full h-screen p-6">
             <EducationSystem/>
           </section>
-          
+
       </div>
   );
 }

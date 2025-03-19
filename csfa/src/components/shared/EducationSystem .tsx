@@ -105,7 +105,7 @@ export default function AboutSection() {
           </div>
 
           <motion.div className="w-1/2 h-full flex flex-col gap-4 items-center justify-center" variants={containerVariants}>
-            
+
             {/* Circle and Image */}
             <motion.div
               className="w-full h-56 rounded-tl-[50px] rounded-tr-[50px] rounded-br-[50px] overflow-hidden"
@@ -133,7 +133,7 @@ export default function AboutSection() {
                 width={400}
                 height={300}
                 className="w-full h-auto object-cover"
-                
+
               />scale
             </motion.div>
 
