@@ -21,7 +21,7 @@ const teamMembers = [
   { name: "Ana Silva", role: "CEO & Fundadora", image: "/placeholder.png" },
   { name: "Carlos Mendes", role: "Diretor de Tecnologia", image: "/placeholder.png" },
   { name: "Márcia Oliveira", role: "Diretora de Operações", image: "/placeholder.png" },
-  { name: "Roberto Santos", role: "Diretor Financeiro", image: "/placeholder.png" }
+  
 ];
 
 // Company differentials
