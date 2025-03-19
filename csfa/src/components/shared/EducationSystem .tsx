@@ -1,3 +1,17 @@
+/**
+ * AboutSection component renders an educational system overview with interactive elements.
+ *
+ * This component displays:
+ * - A video section with a clickable image trigger
+ * - A quote highlighting the institution's history
+ * - Multiple images showcasing educational environments
+ * - Service cards with educational and international hub information
+ * - Contact and testimonial section
+ *
+ * Uses Framer Motion for animations and Next.js Image component for optimized image rendering.
+ *
+ * @returns {JSX.Element} Rendered about section with educational system details
+ */
 "use client"
 
 import { useState, useRef } from "react"
@@ -9,7 +23,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import { GraduationCap, Globe, Play, Phone } from "lucide-react"
 
 export default function AboutSection() {
-  
+
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -109,9 +123,9 @@ export default function AboutSection() {
 
 
           {/* InContainer Right - Photos */}
-          <motion.div className="w-full h-full  p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2" 
+          <motion.div className="w-full h-full  p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2"
            variants={containerVariants}>
-            
+
             {/* Image */}
             <motion.div
               className="w-full h-96 rounded-tl-[35px] rounded-tr-[35px] rounded-br-[35px] overflow-hidden lg:rounded-tl-[50px] lg:rounded-tr-[50px] lg:rounded-br-[50px]"
@@ -139,7 +153,7 @@ export default function AboutSection() {
                 width={400}
                 height={300}
                 className="w-full h-auto object-cover"
-                
+
               />
 
             </motion.div>
@@ -174,7 +188,7 @@ export default function AboutSection() {
               além de Período Integral. <br />
               Como instituição particular de orientação católica, busca o aperfeiçoamento constante de sua
               proposta pedagógica, promovendo valores de dignidade, confiança e justiça. Seu currículo incentiva
-              observação, reflexão e ação, integrando professores, alunos, famílias e 
+              observação, reflexão e ação, integrando professores, alunos, famílias e
               sociedade na responsabilidade pela educação.
             </motion.p>
           </div>
@@ -184,7 +198,7 @@ export default function AboutSection() {
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  
+
                   <div className="space-y-2">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4">
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
@@ -195,6 +209,7 @@ export default function AboutSection() {
                     <p className="text-blue-700 text-sm lg:p-2">
                       Ocolégio promove uma educação baseada na solidariedade, respeito
                       e fraternidade, formando cidadãos comprometidos com um mundo mais justo.
+
                     </p>
                   </div>
                 </CardContent>
@@ -204,9 +219,9 @@ export default function AboutSection() {
             <motion.div variants={itemVariants}>
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
                 <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  
+
                   <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4"> 
+                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4">
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
                         <Globe className="h-6 w-6 text-white" />
                       </div>
@@ -215,6 +230,7 @@ export default function AboutSection() {
                     <p className="text-blue-700 text-sm lg:p-2">
                       Preparamos nossos alunos para serem agentes de mudança na sociedade,
                       desenvolvendo senso crítico, liderança e responsabilidade social.
+
                     </p>
                   </div>
                 </CardContent>
