@@ -63,7 +63,7 @@ const IntroAnimation = () => {
         </div>
         
         {/* Título principal com efeito de digitação */}
-        <h1 className="text-2xl px-6 sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6 w-20">
+        <h1 className="text-2xl px-6 sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-600 mb-6">
           {displayMainText}
           <span className={`inline-block w-1 h-6 ml-1 bg-blue-500 ${textComplete ? 'opacity-0' : 'animate-pulse'}`}></span>
         </h1>
