@@ -43,6 +43,7 @@ export default function AboutSection() {
   return (
 
       <div className="w-full h-auto mx-auto flex flex-col gap-12 lg:h-dvh lg:flex-row items-center justify-center">
+        
         {/* Container Left - Media Section */}
         <motion.div className="w-full h-full flex flex-col overflow-hidden lg:flex-row lg:w-1/2"
           initial="hidden"
@@ -181,48 +182,68 @@ export default function AboutSection() {
 
           {/* Service Cards */}
           <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
+
             <motion.div variants={itemVariants}>
+
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                    <GraduationCap className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="space-y-2">
+
+                <CardContent className="p-6 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center font-medium">
+                 
+                 {/* Card Icon - Text */}
+                  <div className="space-y-3">
+
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4">
+                      
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
                         <GraduationCap className="h-6 w-6 text-white" />
                       </div>
+                      
                       Orientação Católica
+
                     </h3>
-                    <p className="text-blue-700 text-sm lg:p-2">
+
+                    <p className="text-gray-700 text-sm lg:p-2">
                       Ocolégio promove uma educação baseada na solidariedade, respeito
                       e fraternidade, formando cidadãos comprometidos com um mundo mais justo.
                     </p>
+
                   </div>
+
                 </CardContent>
+
               </Card>
+
             </motion.div>
 
             <motion.div variants={itemVariants}>
+
               <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-4 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center">
-                  <div className="flex lg:hidden bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
-                    <Globe className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="space-y-2">
+
+                <CardContent className="p-6 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center font-medium">
+
+                  {/* Card Icon - Text */}
+                  <div className="space-y-3">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-4"> 
+
                       <div className="flex bg-blue-600 rounded-full p-3 h-12 w-12 items-center justify-center flex-shrink-0">
                         <Globe className="h-6 w-6 text-white" />
                       </div>
+
                       Formando Jovens Transformadores
+
                     </h3>
-                    <p className="text-blue-700 text-sm lg:p-2">
+
+                    <p className="text-gray-700 text-sm lg:p-2">
                       Preparamos nossos alunos para serem agentes de mudança na sociedade,
                       desenvolvendo senso crítico, liderança e responsabilidade social.
                     </p>
+
                   </div>
+
                 </CardContent>
+
               </Card>
+
             </motion.div>
           </motion.div>
 

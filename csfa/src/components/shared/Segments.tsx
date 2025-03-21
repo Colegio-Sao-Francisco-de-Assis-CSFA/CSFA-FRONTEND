@@ -1,12 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import '@/app/globals.css';
-
 
 // Definição dos tipos para o segmento educacional
 type EducationalSegment = {
@@ -20,15 +19,69 @@ type EducationalSegment = {
   icon: React.ReactNode;
 };
 
-// Componente para os cards dos segmentos educacionais
-const SegmentCard: React.FC<{ segment: EducationalSegment }> = ({ segment }) => {
+// Componente Modal para mobile
+const InfoModal: React.FC<{ 
+  segment: EducationalSegment | null; 
+  isOpen: boolean; 
+  onClose: () => void 
+}> = ({ segment, isOpen, onClose }) => {
+  if (!segment) return null;
+  
+  // Extrair a cor base do card (sem o prefixo "bg-")
+  const baseColor = segment.color.replace('bg-', '');
+  
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          <motion.div 
+            className="fixed inset-0 flex items-center justify-center z-50 p-4"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          >
+            <Card 
+              className={`w-full max-w-xs ${segment.hoverColor} ${segment.textColor} p-6 rounded-xl shadow-xl`}
+            >
+              <div className="flex justify-between items-start mb-4">
+                <div className="text-3xl">{segment.icon}</div>
+                <button 
+                  onClick={onClose} 
+                  className="text-white text-xl hover:text-gray-200"
+                >
+                  ×
+                </button>
+              </div>
+              <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
+              <p className="text-sm">{segment.backDescription}</p>
+              <div className={`mt-4 w-full h-1 bg-white bg-opacity-20 rounded-full`}/>
+            </Card>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
 
+// Componente para os cards dos segmentos educacionais
+const SegmentCard: React.FC<{ 
+  segment: EducationalSegment; 
+  onOpenModal: (segment: EducationalSegment) => void;
+}> = ({ segment, onOpenModal }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const handleClick = () => {
     if (isMobile) {
-      setIsFlipped(!isFlipped);
+      onOpenModal(segment);
     }
   };
 
@@ -49,59 +102,68 @@ const SegmentCard: React.FC<{ segment: EducationalSegment }> = ({ segment }) => 
 
   return (
     <div 
-      className={`perspective-1000 w-64 h-72 ${isMobile ? 'tap-highlight' : ''}`}
+      className={`perspective-1000 ${isMobile ? 'w-full h-40' : 'w-64 h-72'} ${isMobile ? 'tap-highlight' : ''}`}
       onClick={handleClick}
       onMouseEnter={handleHover}
       onMouseLeave={handleHoverEnd}
     >
-      <motion.div
-        className="relative w-full h-full"
-        initial={false}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Front of card */}
-        <Card 
-          className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
-                     ${segment.color} ${segment.textColor} backface-hidden shadow-lg
-                     transition-all duration-300 
-                     ${isMobile ? 'active:scale-95 active:shadow-xl' : 'hover:shadow-xl'}`}
+      {!isMobile ? (
+        <motion.div
+          className="relative w-full h-full"
+          initial={false}
+          animate={{ rotateY: isFlipped ? 180 : 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          style={{ transformStyle: "preserve-3d" }}
         >
-          <div className="text-4xl mb-4">{segment.icon}</div>
-          <h3 className="text-xl font-bold mb-2">{segment.title}</h3>
-          <p className="text-center text-sm">{segment.frontDescription}</p>
-          {isMobile && (
-            <div className={`absolute top-0 right-4 flex flex-col items-center mt-4 animate-pulse`}>
-              <Icon 
-                icon={"tdesign:gesture-click-filled"} 
-                className={`text-2xl text-${baseColor}-300`} 
-              />
-              <span className="text-xs mt-1 font-semibold text-white">click-flip</span>
-            </div>
-          )}
-        </Card>
+          {/* Front of card - Desktop */}
+          <Card 
+            className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
+                      ${segment.color} ${segment.textColor} backface-hidden shadow-lg
+                      transition-all duration-300 hover:shadow-xl`}
+          >
+            <div className="text-4xl mb-4">{segment.icon}</div>
+            <h3 className="text-xl font-bold mb-2">{segment.title}</h3>
+            <p className="text-center text-sm">{segment.frontDescription}</p>
+          </Card>
 
-        {/* Back of card */}
+          {/* Back of card - Desktop */}
+          <Card 
+            className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
+                      ${segment.hoverColor} ${segment.textColor} backface-hidden shadow-lg 
+                      hover:shadow-xl`}
+            style={{ transform: "rotateY(180deg)" }}
+          >
+            <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
+            <p className="text-center text-sm">{segment.backDescription}</p>
+          </Card>
+        </motion.div>
+      ) : (
+        // Mobile card (no flip, just click to modal)
         <Card 
-          className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
-                     ${segment.hoverColor} ${segment.textColor} backface-hidden shadow-lg 
-                     ${isMobile ? 'active:scale-95 active:shadow-xl' : 'hover:shadow-xl'}`}
-          style={{ transform: "rotateY(180deg)" }}
+          className={`w-full h-full flex flex-col items-center justify-center p-4 rounded-xl 
+                    ${segment.color} ${segment.textColor} shadow-md
+                    transition-all duration-300 active:scale-95 active:shadow-lg`}
         >
-          <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
-          <p className="text-center text-sm">{segment.backDescription}</p>
-          {isMobile && (
-            <div className={`mt-4 ${segment.color}  w-full h-1 bg-white bg-opacity-20 rounded-full`}/>
-          )}
+          <div className="text-2xl mb-2">{segment.icon}</div>
+          <h3 className="text-base font-bold mb-1 text-center">{segment.title}</h3>
+          {/* <p className="text-center text-xs">{segment.frontDescription}</p> */}
+          <div className="absolute bottom-2 right-2">
+            <Icon 
+              icon="mdi:information-outline" 
+              className="text-lg text-white opacity-80" 
+            />
+          </div>
         </Card>
-      </motion.div>
+      )}
     </div>
   );
 };
 
 // Componente principal
 const EducationalSegments: React.FC = () => {
+  const [modalSegment, setModalSegment] = useState<EducationalSegment | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   // Dados dos segmentos educacionais
   const segments: EducationalSegment[] = [
     {
@@ -119,7 +181,7 @@ const EducationalSegments: React.FC = () => {
     {
       id: "anosIniciais",
       title: "Anos Iniciais",
-      frontDescription: "1º ao 5º ano do Ensino Fundamental",
+      frontDescription: "1º ao 5º ano do Fundamental",
       backDescription: "Desenvolvimento da alfabetização, leitura, escrita e raciocínio lógico-matemático através de projetos integrados.",
       color: "bg-blue-500",
       hoverColor: "bg-blue-600",
@@ -131,7 +193,7 @@ const EducationalSegments: React.FC = () => {
     {
       id: "anosFinais",
       title: "Anos Finais",
-      frontDescription: "6º ao 9º ano do Ensino Fundamental",
+      frontDescription: "6º ao 9º ano do Fundamental",
       backDescription: "Aprofundamento dos conhecimentos através de abordagem multidisciplinar e desenvolvimento do pensamento crítico.",
       color: "bg-purple-500",
       hoverColor: "bg-purple-600",
@@ -143,7 +205,7 @@ const EducationalSegments: React.FC = () => {
     {
       id: "ensinoMedio",
       title: "Ensino Médio",
-      frontDescription: "1ª a 3ª série do Ensino Médio",
+      frontDescription: "1ª a 3ª série do Médio",
       backDescription: "Preparação para o ENEM e vestibulares com aprofundamento acadêmico e orientação para escolha profissional.",
       color: "bg-green-500",
       hoverColor: "bg-green-600",
@@ -158,26 +220,51 @@ const EducationalSegments: React.FC = () => {
 
   const isMobile = useMediaQuery('(max-width: 768px)');
 
+  const handleOpenModal = (segment: EducationalSegment) => {
+    setModalSegment(segment);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="w-full h-auto py-12 lg:h-full">
+    <div className="w-full h-auto py-8 lg:py-12 lg:h-full">
+
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl text-gray-600 font-bold text-center mb-8">Segmentos</h1>
-        {isMobile && (
-          <p className="text-center text-gray-600 mb-6">
-            Toque nos cards para ver mais informações
+
+        <h1 className="text-3xl text-blue-600 font-bold text-center mb-6">Segmentos</h1>
+
+        {isMobile ? (
+          <p className="text-center text-gray-600 mb-6 text-sm">
+            Toque nos cards para mais informações
           </p>
-        )}
-        {!isMobile && (
+        ) : (
           <p className="text-center text-gray-600 mb-6">
             Passe o mouse sobre os cards para ver mais informações
           </p>
         )}
-        <div className="flex flex-wrap gap-6 justify-center">
+        
+        <div className={`grid ${isMobile ? 'grid-cols-2 gap-3' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'} justify-items-center`}>
+
           {segments.map((segment) => (
-            <SegmentCard key={segment.id} segment={segment} />
+            <SegmentCard 
+              key={segment.id} 
+              segment={segment} 
+              onOpenModal={handleOpenModal}
+            />
           ))}
+
         </div>
       </div>
+      
+      {/* Modal para exibição em dispositivos móveis */}
+      <InfoModal 
+        segment={modalSegment} 
+        isOpen={isModalOpen} 
+        onClose={handleCloseModal} 
+      />
     </div>
   );
 };
