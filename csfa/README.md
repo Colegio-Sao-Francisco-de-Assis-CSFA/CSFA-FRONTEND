@@ -1,80 +1,36 @@
-# CSFA
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Descrição
+## Getting Started
 
-CSFA é um projeto que abrange tanto o site institucional do colégio quanto a plataforma de gestão de trabalhos e automação de serviços manuais.
+First, run the development server:
 
-O site institucional representa oficialmente o colégio, oferecendo informações institucionais, navegação entre páginas, comunicação com alunos, responsáveis e professores, além de um banner na landing page voltado para designers.
-
-O sistema CSFA foi inicialmente criado para auxiliar professores na criação e manutenção de provas e questões, inspirado no sistema SIGA. Ele possibilita:
-
-Armazenamento e organização de questões e provas.
-
-Geração automática de provas utilizando um template padronizado do colégio, permitindo que os professores escolham questões por meio de filtros dinâmicos.
-
-Planejamento futuro para integrar inteligência artificial capaz de sugerir modelos de provas baseados no assunto, ano e matéria escolhida.
-
-Eliminação da necessidade de envio de provas ao setor de informática para revisão e formatação, permitindo que os próprios professores gerem, revisem e imprimam suas provas diretamente no sistema.
-
-Acompanhamento detalhado de todas as ações através de logs acessíveis pela equipe de informática e coordenação.
-
-Com essa solução, o CSFA otimiza processos internos, reduz a carga de trabalho manual e melhora a eficiência no gerenciamento acadêmico.
-
-## Dependências
-
-### Principais
-
-- @iconify/react
-- @netlify/plugin-nextjs
-- @radix-ui/react-dialog
-- @radix-ui/react-dropdown-menu
-- @radix-ui/react-slot
-- @shadcn/ui
-- @tailwindcss/forms
-- @tailwindcss/typography
-- autoprefixer
-- axios
-- class-variance-authority
-- clsx
-- eslint
-- lucide-react
-- motion
-- next
-- papaparse
-- postcss
-- prettier
-- puppeteer
-- react
-- react-dom
-- tailwind-merge
-- tailwindcss-animate
-- zod
-
-### Desenvolvimento
-
-- @tailwindcss/postcss
-- @types/node
-- @types/react
-- @types/react-dom
-- tailwindcss
-- typescript
-
-
-## Como iniciar o projeto
-
-Instale as dependências:
-```sh
-npm install
-```
-
-Rode o ambiente de desenvolvimento:
-```sh
+```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-ou 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Rode ambiente de produção:
-```sh
-npm run build
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
