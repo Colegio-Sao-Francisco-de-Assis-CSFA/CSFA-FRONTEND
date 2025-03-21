@@ -3,7 +3,6 @@ import HeroBannerCarousel from '@/components/shared/HeroBanner';
 import EducationalSegments from '@/components/shared/Segments';
 import EducationSystem from '@/components/shared/EducationSystem ';
 import MissaoColegio from '@/components/view/MissaoColegio';
-import Animation from '@/components/view/Animation';
 
 export default function Home() {
 
@@ -53,8 +52,6 @@ export default function Home() {
   return (
       <div className='overflow-hidden w-dvw flex flex-col items-center'>
 
-        <Animation />
-
          <Header />
 
          <section  className='w-dvw'>
@@ -69,7 +66,7 @@ export default function Home() {
               <EducationalSegments />
           </section>
 
-          <section className="w-full p-6">
+          <section className="w-full h-auto p-6">
             <EducationSystem/>
           </section>
 
