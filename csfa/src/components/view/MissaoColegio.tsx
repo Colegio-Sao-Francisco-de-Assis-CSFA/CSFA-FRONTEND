@@ -60,7 +60,7 @@ const MissaoColegio = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h1 
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-4 min-h-[80px] md:min-h-[120px]"
