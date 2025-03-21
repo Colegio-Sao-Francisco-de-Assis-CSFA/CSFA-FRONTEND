@@ -56,7 +56,7 @@ const IntroAnimation = () => {
   
   return (
     <div className={`fixed inset-0 flex flex-col items-center justify-center bg-white z-[9999] transition-opacity duration-1000 w-full ${fadeOut ? 'opacity-0' : 'opacity-100'}`}>
-      <div className="text-center px-4 flex items-center justify-center">
+      <div className="text-center px-4 flex flex-col items-center justify-center">
         {/* Logo com efeito de aumentar e diminuir (resize) */}
         <div className={`w-32 h-32 mb-8 mx-auto transform transition-all ${subtextComplete ? '' : 'animate-[resize_2s_ease-in-out_infinite]'}`}>
           <Image alt='logo introdução' src={"/logo.webp"} width={600} height={600} />
