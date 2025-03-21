@@ -2,6 +2,7 @@ import Header from '@/components/shared/Header/Header';
 import HeroBannerCarousel from '@/components/shared/HeroBanner';
 import EducationalSegments from '@/components/shared/Segments';
 import EducationSystem from '@/components/shared/EducationSystem ';
+import MissaoColegio from '@/components/view/MissaoColegio';
 
 export default function Home() {
 
@@ -53,18 +54,22 @@ export default function Home() {
 
          <Header />
 
-         <section  className='w-dvw '>
+         <section  className='w-dvw'>
             <HeroBannerCarousel items={carouselItems} />
          </section>
+
+         <section className='w-dvw h-auto p-6'>
+            <MissaoColegio />
+          </section>
 
           <section className='w-dvw h-auto p-6'>
               <EducationalSegments />
           </section>
 
-          <section className="w-full h-auto p-6">
+          <section className="w-full p-6">
             <EducationSystem/>
           </section>
-          
+
       </div>
   );
 }
