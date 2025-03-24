@@ -42,7 +42,7 @@ export default function AboutSection() {
 
   return (
 
-      <div className="w-full h-auto mx-auto flex flex-col gap-12 lg:h-dvh lg:flex-row items-center justify-center">
+      <div className="w-full h-auto mx-auto flex flex-col gap-12 lg:flex-row items-center justify-center lg:h-full">
         
         {/* Container Left - Media Section */}
         <motion.div className="w-full h-full flex flex-col overflow-hidden lg:flex-row lg:w-1/2"
@@ -181,13 +181,13 @@ export default function AboutSection() {
           </div>
 
           {/* Service Cards */}
-          <motion.div className="grid md:grid-cols-2 gap-6" variants={containerVariants}>
+          <motion.div className="grid md:grid-cols-2 gap-6 mt-6" variants={containerVariants}>
 
             <motion.div variants={itemVariants}>
 
-              <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+              <Card className="shadow-md hover:shadow-lg transition-shadow lg:border lg:border-blue-600">
 
-                <CardContent className="p-6 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center font-medium">
+                <CardContent className="p-6 flex gap-4  lg:rounded-2xl lg:h-48 lg:items-center font-medium">
                  
                  {/* Card Icon - Text */}
                   <div className="space-y-3">
@@ -217,9 +217,9 @@ export default function AboutSection() {
 
             <motion.div variants={itemVariants}>
 
-              <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
+              <Card className="shadow-md hover:shadow-lg transition-shadow lg:border lg:border-blue-600">
 
-                <CardContent className="p-6 flex gap-4 lg:border lg:border-blue-600 lg:rounded-2xl lg:h-48 lg:items-center font-medium">
+                <CardContent className="p-6 flex gap-4 lg:rounded-2xl lg:h-48 lg:items-center font-medium">
 
                   {/* Card Icon - Text */}
                   <div className="space-y-3">

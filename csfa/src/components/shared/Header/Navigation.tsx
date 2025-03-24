@@ -60,7 +60,7 @@ export default function Navigation() {
         <div className="w-full max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-3 ml-4 rtl:space-x-reverse">
-            <img src="/logo.webp" className="w-16" alt="Logo" />
+            <img src="/logo-teste.png" className="w-16" alt="Logo" />
           </a>
 
           {/* Container para menu e área restrita */}
@@ -152,7 +152,7 @@ export default function Navigation() {
               
               {/* Logo inserido entre o título e o botão de fechar */}
               <div className="flex justify-center mb-2">
-                <img src="/logo.webp" className="w-20" alt="Logo" />
+                <img src="/logo-teste.png" className="w-20" alt="Logo" />
               </div>
             </div>
 
