@@ -1,8 +1,10 @@
-import Header from '@/components/shared/Header/Header';
-import HeroBannerCarousel from '@/components/shared/HeroBanner';
-import EducationalSegments from '@/components/shared/Segments';
-import EducationSystem from '@/components/shared/EducationSystem ';
+import HeroBannerCarousel from '@/components/view/HeroBanner';
+import EducationalSegments from '@/components/view/Segmentos';
+import EducationSystem from '@/components/view/Sobre';
 import MissaoColegio from '@/components/view/MissaoColegio';
+import Parceiros from '@/components/view/Parceiros/SessaoParceiros';
+import Diferenciais from '@/components/view/Diferenciais';
+
 
 export default function Home() {
 
@@ -52,7 +54,6 @@ export default function Home() {
   return (
       <div className='overflow-hidden w-dvw flex flex-col items-center'>
 
-         <Header />
 
          <section  className='w-dvw'>
             <HeroBannerCarousel items={carouselItems} />
@@ -63,12 +64,29 @@ export default function Home() {
           </section>
 
           <section className='w-dvw h-auto p-6'>
-              <EducationalSegments />
+            <EducationalSegments />
           </section>
+
+
+        <section className='w-dvw h-auto p-6'>
+          <div className="mx-auto">
+              <h2 className="text-3xl text-center font-bold text-blue-600">Nossos Parceiros</h2>
+              <p className="text-sm text-gray-700 font-normal md:text-lg mt-4 text-center">
+                Parcerias são essenciais para oferecer as melhores 
+                oportunidades aos nossos alunos.
+              </p>
+          </div>
+          <Parceiros/>
+        </section>
 
           <section className="w-full h-auto p-6">
             <EducationSystem/>
           </section>
+
+        <section>
+          <Diferenciais />
+        </section>
+
 
       </div>
   );

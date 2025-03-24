@@ -42,10 +42,10 @@ export default function AboutSection() {
 
   return (
 
-      <div className="w-full h-auto mx-auto flex flex-col gap-12 lg:flex-row items-center justify-center lg:h-full">
+      <div className="w-full h-auto mx-auto flex flex-col-reverse gap-12 lg:flex-row items-center justify-center lg:h-full">
         
         {/* Container Left - Media Section */}
-        <motion.div className="w-full h-full flex flex-col overflow-hidden lg:flex-row lg:w-1/2"
+        <motion.div className="w-full h-full flex flex-col overflow-hidden md:flex-row lg:w-1/2"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -53,18 +53,18 @@ export default function AboutSection() {
         >
 
           {/* InContainer Left - Video & Quote*/}
-          <div className="w-full h-full p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2 ">
+          <div className="w-full h-full p-4 gap-4 flex flex-col items-center justify-center md:w-1/2 ">
 
             {/* Video */}
-            <motion.div className="relative w-full lg:h-[550px]" variants={itemVariants}>
+            <motion.div className="relative w-full md:h-[550px]" variants={itemVariants}>
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="relative w-full h-44 rounded-tl-[35px] rounded-tr-[35px] rounded-bl-[35px] overflow-hidden lg:rounded-tl-[50px] lg:rounded-tr-[50px] lg:rounded-bl-[50px] cursor-pointer group lg:h-full " >
+                  <div className="relative w-full h-44 rounded-tl-[35px] rounded-tr-[35px] rounded-bl-[35px] overflow-hidden lg:rounded-tl-[50px] lg:rounded-tr-[50px] lg:rounded-bl-[50px] cursor-pointer group md:h-full " >
                     <Image
                       src="/images/courses/finais.webp"
                       alt="Students learning together"
-                      width={600}
-                      height={400}
+                      width={200}   
+                      height={200}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -110,7 +110,7 @@ export default function AboutSection() {
 
 
           {/* InContainer Right - Photos */}
-          <motion.div className="w-full h-full  p-4 gap-4 flex flex-col items-center justify-center lg:w-1/2" 
+          <motion.div className="w-full h-full  p-4 gap-4 flex flex-col items-center justify-center md:w-1/2" 
            variants={containerVariants}>
             
             {/* Image */}
@@ -158,12 +158,6 @@ export default function AboutSection() {
           variants={containerVariants}
         >
           <div className="space-y-4">
-            <motion.span
-              className="text-blue-600 uppercase tracking-wider text-sm font-semibold underline"
-              variants={itemVariants}
-            >
-             Sobre nós
-            </motion.span>
             <motion.h1 className="text-3xl md:text-2xl lg:text-5xl font-semibold" variants={itemVariants}>
                 Colégio São Francisco de Assis:  <span className="text-blue-600">Formação de Qualidade, Educação que transforma</span>.
             </motion.h1>

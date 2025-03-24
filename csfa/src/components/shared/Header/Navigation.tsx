@@ -1,13 +1,60 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
 import { Icon } from '@iconify/react';
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+
+// Interface para definir as propriedades do NavLink
+interface NavLinkProps {
+  href: string;                  // Rota de destino do link (obrigatório)
+  children: ReactNode;           // Conteúdo do link (texto ou elementos)
+  className?: string;            // Classes CSS adicionais (opcional)
+  activeClassName?: string;      // Classes específicas para link ativo (opcional)
+  inactiveClassName?: string;    // Classes específicas para link inativo (opcional)
+  exact?: boolean;               // Se true, só considera ativo se rota for exatamente igual (opcional, padrão: true)
+}
+
+const LinkNav: React.FC<NavLinkProps> = ({ 
+  href, 
+  children, 
+  className = '', 
+  activeClassName = 'text-blue-600 font-semibold', 
+  inactiveClassName = 'text-slate-600 hover:text-blue-600',
+  exact = true
+}) => {
+  const pathname = usePathname();
+  
+  // Lógica de verificação de rota ativa
+  const isActive = exact 
+    ? pathname === href 
+    : pathname.startsWith(href);
+  
+  // Combina classes base com classes condicionais
+  const linkClasses = `
+    block py-2 
+    transition-colors duration-200 
+    ${isActive ? activeClassName : inactiveClassName} 
+    ${className}
+  `;
+
+  return (
+    <Link 
+      href={href} 
+      className={linkClasses}
+      aria-current={isActive ? "page" : undefined}
+    >
+      {children}
+    </Link>
+  );
+};
 
 export default function Navigation() {
   // Estados para controlar a abertura do menu mobile e sua animação
@@ -47,11 +94,14 @@ export default function Navigation() {
   // Array com links do menu principal
   const navMenu = [
     { name: 'Inicio', href: '/'},
-    { name: 'Segmentos', href: '/courses'},
-    { name: 'Sobre nós', href: '/about'},
-    { name: 'Diferenciais', href: '/features'},
-    { name: 'Contato', href: '/contact'}
+    { name: 'Segmentos', href: '/segmentos'},
+    { name: 'Sobre nós', href: '/sobre'},
+    { name: 'Diferenciais', href: '/diferenciais'},
+    { name: 'Contato', href: '/contato'}
   ];
+  
+  
+
 
   return (
     <>
@@ -70,13 +120,20 @@ export default function Navigation() {
               <ul className="flex font-medium space-x-8 rtl:space-x-reverse">
                 {navMenu.map((item, index) => (
                   <li key={index}>
-                    <Link
+                    <LinkNav
                       href={item.href}
-                      className="block py-2 text-slate-600 font-medium hover:text-blue-600 transition-colors duration-200"
+                      children={item.name}
+                      activeClassName='text-blue-600 font-medium'
+                      inactiveClassName='text-slate-600 font-normal'
+                      key={index}
+                    />
+                    {/* <Link
+                      href={item.href}
+                      className="block py-2 text-slate-600 font-med ium hover:text-blue-600 transition-colors duration-200"
                       aria-current={item.href === '/' ? "page" : undefined}
                     >
                       {item.name}
-                    </Link>
+                    </Link> */}
                   </li>
                 ))}
               </ul>

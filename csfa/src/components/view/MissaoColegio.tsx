@@ -60,17 +60,17 @@ const MissaoColegio = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4 w-full overflow-hidden">
-      <div className="w-full max-w-4xl mx-auto text-center px-4">
+    <div className="flex flex-col items-center justify-center w-full overflow-hidden">
+      <div className="w-full mx-auto text-center">
+        
         <div className="relative">
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 mb-6"
+            className="text-2xl md:text-4xl font-bold text-blue-600 mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            <span className="block h-auto">{displayedTitle}</span>
-            {typing && <span className="inline-block w-1 h-6 sm:h-8 bg-blue-600 ml-1 animate-pulse absolute"></span>}
+            <span className="block w-full h-auto">{displayedTitle}</span>
           </motion.h1>
         </div>
         
@@ -80,15 +80,12 @@ const MissaoColegio = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl text-blue-500 relative">
+          <p className="text-lg text-blue-500 relative">
             {displayedSubtitle}
-            {typing && displayedTitle.length === title.length && 
-              <span className="inline-block w-1 h-5 sm:h-6 bg-blue-500 ml-1 animate-pulse absolute"></span>
-            }
           </p>
         </motion.div>
         
-        {showPillars && (
+        {/* {showPillars && (
           <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-8 w-full"
             initial={{ opacity: 0, y: 20 }}
@@ -109,13 +106,13 @@ const MissaoColegio = () => {
               </motion.div>
             ))}
           </motion.div>
-        )}
+        )} */}
         
         <motion.div
           className="mt-8 sm:mt-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: showPillars ? 1 : 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
           <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-full shadow-lg transition-all text-sm sm:text-base">
             Conheça nosso projeto pedagógico

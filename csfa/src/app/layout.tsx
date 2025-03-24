@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+import Head from "next/head";
 import "./globals.css";
+import Header from '@/components/shared/Header/Header';
 
 
 export const metadata = {
-  title: "Colégio São Francisco de Assis",
-  description: "Escola comprometida com educação de qualidade, formando crianças e jovens para um futuro melhor.",
   openGraph: {
     title: "Colégio São Francisco de Assis",
     description: "Escola comprometida com educação de qualidade, formando crianças e jovens para um futuro melhor.",
@@ -28,6 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
+      <Head>
+        <link rel="icon" type="image/webp" href="/logo.webp" />
+        <meta name="description" content="Escola comprometida com educação de qualidade, formando crianças e jovens para um futuro melhor." />
+        <title>Colégio São Francisco de Assis</title>
+      </Head>
+      
+      <Header />
+
       <body>
         {children}
       </body>
