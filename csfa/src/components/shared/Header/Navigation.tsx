@@ -2,6 +2,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import { Icon } from '@iconify/react';
 import Link from "next/link";
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import {
@@ -12,14 +13,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 
-// Interface para definir as propriedades do NavLink
 interface NavLinkProps {
-  href: string;                  // Rota de destino do link (obrigatório)
-  children: ReactNode;           // Conteúdo do link (texto ou elementos)
-  className?: string;            // Classes CSS adicionais (opcional)
-  activeClassName?: string;      // Classes específicas para link ativo (opcional)
-  inactiveClassName?: string;    // Classes específicas para link inativo (opcional)
-  exact?: boolean;               // Se true, só considera ativo se rota for exatamente igual (opcional, padrão: true)
+  href: string;                  
+  children: ReactNode;           
+  className?: string;            
+  activeClassName?: string;      
+  inactiveClassName?: string;    
+  exact?: boolean;               
 }
 
 const LinkNav: React.FC<NavLinkProps> = ({ 
@@ -30,14 +30,13 @@ const LinkNav: React.FC<NavLinkProps> = ({
   inactiveClassName = 'text-slate-600 hover:text-blue-600',
   exact = true
 }) => {
+
   const pathname = usePathname();
-  
-  // Lógica de verificação de rota ativa
+
   const isActive = exact 
     ? pathname === href 
     : pathname.startsWith(href);
   
-  // Combina classes base com classes condicionais
   const linkClasses = `
     block py-2 
     transition-colors duration-200 
@@ -57,47 +56,53 @@ const LinkNav: React.FC<NavLinkProps> = ({
 };
 
 export default function Navigation() {
-  // Estados para controlar a abertura do menu mobile e sua animação
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Controla o overflow do body quando o menu mobile está aberto
-  // Evita rolagem da página quando o menu está ativo
   useEffect(() => {
     if (isMobileMenuOpen) {
+
       document.body.style.overflow = 'hidden';
+
     } else {
+
       document.body.style.overflow = 'unset';
+
     }
-    // Cleanup function para garantir que o overflow volte ao normal quando o componente for desmontado
+
     return () => {
+
       document.body.style.overflow = 'unset';
+
     };
   }, [isMobileMenuOpen]);
 
-  // Função para alternar entre abrir e fechar o menu mobile
   const toggleMenu = () => {
+
     setIsTransitioning(true);
+
     setIsMobileMenuOpen((prev) => !prev);
+
   };
 
-  // Array com links da área restrita e suas propriedades
   const navRestrict = [
-    { name: 'Email Aluno', icon: 'mdi:email', href:'#', bg: 'bg-orange-500', hoverbg:'hover:bg-orange-700'},
-    { name: 'Classroom', icon: 'mdi:google-classroom', href:'#', bg: 'bg-green-500', hoverbg:'hover:bg-green-700'},
-    { name: 'SAS Educação', icon: 'mdi:book-education', href:'#', bg: 'bg-red-500', hoverbg:'hover:bg-red-700'},
-    { name: 'Diário Eletrônico', icon: 'mdi:notebook', href:'#', bg: 'bg-purple-500', hoverbg:'hover:bg-purple-700'},
-    { name: 'Email Coorporativo', icon: 'mdi:email-outline', href:'#', bg: 'bg-gray-600', hoverbg:'hover:bg-gray-800'},
-    { name: 'Apadges', icon: 'mdi:account', href:'/sign-in', bg: 'bg-blue-500', hoverbg:'hover:bg-blue-700'},
+    { name: 'E-mail Aluno', icon: 'mdi:google', href:'https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hd=aluno.colsaofrancisco.com.br&ifkv=AXH0vVtuzXZaLJf3keWAaYRQtfaa361Sdrc5myDLc5keVeCRVTCRLrstItkPRHGmdSqFzm1Nuy9XWw&ltmpl=default&osid=1&rip=1&sacu=1&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1926296839%3A1742924668599914', bg: 'bg-amber-600', hoverbg:'hover:bg-amber-700'},
+    { name: 'Classroom', icon: 'mdi:google-classroom', href:'https://edu.google.com/intl/ALL_br/workspace-for-education/products/classroom/', bg: 'bg-emerald-600', hoverbg:'hover:bg-emerald-700'},
+    { name: 'SAS Educação', icon: 'mdi:book-education', href:'https://app.portalsaseducacao.com.br/entrar/', bg: 'bg-blue-800', hoverbg:'hover:bg-blue-950'},
+    { name: 'Diário Eletrônico', icon: 'mdi:notebook', href:'https://siga03.activesoft.com.br/login/?instituicao=FRANCISCODEASSIS', bg: 'bg-purple-600', hoverbg:'hover:bg-purple-700'},
+    { name: 'Cantina', icon: 'ion:fast-food', href:'https://siga03.activesoft.com.br/login/?instituicao=FRANCISCODEASSIS', bg: 'bg-sky-600', hoverbg:'hover:bg-sky-700'},
+    { name: 'E-mail Coorporativo', icon: 'mdi:email', href:'https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hd=colsaofrancisco.com.br&ifkv=AXH0vVvX8vAYtRE_pCpchKTt3qfwzXgYkGyDAYj4O6A5xoRirc0g3L5e8IqMJC6tPSvDDKYEc9b0qQ&ltmpl=default&osid=1&rip=1&sacu=1&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1357479426%3A1742924714844676', bg: 'bg-slate-700', hoverbg:'hover:bg-slate-800'},
+    { name: 'Apadges', icon: 'tdesign:system-sum', href:'/sign-in', bg: 'bg-rose-600', hoverbg:'hover:bg-rose-700'},
   ];
 
-  // Array com links do menu principal
   const navMenu = [
     { name: 'Inicio', href: '/'},
     { name: 'Segmentos', href: '/segmentos'},
     { name: 'Sobre nós', href: '/sobre'},
     { name: 'Diferenciais', href: '/diferenciais'},
-    { name: 'Contato', href: '/contato'}
+    { name: 'Contato', href: '/contato'},
+    { name: 'Acontece CSFA', href: '/acontece-csfa'}
   ];
   
   
@@ -105,16 +110,17 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Barra de navegação principal - somente visível em desktop */}
+    
       <nav className="hidden lg:flex h-20 items-center justify-center bg-white border border-slate-600/30 rounded-full shadow-md">
         <div className="w-full max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
-          {/* Logo */}
+          
           <a href="/" className="flex items-center space-x-3 ml-4 rtl:space-x-reverse">
-            <img src="/logo-teste.png" className="w-16" alt="Logo" />
+            <Image src="/logo40anos.svg" alt="Logo" width={20} height={20} className="w-16" />
           </a>
 
-          {/* Container para menu e área restrita */}
+  
           <div className='flex-grow flex items-center justify-end relative pr-2 '>
+
             {/* Menu navegação principal - visível apenas em desktop */}
             <div className="absolute left-[50%] translate-x-[-60%] whitespace-nowrap">
               <ul className="flex font-medium space-x-8 rtl:space-x-reverse">
@@ -127,19 +133,11 @@ export default function Navigation() {
                       inactiveClassName='text-slate-600 font-normal'
                       key={index}
                     />
-                    {/* <Link
-                      href={item.href}
-                      className="block py-2 text-slate-600 font-med ium hover:text-blue-600 transition-colors duration-200"
-                      aria-current={item.href === '/' ? "page" : undefined}
-                    >
-                      {item.name}
-                    </Link> */}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Dropdown da área restrita usando Shadcn/ui - visível apenas em desktop */}
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -148,16 +146,19 @@ export default function Navigation() {
                     Área restrita
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-52 p-2 flex flex-col gap-2">
+
+                <DropdownMenuContent align="end" className="w-52 p-2.5 flex flex-col gap-3">
+
                   {navRestrict.map((btn, index) => (
+
                     <DropdownMenuItem key={index} asChild>
-                      <Link
-                        href={btn.href}
-                        className={`p-2 flex items-center gap-4 cursor-pointer w-full text-white ${btn.bg} ${btn.hoverbg} transition-colors duration-200`}
-                      >
-                        {btn.icon && <Icon className='text-white' icon={btn.icon} />}
-                        {btn.name}
-                      </Link>
+
+                      
+                        <a href={btn.href} className={`p-2 flex gap-4 items-center cursor-pointer w-full text-white ${btn.bg} ${btn.hoverbg}`}>
+                          {<Icon className='text-white' icon={btn.icon} />}
+                          {btn.name}
+                        </a>
+                      
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
@@ -209,7 +210,7 @@ export default function Navigation() {
               
               {/* Logo inserido entre o título e o botão de fechar */}
               <div className="flex justify-center mb-2">
-                <img src="/logo-teste.png" className="w-20" alt="Logo" />
+                <Image src="/logo40anos.svg" alt="Logo" width={20} height={20} className="w-24" />
               </div>
             </div>
 
@@ -238,7 +239,7 @@ export default function Navigation() {
                     <li key={index}>
                       <Link
                         href={item.href}
-                        className={`flex items-center gap-2 py-2 px-4 rounded-md text-white ${item.bg} hover:opacity-90 transition-opacity`}
+                        className={`flex items-center gap-2 py-2 px-4 rounded-md text-white ${item.bg} hover: transition-colors duration-200`}
                         onClick={toggleMenu}
                       >
                         {item.icon && <Icon icon={item.icon} />}

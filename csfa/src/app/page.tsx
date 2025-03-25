@@ -52,7 +52,7 @@ export default function Home() {
   ];
 
   return (
-      <div className='overflow-hidden w-dvw flex flex-col items-center'>
+      <div className='w-full flex flex-col items-center overflow-hidden'>
 
 
          <section  className='w-dvw'>
