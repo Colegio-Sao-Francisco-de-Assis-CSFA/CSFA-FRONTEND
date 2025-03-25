@@ -1,4 +1,4 @@
-# Usa a imagem oficial do Node.js 20
+# Usa a imagem oficial do Node.js
 FROM node:22
 
 # Define o diretório de trabalho dentro do contêiner
