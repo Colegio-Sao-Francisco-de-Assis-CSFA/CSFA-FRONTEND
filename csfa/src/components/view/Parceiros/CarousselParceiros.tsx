@@ -11,7 +11,9 @@ interface PartnerCarouselProps {
   logos: PartnerLogoProps[];
 }
 
-const CarousselParceiros: React.FC<PartnerCarouselProps> = ({ logos }) => {
+
+export default function CarousselParceiros({ logos }: PartnerCarouselProps) {
+  
   // Duplicate logos for seamless infinite scroll
   const carouselLogos = [...logos, ...logos];
 
@@ -46,4 +48,3 @@ const CarousselParceiros: React.FC<PartnerCarouselProps> = ({ logos }) => {
   );
 };
 
-export default CarousselParceiros;

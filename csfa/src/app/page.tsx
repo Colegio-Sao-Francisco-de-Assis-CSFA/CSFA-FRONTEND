@@ -4,6 +4,7 @@ import EducationSystem from '@/components/view/Sobre';
 import MissaoColegio from '@/components/view/MissaoColegio';
 import Parceiros from '@/components/view/Parceiros/SessaoParceiros';
 import Diferenciais from '@/components/view/Diferenciais';
+import TimeLine from '@/components/view/TimeLine/SessaoTimeLine';
 
 
 export default function Home() {
@@ -55,20 +56,31 @@ export default function Home() {
       <div className='w-full flex flex-col items-center overflow-hidden'>
 
 
-         <section  className='w-dvw'>
-            <HeroBannerCarousel items={carouselItems} />
-         </section>
+        <section id='inicio'  className='w-dvw'>
+          <HeroBannerCarousel items={carouselItems} />
+        </section>
 
-         <section className='w-dvw h-auto p-6'>
-            <MissaoColegio />
-          </section>
+        <section id='missao' className='w-dvw h-auto p-6'>
+          <MissaoColegio />
+        </section>
 
-          <section className='w-dvw h-auto p-6'>
-            <EducationalSegments />
-          </section>
+        <section id='segmentos' className='w-dvw h-auto p-6'>
+          <EducationalSegments />
+        </section>
 
+        <section id='sistema-educacional' className="w-full h-auto p-6">
+          <EducationSystem/>
+        </section>
 
-        <section className='w-dvw h-auto p-6'>
+        <section id='timeline' className='w-dvw h-auto p-6'>
+          <TimeLine />
+        </section>
+
+        <section id='diferenciais'>
+          <Diferenciais />
+        </section>
+
+        <section id='parceiros' className='w-dvw h-auto p-6'>
           <div className="mx-auto">
               <h2 className="text-3xl text-center font-bold text-blue-600">Nossos Parceiros</h2>
               <p className="text-sm text-gray-700 font-normal md:text-lg mt-4 text-center">
@@ -79,13 +91,6 @@ export default function Home() {
           <Parceiros/>
         </section>
 
-          <section className="w-full h-auto p-6">
-            <EducationSystem/>
-          </section>
-
-        <section>
-          <Diferenciais />
-        </section>
 
 
       </div>
