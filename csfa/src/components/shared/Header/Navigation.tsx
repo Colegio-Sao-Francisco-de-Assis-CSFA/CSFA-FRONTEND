@@ -14,39 +14,39 @@ import {
 
 
 interface NavLinkProps {
-  href: string;                  
-  children: ReactNode;           
-  className?: string;            
-  activeClassName?: string;      
-  inactiveClassName?: string;    
-  exact?: boolean;               
+  href: string;
+  children: ReactNode;
+  className?: string;
+  activeClassName?: string;
+  inactiveClassName?: string;
+  exact?: boolean;
 }
 
-const LinkNav: React.FC<NavLinkProps> = ({ 
-  href, 
-  children, 
-  className = '', 
-  activeClassName = 'text-blue-600 font-semibold', 
+const LinkNav: React.FC<NavLinkProps> = ({
+  href,
+  children,
+  className = '',
+  activeClassName = 'text-blue-600 font-semibold',
   inactiveClassName = 'text-slate-600 hover:text-blue-600',
   exact = true
 }) => {
 
   const pathname = usePathname();
 
-  const isActive = exact 
-    ? pathname === href 
+  const isActive = exact
+    ? pathname === href
     : pathname.startsWith(href);
-  
+
   const linkClasses = `
-    block py-2 
-    transition-colors duration-200 
-    ${isActive ? activeClassName : inactiveClassName} 
+    block py-2
+    transition-colors duration-200
+    ${isActive ? activeClassName : inactiveClassName}
     ${className}
   `;
 
   return (
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className={linkClasses}
       aria-current={isActive ? "page" : undefined}
     >
@@ -56,7 +56,7 @@ const LinkNav: React.FC<NavLinkProps> = ({
 };
 
 export default function Navigation() {
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -104,21 +104,21 @@ export default function Navigation() {
     { name: 'Contato', href: '/contato'},
     { name: 'Acontece CSFA', href: '/acontece-csfa'}
   ];
-  
-  
+
+
 
 
   return (
     <>
-    
+
       <nav className="hidden lg:flex h-20 items-center justify-center bg-white border border-slate-600/30 rounded-full shadow-md">
         <div className="w-full max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-2">
-          
+
           <a href="/" className="flex items-center space-x-3 ml-4 rtl:space-x-reverse">
             <Image src="/logo40anos.svg" alt="Logo" width={20} height={20} className="w-16" />
           </a>
 
-  
+
           <div className='flex-grow flex items-center justify-end relative pr-2 '>
 
             {/* Menu navegação principal - visível apenas em desktop */}
@@ -153,12 +153,12 @@ export default function Navigation() {
 
                     <DropdownMenuItem key={index} asChild>
 
-                      
+
                         <a href={btn.href} className={`p-2 flex gap-4 items-center cursor-pointer w-full text-white ${btn.bg} ${btn.hoverbg}`}>
                           {<Icon className='text-white' icon={btn.icon} />}
                           {btn.name}
                         </a>
-                      
+
                     </DropdownMenuItem>
                   ))}
                 </DropdownMenuContent>
@@ -180,6 +180,7 @@ export default function Navigation() {
             icon={isMobileMenuOpen ? "mdi:close" : "mdi:menu"}
             className="text-2xl text-blue-600"
           />
+          <span className='hidden'>button</span>
         </button>
       </div>
 
@@ -207,7 +208,7 @@ export default function Navigation() {
           <div className="flex flex-col h-full overflow-y-auto">
             {/* Cabeçalho do menu mobile */}
             <div className="flex flex-col p-4 border-b">
-              
+
               {/* Logo inserido entre o título e o botão de fechar */}
               <div className="flex justify-center mb-2">
                 <Image src="/logo40anos.svg" alt="Logo" width={20} height={20} className="w-24" />
