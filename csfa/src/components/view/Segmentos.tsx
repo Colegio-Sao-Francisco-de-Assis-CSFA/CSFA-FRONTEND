@@ -1,272 +1,388 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Card } from '@/components/ui/card';
-import { Icon } from '@iconify/react/dist/iconify.js';
-import useMediaQuery from '@/hooks/useMediaQuery';
-import '@/app/globals.css';
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import { Book, ClipboardList, GraduationCap, Puzzle } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Definição dos tipos para o segmento educacional
-type EducationalSegment = {
-  id: string;
-  title: string;
-  frontDescription: string;
-  backDescription: string;
-  color: string;
-  hoverColor: string;
-  textColor: string;
-  icon: React.ReactNode;
-};
+export default function SegmentosEducacionais() {
+  const [activeTab, setActiveTab] = useState("visao-geral")
+  const [flippedCards, setFlippedCards] = useState({})
 
-// Componente Modal para mobile
-const InfoModal: React.FC<{ 
-  segment: EducationalSegment | null; 
-  isOpen: boolean; 
-  onClose: () => void 
-}> = ({ segment, isOpen, onClose }) => {
-  if (!segment) return null;
-  
-  // Extrair a cor base do card (sem o prefixo "bg-")
-  const baseColor = segment.color.replace('bg-', '');
-  
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div 
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
-          <motion.div 
-            className="fixed inset-0 flex items-center justify-center z-50 p-4"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          >
-            <Card 
-              className={`w-full max-w-xs ${segment.hoverColor} ${segment.textColor} p-6 rounded-xl shadow-xl`}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="text-3xl">{segment.icon}</div>
-                <button 
-                  onClick={onClose} 
-                  className="text-white text-xl hover:text-gray-200"
-                >
-                  ×
-                </button>
-              </div>
-              <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
-              <p className="text-sm">{segment.backDescription}</p>
-              <div className={`mt-4 w-full h-1 bg-white bg-opacity-20 rounded-full`}/>
-            </Card>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
+  const toggleFlip = (cardId) => {
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardId]: !prev[cardId]
+    }))
+  }
 
-// Componente para os cards dos segmentos educacionais
-const SegmentCard: React.FC<{ 
-  segment: EducationalSegment; 
-  onOpenModal: (segment: EducationalSegment) => void;
-}> = ({ segment, onOpenModal }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
 
-  const handleClick = () => {
-    if (isMobile) {
-      onOpenModal(segment);
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100 },
+    },
+  }
+
+  // CSS personalizado para o efeito flip
+  const styleTag = `
+    .perspective-1000 {
+      perspective: 1000px;
     }
-  };
 
-  const handleHover = () => {
-    if (!isMobile) {
-      setIsFlipped(true);
+    .preserve-3d {
+      transform-style: preserve-3d;
     }
-  };
 
-  const handleHoverEnd = () => {
-    if (!isMobile) {
-      setIsFlipped(false);
+    .backface-hidden {
+      backface-visibility: hidden;
     }
-  };
 
-  // Extrair a cor base do card (sem o prefixo "bg-")
-  const baseColor = segment.color.replace('bg-', '');
+    .rotateY-180 {
+      transform: rotateY(180deg);
+    }
+
+    .flip-active .preserve-3d {
+      transform: rotateY(180deg);
+    }
+  `;
 
   return (
-    <div 
-      className={`perspective-1000 ${isMobile ? 'w-full h-40' : 'w-64 h-72'} ${isMobile ? 'tap-highlight' : ''}`}
-      onClick={handleClick}
-      onMouseEnter={handleHover}
-      onMouseLeave={handleHoverEnd}
-    >
-      {!isMobile ? (
+    <section className="w-full py-12 bg-gray-50">
+      <style>{styleTag}</style>
+      <div className="container relative max-w-6xl mx-auto px-4">
+
         <motion.div
-          className="relative w-full h-full"
-          initial={false}
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          style={{ transformStyle: "preserve-3d" }}
+          className="text-center mb-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
         >
-          {/* Front of card - Desktop */}
-          <Card 
-            className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
-                      ${segment.color} ${segment.textColor} backface-hidden shadow-lg
-                      transition-all duration-300 hover:shadow-xl`}
+          <motion.h2
+            className="text-3xl font-bold text-blue-600 mb-6"
+            variants={itemVariants}
           >
-            <div className="text-4xl mb-4">{segment.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{segment.title}</h3>
-            <p className="text-center text-sm">{segment.frontDescription}</p>
-          </Card>
+            Nossos Segmentos Educacionais
+            <span className="block w-24 h-1 bg-blue-600 mx-auto mt-2"></span>
+          </motion.h2>
 
-          {/* Back of card - Desktop */}
-          <Card 
-            className={`absolute w-full h-full flex flex-col items-center justify-center p-6 rounded-xl 
-                      ${segment.hoverColor} ${segment.textColor} backface-hidden shadow-lg 
-                      hover:shadow-xl`}
-            style={{ transform: "rotateY(180deg)" }}
+          <motion.p
+            className="text-gray-700 max-w-3xl mx-auto"
+            variants={itemVariants}
           >
-            <h3 className="text-xl font-bold mb-3">{segment.title}</h3>
-            <p className="text-center text-sm">{segment.backDescription}</p>
-          </Card>
+            Oferecemos uma formação completa e integrada, do Infantil ao Ensino Médio, com metodologias
+            inovadoras e foco no desenvolvimento integral do aluno. Nossa proposta pedagógica equilibra
+            excelência acadêmica e formação humana.
+          </motion.p>
         </motion.div>
-      ) : (
-        // Mobile card (no flip, just click to modal)
-        <Card 
-          className={`w-full h-full flex flex-col items-center justify-center p-4 rounded-xl 
-                    ${segment.color} ${segment.textColor} shadow-md
-                    transition-all duration-300 active:scale-95 active:shadow-lg`}
-        >
-          <div className="text-2xl mb-2">{segment.icon}</div>
-          <h3 className="text-base font-bold mb-1 text-center">{segment.title}</h3>
-          {/* <p className="text-center text-xs">{segment.frontDescription}</p> */}
-          <div className="absolute bottom-2 right-2">
-            <Icon 
-              icon="mdi:information-outline" 
-              className="text-lg text-white opacity-80" 
-            />
-          </div>
-        </Card>
-      )}
-    </div>
-  );
-};
 
-// Componente principal
-const EducationalSegments: React.FC = () => {
-  const [modalSegment, setModalSegment] = useState<EducationalSegment | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  // Dados dos segmentos educacionais
-  const segments: EducationalSegment[] = [
-    {
-      id: "infantil",
-      title: "Educação Infantil",
-      frontDescription: "Para crianças de 2 a 5 anos",
-      backDescription: "Foco no desenvolvimento sensorial, motor e socioafetivo através de atividades lúdicas e de descoberta do mundo.",
-      color: "bg-pink-500",
-      hoverColor: "bg-pink-600",
-      textColor: "text-white",
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M9 16h6M12 3v1m0 16v1m-8-8h1m16 0h1M4.6 4.6l.7.7m12.1-.7l-.7.7" />
-            </svg>
-    },
-    {
-      id: "anosIniciais",
-      title: "Anos Iniciais",
-      frontDescription: "1º ao 5º ano do Fundamental",
-      backDescription: "Desenvolvimento da alfabetização, leitura, escrita e raciocínio lógico-matemático através de projetos integrados.",
-      color: "bg-blue-500",
-      hoverColor: "bg-blue-600",
-      textColor: "text-white",
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-    },
-    {
-      id: "anosFinais",
-      title: "Anos Finais",
-      frontDescription: "6º ao 9º ano do Fundamental",
-      backDescription: "Aprofundamento dos conhecimentos através de abordagem multidisciplinar e desenvolvimento do pensamento crítico.",
-      color: "bg-purple-500",
-      hoverColor: "bg-yellow-600",
-      textColor: "text-white",
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-    },
-    {
-      id: "ensinoMedio",
-      title: "Ensino Médio",
-      frontDescription: "1ª a 3ª série do Médio",
-      backDescription: "Preparação para o ENEM e vestibulares com aprofundamento acadêmico e orientação para escolha profissional.",
-      color: "bg-green-500",
-      hoverColor: "bg-green-600",
-      textColor: "text-white",
-      icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M12 14l9-5-9-5-9 5 9 5z" />
-              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-            </svg>
-    }
-  ];
-
-  const isMobile = useMediaQuery('(max-width: 768px)');
-
-  const handleOpenModal = (segment: EducationalSegment) => {
-    setModalSegment(segment);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
-    <div className="w-full h-auto py-8 lg:py-12 lg:h-full">
-
-      <div className="container mx-auto px-4">
-
-        <h1 className="text-3xl text-blue-600 font-bold text-center mb-6">Segmentos</h1>
-
-        {isMobile ? (
-          <p className="text-center text-gray-600 mb-6 text-sm">
-            Toque nos cards para mais informações
-          </p>
-        ) : (
-          <p className="text-center text-gray-600 mb-6">
-            Passe o mouse sobre os cards para ver mais informações
-          </p>
-        )}
-        
-        <div className={`grid ${isMobile ? 'grid-cols-2 gap-3' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'} justify-items-center`}>
-
-          {segments.map((segment) => (
-            <SegmentCard 
-              key={segment.id} 
-              segment={segment} 
-              onOpenModal={handleOpenModal}
-            />
-          ))}
-
+        <div className="mb-6">
+          <Tabs
+            defaultValue="visao-geral"
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full max-w-md mx-auto"
+          >
+            <TabsList className="grid grid-cols-2 w-full bg-gray-100 rounded-full">
+              <TabsTrigger
+                value="visao-geral"
+                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+              >
+                Visão Geral
+              </TabsTrigger>
+              <TabsTrigger
+                value="compromisso"
+                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+              >
+                Compromisso Educacional
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
-      </div>
-      
-      {/* Modal para exibição em dispositivos móveis */}
-      <InfoModal 
-        segment={modalSegment} 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-      />
-    </div>
-  );
-};
 
-export default EducationalSegments;
+        <div className="relative" style={{ minHeight: '700px' }}>
+          <AnimatePresence mode="wait">
+            {activeTab === "visao-geral" && (
+              <motion.div
+                key="visao-geral"
+                className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Educação Infantil */}
+                <div>
+                  <div
+                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[1] ? "flip-active" : ""}`}
+                    onClick={() => toggleFlip(1)}
+                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(1)}
+                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(1)}
+                  >
+                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
+                      {/* Frente do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-pink-500 text-white shadow-md flex flex-col items-center justify-center p-6">
+                        <div className="bg-white p-3 rounded-full mb-4">
+                          <Puzzle className="h-8 w-8 text-pink-500" />
+                        </div>
+                        <h3 className="font-bold text-xl text-center">Educação Infantil</h3>
+                        <div className="text-xs font-medium mt-2 bg-white text-pink-500 px-3 py-1 rounded-full">
+                          2 a 5 anos
+                        </div>
+                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
+                      </div>
+
+                      {/* Verso do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
+                        <h3 className="font-bold text-lg text-pink-500 mb-3">Educação Infantil</h3>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Desenvolvendo as habilidades sociais, emocionais e cognitivas essenciais nos
+                          primeiros anos de vida, através de atividades lúdicas e exploratórias.
+                        </p>
+                        <button className="mt-auto text-pink-500 text-sm font-medium flex items-center">
+                          Saiba mais
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ensino Fundamental I */}
+                <div>
+                  <div
+                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[2] ? "flip-active" : ""}`}
+                    onClick={() => toggleFlip(2)}
+                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(2)}
+                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(2)}
+                  >
+                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
+                      {/* Frente do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-blue-500 text-white shadow-md flex flex-col items-center justify-center p-6">
+                        <div className="bg-white p-3 rounded-full mb-4">
+                          <Book className="h-8 w-8 text-blue-500" />
+                        </div>
+                        <h3 className="font-bold text-xl text-center">Anos Iniciais</h3>
+                        <div className="text-xs font-medium mt-2 bg-white text-blue-500 px-3 py-1 rounded-full">
+                          6 a 10 anos
+                        </div>
+                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
+                      </div>
+
+                      {/* Verso do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
+                        <h3 className="font-bold text-lg text-blue-500 mb-3">Anos Iniciais</h3>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Construindo uma base sólida de conhecimento, com foco na alfabetização,
+                          raciocínio lógico-matemático e exploração do mundo à sua volta.
+                        </p>
+                        <button className="mt-auto text-blue-500 text-sm font-medium flex items-center">
+                          Saiba mais
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ensino Fundamental II */}
+                <div>
+                  <div
+                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[3] ? "flip-active" : ""}`}
+                    onClick={() => toggleFlip(3)}
+                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(3)}
+                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(3)}
+                  >
+                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
+                      {/* Frente do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-purple-500 text-white shadow-md flex flex-col items-center justify-center p-6">
+                        <div className="bg-white p-3 rounded-full mb-4">
+                          <ClipboardList className="h-8 w-8 text-purple-500" />
+                        </div>
+                        <h3 className="font-bold text-xl text-center">Anos Finais</h3>
+                        <div className="text-xs font-medium mt-2 bg-white text-purple-500 px-3 py-1 rounded-full">
+                          11 a 14 anos
+                        </div>
+                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
+                      </div>
+
+                      {/* Verso do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
+                        <h3 className="font-bold text-lg text-purple-500 mb-3">Anos Finais</h3>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Aprofundando os conhecimentos nas diversas áreas, desenvolvendo o
+                          pensamento crítico e preparando para os desafios do Ensino Médio.
+                        </p>
+                        <button className="mt-auto text-purple-500 text-sm font-medium flex items-center">
+                          Saiba mais
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Ensino Médio */}
+                <div>
+                  <div
+                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[4] ? "flip-active" : ""}`}
+                    onClick={() => toggleFlip(4)}
+                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(4)}
+                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(4)}
+                  >
+                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
+                      {/* Frente do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-green-500 text-white shadow-md flex flex-col items-center justify-center p-6">
+                        <div className="bg-white p-3 rounded-full mb-4">
+                          <GraduationCap className="h-8 w-8 text-green-500" />
+                        </div>
+                        <h3 className="font-bold text-xl text-center">Ensino Médio</h3>
+                        <div className="text-xs font-medium mt-2 bg-white text-green-500 px-3 py-1 rounded-full">
+                          15 a 17 anos
+                        </div>
+                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
+                      </div>
+
+                      {/* Verso do Card */}
+                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
+                        <h3 className="font-bold text-lg text-green-500 mb-3">Ensino Médio</h3>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Preparando integralmente para os vestibulares e para a vida, com foco na
+                          excelência acadêmica e no desenvolvimento de competências essenciais.
+                        </p>
+                        <button className="mt-auto text-green-500 text-sm font-medium flex items-center">
+                          Saiba mais
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === "compromisso" && (
+              <motion.div
+                key="compromisso"
+                className="mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                  <div className="flex flex-col md:flex-row gap-8">
+                    <div className="w-full md:w-1/2 md:pr-4">
+                      <h3 className="text-2xl font-bold text-blue-600 mb-4">
+                        Nosso Compromisso com a Educação
+                      </h3>
+                      <div className="space-y-4">
+                        <p className="text-gray-700">
+                          Entendemos a educação como um processo contínuo que vai muito além das salas
+                          de aula. Cada segmento educacional foi cuidadosamente estruturado para atender
+                          às necessidades específicas de cada faixa etária, respeitando o desenvolvimento
+                          cognitivo, social e emocional dos alunos.
+                        </p>
+                        <p className="text-gray-700">
+                          Nossa equipe pedagógica trabalha de forma integrada para garantir uma transição
+                          suave entre os diferentes segmentos, permitindo que o aluno avance com
+                          segurança em sua jornada acadêmica.
+                        </p>
+                        <p className="text-gray-700">
+                          Valorizamos a parceria com as famílias e acreditamos que o sucesso educacional é
+                          resultado de um trabalho conjunto entre escola, aluno e família.
+                        </p>
+                        <div className="pt-2">
+                          <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
+                            Conheça nossa proposta pedagógica
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="w-full md:w-1/2 bg-blue-50 p-6 rounded-xl mt-8 md:mt-0">
+                      <h3 className="text-xl font-bold text-blue-600 mb-6">
+                        Pilares da nossa educação
+                      </h3>
+                      <div className="space-y-6">
+                        <div className="flex gap-4">
+                          <div className="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <GraduationCap className="h-5 w-5 text-blue-600" />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-blue-600">Excelência Acadêmica</h4>
+                            <p className="text-sm text-gray-600">Corpo docente altamente qualificado e material didático de excelência</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                          <div className="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-blue-600">Formação Integral</h4>
+                            <p className="text-sm text-gray-600">Desenvolvimento de habilidades socioemocionais, cognitivas e valores éticos</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                          <div className="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-blue-600">Metodologias Inovadoras</h4>
+                            <p className="text-sm text-gray-600">Combinação de métodos tradicionais e abordagens contemporâneas de ensino</p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                          <div className="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-blue-600">Preparação para o Futuro</h4>
+                            <p className="text-sm text-gray-600">Desenvolvimento de competências essenciais para o século XXI</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+      </div>
+    </section>
+  )
+}
