@@ -8,22 +8,22 @@ const MissaoColegio = () => {
   const [displayedTitle, setDisplayedTitle] = useState('');
   const [displayedSubtitle, setDisplayedSubtitle] = useState('');
   const [showPillars, setShowPillars] = useState(false);
-  
+
   const title = "Formando jovens transformadores da sociedade";
   const subtitle = "Educação + Espiritualidade + Valores Humanos";
-  
+
   useEffect(() => {
     // Iniciar animação de digitação do título
     setTyping(true);
     let currentIndex = 0;
-    
+
     const titleInterval = setInterval(() => {
       if (currentIndex <= title.length) {
         setDisplayedTitle(title.slice(0, currentIndex));
         currentIndex++;
       } else {
         clearInterval(titleInterval);
-        
+
         // Após completar o título, iniciar animação do subtítulo
         let subtitleIndex = 0;
         const subtitleInterval = setInterval(() => {
@@ -38,12 +38,11 @@ const MissaoColegio = () => {
         }, 50);
       }
     }, 50);
-    
+
     return () => {
       clearInterval(titleInterval);
     };
   }, []);
-  
   const pillars = [
     {
       title: "Educação",
@@ -62,9 +61,9 @@ const MissaoColegio = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full overflow-hidden">
       <div className="w-full mx-auto text-center">
-        
-        <div className="relative">
-          <motion.h1 
+
+        <div className="relative px-4">
+          <motion.h1
             className="text-2xl md:text-4xl font-bold text-blue-600 mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -73,9 +72,9 @@ const MissaoColegio = () => {
             <span className="block w-full h-auto">{displayedTitle}</span>
           </motion.h1>
         </div>
-        
-        <motion.div 
-          className="mb-12 h-auto"
+
+        <motion.div
+          className="mb-12 h-auto px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
@@ -84,16 +83,16 @@ const MissaoColegio = () => {
             {displayedSubtitle}
           </p>
         </motion.div>
-        
+
         {/* {showPillars && (
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-8 w-full"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             {pillars.map((pillar, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 className="bg-white p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
                 initial={{ opacity: 0, y: 20 }}
@@ -107,7 +106,7 @@ const MissaoColegio = () => {
             ))}
           </motion.div>
         )} */}
-        
+
         <motion.div
           className="mt-8 sm:mt-12"
           initial={{ opacity: 0 }}

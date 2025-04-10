@@ -12,14 +12,12 @@ export default function AboutSection() {
 
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
-
   const handlePlayVideo = () => {
     if (videoRef.current) {
       videoRef.current.play()
       setIsVideoPlaying(true)
     }
   }
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -30,7 +28,6 @@ export default function AboutSection() {
       },
     },
   }
-
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -41,7 +38,7 @@ export default function AboutSection() {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto py-8">
+    <div className="w-full mx-auto p-6 md:p-12 lg:p-16">
       <div className="w-full flex flex-col-reverse gap-6 lg:flex-row items-center justify-between">
 
         {/* Container Left - Media Section */}
@@ -146,10 +143,10 @@ export default function AboutSection() {
           variants={containerVariants}
         >
           <div className="space-y-3">
-            <motion.h1 className="text-2xl md:text-3xl font-semibold" variants={itemVariants}>
+            <motion.h1 className="text-3xl font-bold" variants={itemVariants}>
               Colégio São Francisco de Assis: <span className="text-blue-600">Formação de Qualidade, Educação que transforma</span>.
             </motion.h1>
-            <motion.p className="text-slate-800 text-sm" variants={itemVariants}>
+            <motion.p className="text-slate-800 text-base" variants={itemVariants}>
               O Colégio São Francisco de Assis tem como missão formar jovens transformadores da sociedade,
               oferecendo educação de qualidade para um futuro melhor. Fundado pelo Pe. Tony, teve início
               em 1985 e recebeu autorização do MEC em 1984. Inspirado na vida de São Francisco de Assis, o
@@ -166,13 +163,13 @@ export default function AboutSection() {
               <Card className="shadow-sm hover:shadow-md transition-shadow border border-blue-100">
                 <CardContent className="p-4 flex gap-3">
                   <div className="space-y-2">
-                    <h3 className="font-bold text-base text-blue-600 flex items-center gap-3">
+                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-3">
                       <div className="flex bg-blue-600 rounded-full p-2 h-8 w-8 items-center justify-center flex-shrink-0">
                         <GraduationCap className="h-4 w-4 text-white" />
                       </div>
                       Orientação Católica
                     </h3>
-                    <p className="text-gray-700 text-xs">
+                    <p className="text-gray-700 text-base">
                       O colégio promove uma educação baseada na solidariedade, respeito
                       e fraternidade, formando cidadãos comprometidos com um mundo mais justo.
                     </p>
@@ -185,13 +182,13 @@ export default function AboutSection() {
               <Card className="shadow-sm hover:shadow-md transition-shadow border border-blue-100">
                 <CardContent className="p-4 flex gap-3">
                   <div className="space-y-2">
-                    <h3 className="font-bold text-base text-blue-600 flex items-center gap-3">
+                    <h3 className="font-bold text-xl text-blue-600 flex items-center gap-3">
                       <div className="flex bg-blue-600 rounded-full p-2 h-8 w-8 items-center justify-center flex-shrink-0">
                         <Globe className="h-4 w-4 text-white" />
                       </div>
                       Formando Jovens Transformadores
                     </h3>
-                    <p className="text-gray-700 text-xs">
+                    <p className="text-gray-700 text-base">
                       Preparamos nossos alunos para serem agentes de mudança na sociedade,
                       desenvolvendo senso crítico, liderança e responsabilidade social.
                     </p>

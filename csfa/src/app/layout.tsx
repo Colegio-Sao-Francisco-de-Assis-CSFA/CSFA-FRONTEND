@@ -2,6 +2,7 @@ import Head from "next/head";
 import "./globals.css";
 import Header from '@/components/shared/Header/Header';
 import Footer from '@/components/shared/Footer';
+import FloatLinks from "@/components/view/FloatLinks";
 
 export const metadata = {
   title: "Colégio São Francisco de Assis",
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
 
-      <body className="overflow-hidden">
+      <body className="w-dvw h-dvh overflow-hidden">
 
         <Head>
           <link rel="icon" type="image/svg" href="/logo40anos.svg" />
@@ -47,6 +48,8 @@ export default function RootLayout({
           <meta property="og:type" content="website" />
         </Head>
 
+        <FloatLinks />
+    
         <Header />
         {children}
         <Footer />

@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion} from "framer-motion";
 import Image from 'next/image';
 
 interface CampusFeature {
@@ -58,11 +61,13 @@ const CampusShowcase: React.FC = () => {
 return (
     <section className="py-12 px-4 max-w-7xl mx-auto">
     <div className="mb-12">
-        <div className="flex items-center mb-8">
-        <div className="w-16 h-1 bg-blue-700 mr-4"></div>
-        <h2 className="text-4xl font-bold text-center text-blue-700">
-            Conheça Nosso Campus
-        </h2>
+        <div className="flex justify-center items-center mb-8">
+            <motion.h2
+                className="text-3xl font-bold text-blue-600 mb-6 text-center"
+            >
+                Conheça nosso colégio
+                <span className="block w-24 h-1 bg-blue-600 mx-auto mt-2"></span>
+            </motion.h2>
         </div>
     </div>
 

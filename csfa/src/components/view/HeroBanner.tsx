@@ -22,15 +22,10 @@ interface HeroBannerCarouselProps {
   className?: string;
 }
 
-const HeroBannerCarousel = ({
-  items,
-  autoPlayInterval = 5000,
-  hasText = false,
-  className,
-}: HeroBannerCarouselProps) => {
+export default function  HeroBannerCarousel ({items, autoPlayInterval = 5000, hasText = false, className,}: HeroBannerCarouselProps){
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-
   const goToNext = () => {
     if (isTransitioning) return;
 
@@ -41,7 +36,6 @@ const HeroBannerCarousel = ({
       setIsTransitioning(false);
     }, 500);
   };
-
   const goToPrevious = () => {
     if (isTransitioning) return;
 
@@ -52,7 +46,6 @@ const HeroBannerCarousel = ({
       setIsTransitioning(false);
     }, 500);
   };
-
   useEffect(() => {
     if (autoPlayInterval) {
       const intervalId = setInterval(goToNext, autoPlayInterval);
@@ -63,12 +56,7 @@ const HeroBannerCarousel = ({
   if (!items.length) return null;
 
   return (
-    <div
-      className={cn(
-        "relative w-full overflow-hidden",
-        className
-      )}
-    >
+    <div className={cn( "relative w-full overflow-hidden",className)} >
       <div className="relative h-[250px] md:h-[400px] lg:h-[700px] w-full">
         {items.map((item, index) => {
           const isActive = index === activeIndex;
@@ -178,4 +166,3 @@ const HeroBannerCarousel = ({
   );
 };
 
-export default HeroBannerCarousel;

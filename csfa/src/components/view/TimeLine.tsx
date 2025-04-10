@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion} from "framer-motion"
 import React from "react";
 
 // Você pode importar ícones específicos conforme necessário
@@ -50,46 +50,47 @@ const Timeline: React.FC = () => {
   const timelineData: TimelineEvent[] = [
     {
       id: 1,
-      year: '1985',
-      title: 'Fundação',
-      description: 'Inauguração do Colégio Educacional com apenas 3 salas de aula e 45 alunos.',
-      icon: <School size={20} />,
+      year: 'Hoje',
+      title: 'Inovação Contínua',
+      description: 'Constante aprimoramento pedagógico e estrutural para oferecer a melhor educação.',
+      icon: <Lightbulb size={20} />,
     },
     {
       id: 2,
-      year: '1992',
-      title: 'Expansão',
-      description: 'Ampliação do campus com novas instalações e laboratórios de ciências.',
-      icon: <Calendar size={20} />,
-    },
-    {
-      id: 3,
-      year: '2001',
-      title: 'Revolução Digital',
-      description: 'Implementação de tecnologia em salas de aula e laboratório de informática.',
-      icon: <Monitor size={20} />,
-    },
-    {
-      id: 4,
-      year: '2010',
-      title: 'Centro Esportivo',
-      description: 'Inauguração do complexo esportivo com quadras poliesportivas e piscina.',
-      icon: <Trophy size={20} />,
-    },
-    {
-      id: 5,
       year: '2018',
       title: 'Reconhecimento',
       description: 'Premiação como uma das melhores instituições de ensino da região.',
       icon: <Award size={20} />,
     },
     {
-      id: 6,
-      year: 'Hoje',
-      title: 'Inovação Contínua',
-      description: 'Constante aprimoramento pedagógico e estrutural para oferecer a melhor educação.',
-      icon: <Lightbulb size={20} />,
+      id: 3,
+      year: '2010',
+      title: 'Centro Esportivo',
+      description: 'Inauguração do complexo esportivo com quadras poliesportivas e piscina.',
+      icon: <Trophy size={20} />,
     },
+    {
+      id: 4,
+      year: '2001',
+      title: 'Revolução Digital',
+      description: 'Implementação de tecnologia em salas de aula e laboratório de informática.',
+      icon: <Monitor size={20} />,
+    },
+    {
+      id: 5,
+      year: '1992',
+      title: 'Expansão',
+      description: 'Ampliação do campus com novas instalações e laboratórios de ciências.',
+      icon: <Calendar size={20} />,
+    },
+    {
+      id: 6,
+      year: '1985',
+      title: 'Fundação',
+      description: 'Inauguração do Colégio Educacional com apenas 3 salas de aula e 45 alunos.',
+      icon: <School size={20} />,
+    },
+
   ];
 
   return (
@@ -100,7 +101,12 @@ const Timeline: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4">Nossa Trajetória</h2>
+          <motion.h2
+            className="text-3xl font-bold text-blue-600 mb-6 text-center"
+          >
+            Nossa Trajetória
+            <span className="block w-24 h-1 bg-blue-600 mx-auto mt-2"></span>
+          </motion.h2>
           <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
             Acompanhe a evolução e o crescimento da nossa instituição ao longo dos anos.
           </p>

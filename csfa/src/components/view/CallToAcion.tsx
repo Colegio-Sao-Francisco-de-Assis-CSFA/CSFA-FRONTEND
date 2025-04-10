@@ -34,12 +34,12 @@ const CallToAction: React.FC<CallToActionProps> = ({
 
   if (variant === 'centered') {
     return (
-      <section className={`py-12 px-4 ${backgroundColor}`}>
+      <section className={`py-8 px-4 ${backgroundColor}`}>
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-700 mb-4">
+          <h2 className="text-3xl md:text-3xl font-bold text-blue-700 mb-4">
             {title}
           </h2>
-          <p className="text-gray-700 mb-8 max-w-3xl mx-auto">
+          <p className="text-gray-700 mb-8 max-w-lg mx-auto">
             {description}
           </p>
           <a
@@ -54,13 +54,13 @@ const CallToAction: React.FC<CallToActionProps> = ({
   }
 
   return (
-    <section className="rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white">
-      <div className="max-w-8xl mx-auto px-10 flex flex-col md:flex-row items-center justify-between">
+    <div className=" md:rounded-lg bg-gradient-to-r from-blue-600 to-blue-400 text-white">
+      <div className="w-full py-4 px-8 flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-8 md:mb-0">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">
             {title}
           </h2>
-          <p className="mb-8 text-blue-100">
+          <p className="mb-8 text-lg max-w-2xl text-blue-100">
             {description}
           </p>
           <a
@@ -73,7 +73,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
         </div>
 
         {hasImage && (
-          <div className="md:w-1/2 flex justify-center">
+          <div className="hidden md:w-1/2 md:flex justify-center">
             {useMap ? (
               <div className="rounded-lg overflow-hidden p-8 w-full">
                 <iframe
@@ -97,7 +97,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
 

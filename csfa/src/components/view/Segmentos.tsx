@@ -1,23 +1,22 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { Book, ClipboardList, GraduationCap, Puzzle } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { Book, ClipboardList, GraduationCap, Puzzle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 
 export default function SegmentosEducacionais() {
   const [activeTab, setActiveTab] = useState("visao-geral")
   const [flippedCards, setFlippedCards] = useState({})
-
   const toggleFlip = (cardId) => {
     setFlippedCards(prev => ({
       ...prev,
       [cardId]: !prev[cardId]
     }))
   }
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,7 +27,6 @@ export default function SegmentosEducacionais() {
       },
     },
   }
-
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -37,8 +35,6 @@ export default function SegmentosEducacionais() {
       transition: { type: "spring", stiffness: 100 },
     },
   }
-
-  // Education segments data
   const educationSegments = [
     {
       id: 1,
@@ -73,8 +69,6 @@ export default function SegmentosEducacionais() {
       description: "Preparando integralmente para os vestibulares e para a vida, com foco na excelência acadêmica e no desenvolvimento de competências essenciais."
     }
   ];
-
-  // Color mapping for Tailwind classes
   const colorMap = {
     pink: {
       bg: "bg-pink-500",
@@ -97,8 +91,6 @@ export default function SegmentosEducacionais() {
       border:"border-green-500"
     }
   };
-
-  // CSS personalizado para o efeito flip
   const styleTag = `
     .perspective-1000 {
       perspective: 1000px;
@@ -122,9 +114,9 @@ export default function SegmentosEducacionais() {
   `;
 
   return (
-    <div className="w-full h-full bg flex flex-col items-center justify-center py-12 bg-gray-50">
+    <div className="w-full flex flex-col items-center justify-center py-12 bg-gray-50">
       <style>{styleTag}</style>
-      <div className="w-full h-full relative max-w-6xl mx-auto px-4">
+      <div className="w-full relative mx-auto px-4 lg:px-12">
 
         <motion.div className="text-center mb-10"
           initial="hidden"
@@ -141,7 +133,7 @@ export default function SegmentosEducacionais() {
           </motion.h2>
 
           <motion.p
-            className="text-gray-700 max-w-3xl mx-auto"
+            className="text-gray-700 w-full max-w-3xl mx-auto"
             variants={itemVariants}
           >
             Oferecemos uma formação completa e integrada, do Infantil ao Ensino Médio, com metodologias
@@ -157,16 +149,18 @@ export default function SegmentosEducacionais() {
             onValueChange={setActiveTab}
             className="w-full max-w-md mx-auto"
           >
-            <TabsList className="grid grid-cols-2 w-full bg-gray-100 rounded-full">
+            <TabsList className="w-full flex bg-gray-100 rounded-full">
+
               <TabsTrigger
                 value="visao-geral"
-                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+                className="w-auto rounded-full p-4 data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
               >
                 Visão Geral
               </TabsTrigger>
+
               <TabsTrigger
                 value="compromisso"
-                className="rounded-full data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
+                className="rounded-full p-4 data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
               >
                 Compromisso Educacional
               </TabsTrigger>
@@ -174,19 +168,19 @@ export default function SegmentosEducacionais() {
           </Tabs>
         </div>
 
-        <div className="relative" style={{ minHeight: '700px' }}>
+        <div className="relative">
           <AnimatePresence mode="wait">
             {activeTab === "visao-geral" && (
               <motion.div
                 key="visao-geral"
-                className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
+                className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
                 {educationSegments.map((segment) => (
-                  <div key={segment.id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 max-w-7xl mx-auto">
+                  <div key={segment.id} className="w-full flex items-center justify-center ">
                     <div className={`w-64 h-64 perspective-1000 cursor-pointer ${flippedCards[segment.id] ? "flip-active" : ""}`}
                       onClick={() => toggleFlip(segment.id)}
                       onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(segment.id)}
@@ -204,7 +198,7 @@ export default function SegmentosEducacionais() {
                           </div>
                           <div>
                             <span className="absolute left-1/2 -translate-1/2 bottom-3 text-sm opacity-70 md:hidden">Clique para detalhes</span>
-                            <span className="absolute left-1/2 -translate-1/2 bottom-3 text-sm opacity-70 w-full text-center">Passe o mouse para mais detalhes</span>
+                            <span className="hidden md:absolute md:block left-1/2 -translate-1/2 bottom-3 text-sm opacity-70 w-full text-center">Passe o mouse para mais detalhes</span>
                           </div>
                         </div>
 
