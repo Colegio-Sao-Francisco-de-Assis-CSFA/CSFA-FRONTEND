@@ -1,23 +1,48 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Book, ClipboardList, GraduationCap, Puzzle } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { Book, ClipboardList, GraduationCap, Puzzle, LucideProps } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+// Definição de tipos
+type TabValue = "visao-geral" | "compromisso";
+type ColorKey = "pink" | "blue" | "purple" | "green";
 
-export default function SegmentosEducacionais() {
-  const [activeTab, setActiveTab] = useState("visao-geral")
-  const [flippedCards, setFlippedCards] = useState({})
-  const toggleFlip = (cardId) => {
+interface ColorStyles {
+  bg: string;
+  text: string;
+  border: string;
+}
+
+interface EducationSegment {
+  id: number;
+  title: string;
+  ageRange: string;
+  color: ColorKey;
+  icon: FC<LucideProps>;
+  description: string;
+}
+
+interface FlippedCardsState {
+  [key: number]: boolean;
+}
+
+const SegmentosEducacionais: FC = () => {
+  const [activeTab, setActiveTab] = useState<TabValue>("visao-geral");
+  const [flippedCards, setFlippedCards] = useState<FlippedCardsState>({});
+
+  const toggleFlip = (cardId: number): void => {
     setFlippedCards(prev => ({
       ...prev,
       [cardId]: !prev[cardId]
-    }))
-  }
-  const containerVariants = {
+    }));
+  };
+
+  // Corrigido para usar o tipo Variants do framer-motion
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -26,16 +51,19 @@ export default function SegmentosEducacionais() {
         delayChildren: 0.2,
       },
     },
-  }
-  const itemVariants = {
+  };
+
+  // Corrigido para usar o tipo Variants do framer-motion
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: { type: "spring", stiffness: 100 },
     },
-  }
-  const educationSegments = [
+  };
+
+  const educationSegments: EducationSegment[] = [
     {
       id: 1,
       title: "Educação Infantil",
@@ -69,28 +97,30 @@ export default function SegmentosEducacionais() {
       description: "Preparando integralmente para os vestibulares e para a vida, com foco na excelência acadêmica e no desenvolvimento de competências essenciais."
     }
   ];
-  const colorMap = {
+
+  const colorMap: Record<ColorKey, ColorStyles> = {
     pink: {
       bg: "bg-pink-500",
       text: "text-pink-500",
-      border:"border-pink-500"
+      border: "border-pink-500"
     },
     blue: {
       bg: "bg-blue-500",
       text: "text-blue-500",
-      border:"border-blue-500"
+      border: "border-blue-500"
     },
     purple: {
       bg: "bg-amber-600",
       text: "text-amber-600",
-      border:"border-amber-600"
+      border: "border-amber-600"
     },
     green: {
       bg: "bg-green-500",
       text: "text-green-500",
-      border:"border-green-500"
+      border: "border-green-500"
     }
   };
+
   const styleTag = `
     .perspective-1000 {
       perspective: 1000px;
@@ -117,8 +147,7 @@ export default function SegmentosEducacionais() {
     <div className="w-full flex flex-col items-center justify-center py-12 bg-gray-50">
       <style>{styleTag}</style>
       <div className="w-full relative mx-auto px-4 lg:px-12">
-
-        <motion.div className="text-center mb-10"
+      <motion.div className="text-center mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -146,11 +175,15 @@ export default function SegmentosEducacionais() {
           <Tabs
             defaultValue="visao-geral"
             value={activeTab}
-            onValueChange={setActiveTab}
+            onValueChange={(value: string) => {
+              // Garantir que o valor seja do tipo TabValue
+              if (value === "visao-geral" || value === "compromisso") {
+                setActiveTab(value);
+              }
+            }}
             className="w-full max-w-md mx-auto"
           >
             <TabsList className="w-full flex bg-gray-100 rounded-full">
-
               <TabsTrigger
                 value="visao-geral"
                 className="w-auto rounded-full p-4 data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all"
@@ -321,8 +354,9 @@ export default function SegmentosEducacionais() {
             )}
           </AnimatePresence>
         </div>
-
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default SegmentosEducacionais;
