@@ -38,6 +38,66 @@ export default function SegmentosEducacionais() {
     },
   }
 
+  // Education segments data
+  const educationSegments = [
+    {
+      id: 1,
+      title: "Educação Infantil",
+      ageRange: "2 a 5 anos",
+      color: "pink",
+      icon: Puzzle,
+      description: "Desenvolvendo as habilidades sociais, emocionais e cognitivas essenciais nos primeiros anos de vida, através de atividades lúdicas e exploratórias."
+    },
+    {
+      id: 2,
+      title: "Anos Iniciais",
+      ageRange: "6 a 10 anos",
+      color: "blue",
+      icon: Book,
+      description: "Construindo uma base sólida de conhecimento, com foco na alfabetização, raciocínio lógico-matemático e exploração do mundo à sua volta."
+    },
+    {
+      id: 3,
+      title: "Anos Finais",
+      ageRange: "11 a 14 anos",
+      color: "purple",
+      icon: ClipboardList,
+      description: "Aprofundando os conhecimentos nas diversas áreas, desenvolvendo o pensamento crítico e preparando para os desafios do Ensino Médio."
+    },
+    {
+      id: 4,
+      title: "Ensino Médio",
+      ageRange: "15 a 17 anos",
+      color: "green",
+      icon: GraduationCap,
+      description: "Preparando integralmente para os vestibulares e para a vida, com foco na excelência acadêmica e no desenvolvimento de competências essenciais."
+    }
+  ];
+
+  // Color mapping for Tailwind classes
+  const colorMap = {
+    pink: {
+      bg: "bg-pink-500",
+      text: "text-pink-500",
+      border:"border-pink-500"
+    },
+    blue: {
+      bg: "bg-blue-500",
+      text: "text-blue-500",
+      border:"border-blue-500"
+    },
+    purple: {
+      bg: "bg-amber-600",
+      text: "text-amber-600",
+      border:"border-amber-600"
+    },
+    green: {
+      bg: "bg-green-500",
+      text: "text-green-500",
+      border:"border-green-500"
+    }
+  };
+
   // CSS personalizado para o efeito flip
   const styleTag = `
     .perspective-1000 {
@@ -62,12 +122,11 @@ export default function SegmentosEducacionais() {
   `;
 
   return (
-    <section className="w-full py-12 bg-gray-50">
+    <div className="w-full h-full bg flex flex-col items-center justify-center py-12 bg-gray-50">
       <style>{styleTag}</style>
-      <div className="container relative max-w-6xl mx-auto px-4">
+      <div className="w-full h-full relative max-w-6xl mx-auto px-4">
 
-        <motion.div
-          className="text-center mb-10"
+        <motion.div className="text-center mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -126,161 +185,48 @@ export default function SegmentosEducacionais() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
               >
-                {/* Educação Infantil */}
-                <div>
-                  <div
-                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[1] ? "flip-active" : ""}`}
-                    onClick={() => toggleFlip(1)}
-                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(1)}
-                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(1)}
-                  >
-                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
-                      {/* Frente do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-pink-500 text-white shadow-md flex flex-col items-center justify-center p-6">
-                        <div className="bg-white p-3 rounded-full mb-4">
-                          <Puzzle className="h-8 w-8 text-pink-500" />
+                {educationSegments.map((segment) => (
+                  <div key={segment.id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 max-w-7xl mx-auto">
+                    <div className={`w-64 h-64 perspective-1000 cursor-pointer ${flippedCards[segment.id] ? "flip-active" : ""}`}
+                      onClick={() => toggleFlip(segment.id)}
+                      onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(segment.id)}
+                      onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(segment.id)}
+                    >
+                      <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
+                        {/* Front of Card */}
+                        <div className={`absolute w-full h-full backface-hidden rounded-lg ${colorMap[segment.color].bg} text-white shadow-md flex flex-col items-center justify-center p-6`}>
+                          <div className="bg-white p-3 rounded-full mb-4">
+                            <segment.icon className={`h-8 w-8 ${colorMap[segment.color].text}`} />
+                          </div>
+                          <h3 className="font-bold text-xl text-center">{segment.title}</h3>
+                          <div className={`text-xs font-medium mt-2 bg-white ${colorMap[segment.color].text} px-3 py-1 rounded-full`}>
+                            {segment.ageRange}
+                          </div>
+                          <div>
+                            <span className="absolute left-1/2 -translate-1/2 bottom-3 text-sm opacity-70 md:hidden">Clique para detalhes</span>
+                            <span className="absolute left-1/2 -translate-1/2 bottom-3 text-sm opacity-70 w-full text-center">Passe o mouse para mais detalhes</span>
+                          </div>
                         </div>
-                        <h3 className="font-bold text-xl text-center">Educação Infantil</h3>
-                        <div className="text-xs font-medium mt-2 bg-white text-pink-500 px-3 py-1 rounded-full">
-                          2 a 5 anos
-                        </div>
-                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
-                      </div>
 
-                      {/* Verso do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
-                        <h3 className="font-bold text-lg text-pink-500 mb-3">Educação Infantil</h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Desenvolvendo as habilidades sociais, emocionais e cognitivas essenciais nos
-                          primeiros anos de vida, através de atividades lúdicas e exploratórias.
-                        </p>
-                        <button className="mt-auto text-pink-500 text-sm font-medium flex items-center">
-                          Saiba mais
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                          </svg>
-                        </button>
+                        {/* Back of Card */}
+                        <div className={`absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180 border ${colorMap[segment.color].border}`}>
+                          <h3 className={`font-bold text-lg ${colorMap[segment.color].text} mb-3`}>{segment.title}</h3>
+                          <p className="text-sm text-gray-600 mb-4">
+                            {segment.description}
+                          </p>
+                          <a href="#" className={`mt-auto ${colorMap[segment.color].bg} p-2 rounded-sm justify-center text-white text-sm font-medium flex items-center`}>
+                            Saiba mais
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
 
-                {/* Ensino Fundamental I */}
-                <div>
-                  <div
-                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[2] ? "flip-active" : ""}`}
-                    onClick={() => toggleFlip(2)}
-                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(2)}
-                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(2)}
-                  >
-                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
-                      {/* Frente do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-blue-500 text-white shadow-md flex flex-col items-center justify-center p-6">
-                        <div className="bg-white p-3 rounded-full mb-4">
-                          <Book className="h-8 w-8 text-blue-500" />
-                        </div>
-                        <h3 className="font-bold text-xl text-center">Anos Iniciais</h3>
-                        <div className="text-xs font-medium mt-2 bg-white text-blue-500 px-3 py-1 rounded-full">
-                          6 a 10 anos
-                        </div>
-                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
-                      </div>
 
-                      {/* Verso do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
-                        <h3 className="font-bold text-lg text-blue-500 mb-3">Anos Iniciais</h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Construindo uma base sólida de conhecimento, com foco na alfabetização,
-                          raciocínio lógico-matemático e exploração do mundo à sua volta.
-                        </p>
-                        <button className="mt-auto text-blue-500 text-sm font-medium flex items-center">
-                          Saiba mais
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Ensino Fundamental II */}
-                <div>
-                  <div
-                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[3] ? "flip-active" : ""}`}
-                    onClick={() => toggleFlip(3)}
-                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(3)}
-                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(3)}
-                  >
-                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
-                      {/* Frente do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-purple-500 text-white shadow-md flex flex-col items-center justify-center p-6">
-                        <div className="bg-white p-3 rounded-full mb-4">
-                          <ClipboardList className="h-8 w-8 text-purple-500" />
-                        </div>
-                        <h3 className="font-bold text-xl text-center">Anos Finais</h3>
-                        <div className="text-xs font-medium mt-2 bg-white text-purple-500 px-3 py-1 rounded-full">
-                          11 a 14 anos
-                        </div>
-                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
-                      </div>
-
-                      {/* Verso do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
-                        <h3 className="font-bold text-lg text-purple-500 mb-3">Anos Finais</h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Aprofundando os conhecimentos nas diversas áreas, desenvolvendo o
-                          pensamento crítico e preparando para os desafios do Ensino Médio.
-                        </p>
-                        <button className="mt-auto text-purple-500 text-sm font-medium flex items-center">
-                          Saiba mais
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Ensino Médio */}
-                <div>
-                  <div
-                    className={`h-64 perspective-1000 cursor-pointer ${flippedCards[4] ? "flip-active" : ""}`}
-                    onClick={() => toggleFlip(4)}
-                    onMouseEnter={() => window.innerWidth >= 1024 && toggleFlip(4)}
-                    onMouseLeave={() => window.innerWidth >= 1024 && toggleFlip(4)}
-                  >
-                    <div className="relative w-full h-full transition-transform duration-500 preserve-3d">
-                      {/* Frente do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-green-500 text-white shadow-md flex flex-col items-center justify-center p-6">
-                        <div className="bg-white p-3 rounded-full mb-4">
-                          <GraduationCap className="h-8 w-8 text-green-500" />
-                        </div>
-                        <h3 className="font-bold text-xl text-center">Ensino Médio</h3>
-                        <div className="text-xs font-medium mt-2 bg-white text-green-500 px-3 py-1 rounded-full">
-                          15 a 17 anos
-                        </div>
-                        <div className="absolute bottom-3 text-sm opacity-70">Clique para detalhes</div>
-                      </div>
-
-                      {/* Verso do Card */}
-                      <div className="absolute w-full h-full backface-hidden rounded-lg bg-white shadow-md p-6 rotateY-180">
-                        <h3 className="font-bold text-lg text-green-500 mb-3">Ensino Médio</h3>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Preparando integralmente para os vestibulares e para a vida, com foco na
-                          excelência acadêmica e no desenvolvimento de competências essenciais.
-                        </p>
-                        <button className="mt-auto text-green-500 text-sm font-medium flex items-center">
-                          Saiba mais
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
             )}
 
@@ -383,6 +329,6 @@ export default function SegmentosEducacionais() {
         </div>
 
       </div>
-    </section>
+    </div>
   )
 }

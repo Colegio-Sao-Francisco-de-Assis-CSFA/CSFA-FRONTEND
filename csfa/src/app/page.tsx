@@ -59,15 +59,15 @@ export default function Home() {
       <div className='w-full flex flex-col items-center overflow-hidden'>
 
 
-         <section  className='w-dvw'>
+         <section  className='w-dvw bg-amber-200'>
             <HeroBannerCarousel items={carouselItems} />
          </section>
 
-         <section className='w-dvw h-auto p-6'>
+         <section className='w-dvw h-96 flex flex-col items-center justify-center'>
             <MissaoColegio />
           </section>
 
-          <section className='w-dvw h-auto p-6'>
+          <section className='w-dvw h-dvh'>
             <EducationalSegments />
           </section>
 
