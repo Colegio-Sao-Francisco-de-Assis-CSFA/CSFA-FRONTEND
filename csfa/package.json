@@ -24,6 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "eslint": "^9.22.0",
+    "inflight": "^1.0.6",
     "lucide-react": "^0.479.0",
     "motion": "^12.6.3",
     "next": "^15.2.1",
