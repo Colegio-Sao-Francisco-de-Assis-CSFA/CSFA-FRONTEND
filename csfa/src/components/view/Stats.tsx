@@ -116,7 +116,7 @@ const StatsArea: React.FC = () => {
         <motion.h2
               className="text-3xl font-bold text-blue-600 text-center"
           >
-              Nossa exelência em números
+              Nossa excelência em números
               <span className="block w-24 h-1 bg-blue-600 mx-auto mt-2"></span>
           </motion.h2>
         </div>
