@@ -38,22 +38,24 @@ export default function AboutSection() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col-reverse gap-6 lg:flex-row-reverse items-center justify-between py-12 px-6">
+    <div className="w-full h-auto md:p-12 lg:p-0 flex flex-col-reverse gap-6 items-center justify-between py-12 px-6 lg:flex-row-reverse">
 
-        {/* Container Left - Media Section */}
-        <motion.div className="w-full items-center justify-center gap-3 bg-amber-200 flex flex-col md:h-full md:flex-row lg:w-2/5"
+        {/* Container Desktop-Left & Mobile-Bottom - Media Section */}
+        <motion.div className="w-full h-full flex flex-col items-center justify-center gap-3 md:h-96 md:p-4 lg:p-2 md:flex md:flex-row lg:w-2/5 lg:h-130"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
+
           {/* InContainer Left - Video & Quote*/}
-          <div className="w-full h-ful bg-green-300 max-w-64 md:w-1/2 flex flex-col items-end gap-3">
+          <div className="w-full h-full items-center flex flex-col md:items-end lg:w-1/2 gap-3">
+
             {/* Video */}
-            <motion.div className="relative w-full h-4/5 aspect-square" variants={itemVariants}>
+            <motion.div className="relative w-60 h-3/5 md:h-4/5" variants={itemVariants}>
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="relative w-full h-full rounded-tl-[65px] rounded-tr-[65px] rounded-bl-[65px] overflow-hidden cursor-pointer group">
+                  <div className="relative w-full h-full rounded-tl-[35px] rounded-tr-[35px] rounded-bl-[35px] lg:rounded-tl-[55px] lg:rounded-tr-[55px] lg:rounded-bl-[55px] overflow-hidden cursor-pointer group">
                     <Image
                       src="/images/courses/finais.webp"
                       alt="Students learning together"
@@ -87,15 +89,15 @@ export default function AboutSection() {
             </motion.div>
 
             {/* Quote */}
-            <motion.div className="w-full h-1/5 p-4 bg-blue-600 text-white rounded-tr-[40px] rounded-tl-[40px] rounded-br-[40px] flex items-center justify-center gap-4"
+            <motion.div className="w-60 h-20 lg:p-2 lg:w-full bg-blue-600 text-white rounded-tr-[40px] rounded-tl-[40px] rounded-br-[40px] flex items-center justify-center gap-4"
               variants={itemVariants}
             >
-              <div className="bg-blue-200 rounded-full flex-shrink-0">
-                <GraduationCap className="h-16 w-16 text-blue-600" />
+              <div className="bg-blue-200 rounded-full flex-shrink-0 ">
+                <GraduationCap className="h-10 w-10 p-2 text-blue-600 md:p-1 md:w-10 md:h-10 " />
               </div>
 
               <div>
-                <p className="font-bold text-xs text-start"><span className="text-3xl">+40 </span>anos de <br/> história e compromisso</p>
+                <p className="font-bold text-xs text-start"><span className="text-xl">+40 </span>anos de <br/> história e compromisso</p>
                 {/* <p className="font-bold text-xs">Qualidade e compromisso</p> */}
               </div>
             </motion.div>
@@ -103,11 +105,10 @@ export default function AboutSection() {
           </div>
 
           {/* InContainer Right - Photos */}
-          <motion.div className="w-full h-full bg-blue-300 max-w-64 md:w-1/2 flex flex-col items-end gap-3"
+          <motion.div className="w-full h-full flex flex-col items-center md:items-start lg:w-1/2 gap-3"
            variants={containerVariants}>
             {/* Image Top */}
-            <motion.div
-              className="w-full h-48 rounded-tl-3xl rounded-tr-3xl rounded-br-3xl overflow-hidden"
+            <motion.div className="w-52 lg:w-full lg:h-2/4 rounded-full overflow-hidden"
               variants={itemVariants}
             >
               <Image
@@ -120,8 +121,7 @@ export default function AboutSection() {
             </motion.div>
 
             {/*Image Bottom */}
-            <motion.div
-              className="w-full h-48 rounded-tr-3xl rounded-br-3xl rounded-bl-3xl overflow-hidden"
+            <motion.div className="w-60 h-44 md:w-52 md:h-2/5 lg:w-full lg:h-2/4 rounded-tr-4xl rounded-br-4xl rounded-bl-4xl overflow-hidden"
               variants={itemVariants}
             >
               <Image
@@ -136,8 +136,8 @@ export default function AboutSection() {
 
         </motion.div>
 
-        {/* Container Right - Text and Info */}
-        <motion.div className="w-full lg:w-3/5 flex flex-col gap-4 p-6 md:p-12"
+        {/* Container Desktop-Right & Mobile-Top - Text and Info */}
+        <motion.div className="w-full lg:w-3/5 flex flex-col gap-4 p-6 "
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -160,17 +160,18 @@ export default function AboutSection() {
 
           {/* Service Cards */}
           <motion.div className="grid md:grid-cols-2 gap-4 mt-4" variants={containerVariants}>
+
             <motion.div variants={itemVariants}>
-              <Card className="shadow-sm hover:shadow-md transition-shadow border border-blue-100">
-                <CardContent className="p-4 flex gap-3">
-                  <div className="space-y-2">
+              <Card className="h-44 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow border border-blue-500">
+                <CardContent className="px-4 flex items-center justify-center gap-3">
+                  <div className="flex flex-col gap-2">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-3">
                       <div className="flex bg-blue-600 rounded-full p-2 h-8 w-8 items-center justify-center flex-shrink-0">
                         <GraduationCap className="h-4 w-4 text-white" />
                       </div>
                       Orientação Católica
                     </h3>
-                    <p className="text-gray-700 text-base">
+                    <p className="text-gray-700 text-base md:text-sm">
                       O colégio promove uma educação baseada na solidariedade, respeito
                       e fraternidade, formando cidadãos comprometidos com um mundo mais justo.
                     </p>
@@ -180,16 +181,16 @@ export default function AboutSection() {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <Card className="shadow-sm hover:shadow-md transition-shadow border border-blue-100">
-                <CardContent className="p-4 flex gap-3">
-                  <div className="space-y-2">
+              <Card className="h-44 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow border border-blue-500">
+                <CardContent className="px-4 flex items-center justify-center gap-3">
+                  <div className="flex flex-col gap-2">
                     <h3 className="font-bold text-xl text-blue-600 flex items-center gap-3">
                       <div className="flex bg-blue-600 rounded-full p-2 h-8 w-8 items-center justify-center flex-shrink-0">
                         <Globe className="h-4 w-4 text-white" />
                       </div>
-                      Formando Jovens Transformadores
+                      Jovens Transformadores
                     </h3>
-                    <p className="text-gray-700 text-base">
+                    <p className="text-gray-700 text-base md:text-sm">
                       Preparamos nossos alunos para serem agentes de mudança na sociedade,
                       desenvolvendo senso crítico, liderança e responsabilidade social.
                     </p>

@@ -66,12 +66,12 @@ export default function Home() {
           </section>
 
           {/* Missao Colegio */}
-          <section className="w-full max-w-7xl py-6 flex flex-col items-center justify-center">
+          <section className="w-full h-96 max-w-7xl flex flex-col items-center justify-center">
             <MissaoColegio />
           </section>
 
           {/* Sobre o Colégio */}
-          <section className="w-full max-w-7xl md:h-dvh">
+          <section className="w-full max-w-7xl xl:h-dvh">
             <SobreColegio/>
           </section>
 
