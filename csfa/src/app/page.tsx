@@ -71,7 +71,7 @@ export default function Home() {
           </section>
 
           {/* Sobre o Colégio */}
-          <section className="w-full max-w-7xl">
+          <section className="w-full max-w-7xl md:h-dvh">
             <SobreColegio/>
           </section>
 
