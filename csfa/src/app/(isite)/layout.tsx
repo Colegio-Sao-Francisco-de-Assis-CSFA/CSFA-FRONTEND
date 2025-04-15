@@ -1,5 +1,5 @@
 import Head from "next/head";
-import "./globals.css";
+import "@/app/globals.css";
 import Header from '@/components/shared/Header/Header';
 import Footer from '@/components/shared/Footer';
 import FloatLinks from "@/components/view/FloatLinks";
@@ -49,7 +49,7 @@ export default function RootLayout({
         </Head>
 
         <FloatLinks />
-    
+
         <Header />
         {children}
         <Footer />
