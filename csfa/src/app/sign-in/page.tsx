@@ -1,17 +1,15 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { User, LogIn } from 'lucide-react';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-// Note: We're importing a custom Google icon since Lucide doesn't have one
-
 export default function LoginPage() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = (e: FormEvent) => {
     e.preventDefault();
     setIsLoggingIn(true);
 
