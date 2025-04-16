@@ -20,8 +20,36 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
+// Define types
+type TabType = "dashboard" | "banners" | "news" | "blog" | "media" | "settings";
+
+type SidebarProps = {
+  activeTab: TabType;
+  setActiveTab: (tab: TabType) => void;
+};
+
+type HeaderProps = {
+  activeTab: TabType;
+};
+
+type BannerFormProps = {
+  onClose: () => void;
+};
+
+type Banner = {
+  id: number;
+  title: string;
+  location: string;
+  status: string;
+  date: string;
+};
+
+type BannerListItemProps = {
+  banner: Banner;
+};
+
 // Components
-const Sidebar = ({ activeTab, setActiveTab }) => (
+const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => (
   <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
     <div className="p-4 border-b border-gray-200 flex items-center gap-2">
       <div className="bg-blue-600 text-white p-2 rounded-md">
@@ -33,12 +61,12 @@ const Sidebar = ({ activeTab, setActiveTab }) => (
     <nav className="flex-1 p-4">
       <ul className="space-y-2">
         {[
-          { id: "dashboard", icon: <BarChart className="mr-2 h-4 w-4" />, text: "Dashboard" },
-          { id: "banners", icon: <Image className="mr-2 h-4 w-4" />, text: "Banners" },
-          { id: "news", icon: <AlertCircle className="mr-2 h-4 w-4" />, text: "Notícias" },
-          { id: "blog", icon: <FileText className="mr-2 h-4 w-4" />, text: "Blog Institucional" },
-          { id: "media", icon: <LayoutGrid className="mr-2 h-4 w-4" />, text: "Biblioteca de Mídia" },
-          { id: "settings", icon: <Settings className="mr-2 h-4 w-4" />, text: "Configurações" }
+          { id: "dashboard" as TabType, icon: <BarChart className="mr-2 h-4 w-4" />, text: "Dashboard" },
+          { id: "banners" as TabType, icon: <Image className="mr-2 h-4 w-4" />, text: "Banners" },
+          { id: "news" as TabType, icon: <AlertCircle className="mr-2 h-4 w-4" />, text: "Notícias" },
+          { id: "blog" as TabType, icon: <FileText className="mr-2 h-4 w-4" />, text: "Blog Institucional" },
+          { id: "media" as TabType, icon: <LayoutGrid className="mr-2 h-4 w-4" />, text: "Biblioteca de Mídia" },
+          { id: "settings" as TabType, icon: <Settings className="mr-2 h-4 w-4" />, text: "Configurações" }
         ].map(item => (
           <li key={item.id}>
             <Button
@@ -58,7 +86,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => (
   </div>
 );
 
-const UserMenu = () => (
+const UserMenu: React.FC = () => (
   <div className="p-4 border-t border-gray-200">
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -92,7 +120,7 @@ const UserMenu = () => (
   </div>
 );
 
-const Header = ({ activeTab }) => (
+const Header: React.FC<HeaderProps> = ({ activeTab }) => (
   <header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
     <h1 className="text-2xl font-bold">
       {activeTab === "dashboard" && "Dashboard do Designer"}
@@ -122,7 +150,7 @@ const Header = ({ activeTab }) => (
   </header>
 );
 
-const NotificationBell = ({ count }) => (
+const NotificationBell: React.FC<{ count: number }> = ({ count }) => (
   <Button variant="outline" className="relative">
     <Bell size={20} />
     {count > 0 && (
@@ -133,7 +161,7 @@ const NotificationBell = ({ count }) => (
   </Button>
 );
 
-const HeaderUserMenu = () => (
+const HeaderUserMenu: React.FC = () => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="ghost" className="gap-2">
@@ -154,7 +182,7 @@ const HeaderUserMenu = () => (
   </DropdownMenu>
 );
 
-const QuickActionsCard = () => (
+const QuickActionsCard: React.FC = () => (
   <Card>
     <CardHeader>
       <CardTitle>Atalhos Rápidos</CardTitle>
@@ -176,7 +204,7 @@ const QuickActionsCard = () => (
   </Card>
 );
 
-const StatsCard = () => (
+const StatsCard: React.FC = () => (
   <Card>
     <CardHeader>
       <CardTitle>Estatísticas</CardTitle>
@@ -198,7 +226,7 @@ const StatsCard = () => (
   </Card>
 );
 
-const ScheduledPublicationsCard = () => {
+const ScheduledPublicationsCard: React.FC = () => {
   const publications = [
     { title: "Banner Lateral - Recursos", date: "20 Abr, 2025", type: "Banner", color: "bg-amber-600" },
     { title: "Novo recurso: Assistente", date: "18 Abr, 2025", type: "Notícia", color: "bg-blue-600" },
@@ -233,7 +261,7 @@ const ScheduledPublicationsCard = () => {
   );
 };
 
-const RecentActivityCard = () => {
+const RecentActivityCard: React.FC = () => {
   const activities = [
     {
       icon: <Image size={16} />,
@@ -291,7 +319,7 @@ const RecentActivityCard = () => {
   );
 };
 
-const ContentAnalyticsCard = () => {
+const ContentAnalyticsCard: React.FC = () => {
   const metrics = [
     { label: "Visualizações de Banners", value: "2.457", percentage: "w-9/12" },
     { label: "Cliques em Notícias", value: "1.873", percentage: "w-7/12" },
@@ -328,7 +356,7 @@ const ContentAnalyticsCard = () => {
   );
 };
 
-const DashboardTab = () => (
+const DashboardTab: React.FC = () => (
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     <QuickActionsCard />
     <StatsCard />
@@ -338,7 +366,7 @@ const DashboardTab = () => (
   </div>
 );
 
-const BannerForm = ({ onClose }) => (
+const BannerForm: React.FC<BannerFormProps> = ({ onClose }) => (
   <>
     <DialogHeader>
       <DialogTitle>Criar Novo Banner</DialogTitle>
@@ -401,7 +429,7 @@ const BannerForm = ({ onClose }) => (
   </>
 );
 
-const BannerListItem = ({ banner }) => (
+const BannerListItem: React.FC<BannerListItemProps> = ({ banner }) => (
   <tr className="border-b hover:bg-gray-50">
     <td className="py-3 px-4">{banner.title}</td>
     <td className="py-3 px-4">{banner.location}</td>
@@ -429,8 +457,8 @@ const BannerListItem = ({ banner }) => (
   </tr>
 );
 
-const BannerTab = () => {
-  const banners = [
+const BannerTab: React.FC = () => {
+  const banners: Banner[] = [
     { id: 1, title: "Banner Principal - Homepage", location: "Homepage", status: "Ativo", date: "15 Abr, 2025" },
     { id: 2, title: "Banner Lateral - Recursos", location: "Página de Recursos", status: "Agendado", date: "20 Abr, 2025" },
     { id: 3, title: "Banner Dashboard - Novidades", location: "Dashboard", status: "Rascunho", date: "-" },
@@ -519,8 +547,8 @@ const BannerTab = () => {
 };
 
 // Main Component
-const DesignerDashboard = () => {
-  const [activeTab, setActiveTab] = useState("dashboard");
+const DesignerDashboard: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<TabType>("dashboard");
 
   return (
     <div className="flex min-h-screen bg-gray-50">
