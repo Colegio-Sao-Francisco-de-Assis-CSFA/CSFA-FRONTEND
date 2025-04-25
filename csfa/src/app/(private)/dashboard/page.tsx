@@ -50,6 +50,7 @@ type BannerListItemProps = {
 
 // Components
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => (
+
   <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
     <div className="p-4 border-b border-gray-200 flex items-center gap-2">
       <div className="bg-blue-600 text-white p-2 rounded-md">
@@ -60,25 +61,25 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => (
 
     <nav className="flex-1 p-4">
       <ul className="space-y-2">
-        {[
-          { id: "dashboard" as TabType, icon: <BarChart className="mr-2 h-4 w-4" />, text: "Dashboard" },
-          { id: "banners" as TabType, icon: <Image className="mr-2 h-4 w-4" />, text: "Banners" },
-          { id: "news" as TabType, icon: <AlertCircle className="mr-2 h-4 w-4" />, text: "Notícias" },
-          { id: "blog" as TabType, icon: <FileText className="mr-2 h-4 w-4" />, text: "Blog Institucional" },
-          { id: "media" as TabType, icon: <LayoutGrid className="mr-2 h-4 w-4" />, text: "Biblioteca de Mídia" },
-          { id: "settings" as TabType, icon: <Settings className="mr-2 h-4 w-4" />, text: "Configurações" }
-        ].map(item => (
-          <li key={item.id}>
-            <Button
-              variant={activeTab === item.id ? "default" : "ghost"}
-              className={`w-full justify-start ${activeTab === item.id ? "bg-blue-600" : ""}`}
-              onClick={() => setActiveTab(item.id)}
-            >
-              {item.icon}
-              {item.text}
-            </Button>
-          </li>
-        ))}
+          {[
+            { id: "dashboard" as TabType, icon: <BarChart className="mr-2 h-4 w-4" />, text: "Dashboard" },
+            { id: "banners" as TabType, icon: <Image className="mr-2 h-4 w-4" />, text: "Banners" },
+            { id: "news" as TabType, icon: <AlertCircle className="mr-2 h-4 w-4" />, text: "Notícias" },
+            { id: "blog" as TabType, icon: <FileText className="mr-2 h-4 w-4" />, text: "Blog Institucional" },
+            { id: "media" as TabType, icon: <LayoutGrid className="mr-2 h-4 w-4" />, text: "Biblioteca de Mídia" },
+            { id: "settings" as TabType, icon: <Settings className="mr-2 h-4 w-4" />, text: "Configurações" }
+          ].map(item => (
+              <li key={item.id}>
+                <Button
+                  variant={activeTab === item.id ? "default" : "ghost"}
+                  className={`w-full justify-start ${activeTab === item.id ? "bg-blue-600" : ""}`}
+                  onClick={() => setActiveTab(item.id)}
+                >
+                  {item.icon}
+                  {item.text}
+                </Button>
+              </li>
+            ))}
       </ul>
     </nav>
 
@@ -436,8 +437,8 @@ const BannerListItem: React.FC<BannerListItemProps> = ({ banner }) => (
     <td className="py-3 px-4">
       <Badge className={
         banner.status === "Ativo" ? "bg-green-600" :
-        banner.status === "Agendado" ? "bg-blue-600" :
-        "bg-gray-600"
+          banner.status === "Agendado" ? "bg-blue-600" :
+            "bg-gray-600"
       }>
         {banner.status}
       </Badge>
@@ -480,7 +481,7 @@ const BannerTab: React.FC = () => {
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[525px]">
-            <BannerForm onClose={() => {}} />
+            <BannerForm onClose={() => { }} />
           </DialogContent>
         </Dialog>
       </div>
@@ -546,6 +547,7 @@ const BannerTab: React.FC = () => {
   );
 };
 
+
 // Main Component
 const DesignerDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>("dashboard");
@@ -589,5 +591,6 @@ const DesignerDashboard: React.FC = () => {
     </div>
   );
 };
+
 
 export default DesignerDashboard;

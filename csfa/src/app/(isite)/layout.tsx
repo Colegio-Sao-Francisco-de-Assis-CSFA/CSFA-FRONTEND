@@ -1,8 +1,8 @@
 import Head from "next/head";
 import "@/app/globals.css";
-import Header from '@/components/shared/Header/Header';
-import Footer from '@/components/shared/Footer';
-import FloatLinks from "@/components/view/FloatLinks";
+import Header from '@/components/site/shared/Header/Header';
+import Footer from '@/components/site/shared/Footer';
+import FloatLinks from "@/components/site/FloatLinks";
 
 export const metadata = {
   title: "Colégio São Francisco de Assis",

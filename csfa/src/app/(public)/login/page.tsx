@@ -55,7 +55,7 @@ export default function LoginPage() {
             </span>
           </motion.button>
 
-          <motion.button
+          {/* <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="flex items-center justify-center w-full p-3 mb-6 text-blue-600 bg-white border border-blue-600 rounded-md hover:bg-blue-50 transition-colors"
@@ -66,7 +66,7 @@ export default function LoginPage() {
             <span className="ml-2">
               {isLoggingIn ? "Processando..." : "Entrar com usuário e senha"}
             </span>
-          </motion.button>
+          </motion.button> */}
 
           <small className="mb-8 text-gray-500 text-center">
             Utilize suas credenciais corporativas para acessar o sistema
