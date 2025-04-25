@@ -93,7 +93,7 @@ export default function Navigation() {
     { name: 'Diário Eletrônico', icon: 'mdi:notebook', href:'https://siga03.activesoft.com.br/login/?instituicao=FRANCISCODEASSIS', bg: 'bg-purple-600', hoverbg:'hover:bg-purple-700'},
     { name: 'Cantina', icon: 'ion:fast-food', href:'https://siga03.activesoft.com.br/login/?instituicao=FRANCISCODEASSIS', bg: 'bg-sky-600', hoverbg:'hover:bg-sky-700'},
     { name: 'E-mail Coorporativo', icon: 'mdi:email', href:'https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&hd=colsaofrancisco.com.br&ifkv=AXH0vVvX8vAYtRE_pCpchKTt3qfwzXgYkGyDAYj4O6A5xoRirc0g3L5e8IqMJC6tPSvDDKYEc9b0qQ&ltmpl=default&osid=1&rip=1&sacu=1&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1357479426%3A1742924714844676', bg: 'bg-slate-700', hoverbg:'hover:bg-slate-800'},
-    { name: 'Apadges', icon: 'tdesign:system-sum', href:'/sign-in', bg: 'bg-rose-600', hoverbg:'hover:bg-rose-700'},
+    { name: 'Apadges', icon: 'tdesign:system-sum', href:'/login', bg: 'bg-rose-600', hoverbg:'hover:bg-rose-700'},
   ];
 
   const navMenu = [
