@@ -1,12 +1,16 @@
 // components/sections/ParceirosCarouselSection.tsx
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { PartnerCarousel } from "@/components/site/ParceirosCarousel";
 import { PartnerLogo, ScrollSpeed } from "@/components/site/ParceirosCarousel/types";
+import { ParceirosHeader, ParceiroBeneficioCard, ParceirosCTA } from "@/components/site/Parceiros";
+
+// Ícones para os cards de benefício
+import { CheckCircle, Users, Zap } from 'lucide-react';
 
 // Exemplo de dados de logos (você pode carregar isso de uma API ou de um arquivo de configuração)
-
 const partnerLogos: PartnerLogo[] = [
     { src: "/images/partners/sas.png", alt: "Partner 1 Logo", width: 150, height: 50 },
     { src: "/images/partners/google.png", alt: "Partner 2 Logo", width: 150, height: 50 },
@@ -15,20 +19,85 @@ const partnerLogos: PartnerLogo[] = [
     { src: "/images/partners/maker.png", alt: "Partner 5 Logo", width: 150, height: 50 },
     { src: "/images/partners/kumon.png", alt: "Partner 6 Logo", width: 150, height: 50 },
     { src: "/images/partners/raia-livre.png", alt: "Partner 6 Logo", width: 200, height: 100 },
-
-    // Adicione mais logos conforme necessário
 ];
 
 const ParceirosCarouselSection: React.FC = () => {
-    const scrollSpeed: ScrollSpeed = 'normal'; // 'normal, 'slow', 'fast'
+    const scrollSpeed: ScrollSpeed = 'fast'; // 'normal, 'slow', 'fast'
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+
+    const handleCTAClick = () => {
+        console.log("Botão 'Seja Nosso Parceiro' clicado!");
+        // Adicione aqui a lógica para o botão CTA (ex: redirecionar para formulário)
+    };
+
+    // Variantes para animação de entrada dos cards de benefício
+    const cardGridVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.5 // Atraso para o grid começar a animar depois do cabeçalho
+            }
+        }
+    };
 
     return (
-        <section>
-            <div className="relative mt-0 overflow-hidden max-w-screen-2xl mx-auto px-6 flex flex-col text-center items-center">
-                <PartnerCarousel
-                    logos={partnerLogos}
-                    scrollSpeed={scrollSpeed}
-                    logoClassName="p-4"
+        <section ref={sectionRef} className="py-20 bg-white">
+            <div className="relative overflow-hidden max-w-screen-xl mx-auto px-6 flex flex-col items-center">
+
+                {/* Cabeçalho da Seção */}
+                <ParceirosHeader
+                    badgeText=''
+                    title="Construindo o Futuro, Juntos." // Novo título mais impactante
+                    subtitle="Acreditamos que a educação de qualidade nasce da união de forças e da construção de confiança mútua."
+                    description="Nossos parceiros não são apenas fornecedores, mas verdadeiros aliados estratégicos no desenvolvimento integral dos nossos alunos. Cada parceria é cuidadosamente cultivada com base em valores compartilhados de excelência educacional, inovação e compromisso com o futuro."
+                />
+
+                {/* Indicadores de Benefícios */}
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 mb-12 w-full"
+                    variants={cardGridVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                >
+                    <ParceiroBeneficioCard
+                        icon={<CheckCircle className="w-7 h-7 text-white" strokeWidth={2.5} />}
+                        title="Qualidade Garantida"
+                        description="Parceiros com comprovada excelência em suas áreas de atuação."
+                    />
+                    <ParceiroBeneficioCard
+                        icon={<Users className="w-7 h-7 text-white" strokeWidth={2.5} />}
+                        title="Confiança Mútua"
+                        description="Relacionamentos duradouros baseados em transparência e resultados."
+                    />
+                    <ParceiroBeneficioCard
+                        icon={<Zap className="w-7 h-7 text-white" strokeWidth={2.5} />}
+                        title="Inovação Constante"
+                        description="Sempre na vanguarda das melhores práticas educacionais."
+                    />
+                </motion.div>
+
+                {/* Carousel de Parceiros */}
+                <motion.div
+                    className="w-full mt-8" // Adiciona margem superior
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.8 }} // Atraso para aparecer depois dos cards
+                >
+                    <PartnerCarousel
+                        logos={partnerLogos}
+                        scrollSpeed={scrollSpeed}
+                        logoClassName="p-4"
+                    />
+                </motion.div>
+
+                {/* Call to Action */}
+                <ParceirosCTA
+                    text="Interessado em fazer parte desta rede de parceiros comprometidos com a educação e com a transformação de vidas?"
+                    buttonText="Seja Nosso Parceiro"
+                    onButtonClick={handleCTAClick}
                 />
             </div>
         </section>

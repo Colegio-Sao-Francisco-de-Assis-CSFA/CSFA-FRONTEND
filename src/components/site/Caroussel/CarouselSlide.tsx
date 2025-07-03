@@ -18,9 +18,8 @@ export const CarouselSlide: React.FC<CarouselSlideProps> = ({
 }) => {
   return (
     <div
-      className={`absolute inset-0 transition-opacity duration-1000 ${
-        isActive ? 'opacity-100' : 'opacity-0'
-      } ${className}`}
+      className={`absolute inset-0 transition-opacity duration-1000 ${isActive ? 'opacity-100' : 'opacity-0'
+        } ${className}`}
     >
       {isMobile ? (
         <img
@@ -36,7 +35,7 @@ export const CarouselSlide: React.FC<CarouselSlideProps> = ({
           alt={slide.alt}
           className="w-full h-full object-cover"
           width={1920}
-          height={500}
+          height={800}
         />
       )}
     </div>

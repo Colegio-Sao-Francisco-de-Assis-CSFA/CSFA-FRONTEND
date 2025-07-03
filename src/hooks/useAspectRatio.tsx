@@ -17,8 +17,8 @@ const useAspectRatio = () => {
 
   return {
     isMobile,
-    aspectRatio: isMobile ? 'aspect-[1/1]' : 'aspect-[1920/500]',
-    dimensions: isMobile ? { width: 500, height: 500 } : { width: 1920, height: 500 }
+    aspectRatio: isMobile ? 'aspect-[1/1]' : 'aspect-[1920/800]',
+    dimensions: isMobile ? { width: 500, height: 500 } : { width: 1920, height: 800 }
   };
 };
 

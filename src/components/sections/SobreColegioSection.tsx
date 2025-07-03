@@ -3,7 +3,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import AboutMediaSection from "@/components/site/SobreColegio/AboutMediaSection";
+import AboutMediaSection from "@/components/sections/AboutMediaSection";
 import InfoCardsGrid from "@/components/site/SobreColegio/InfoCardsGrid";
 import { Sparkles, Quote } from "lucide-react";
 
@@ -44,24 +44,25 @@ export default function SobreColegioSection() {
   return (
     <section className="w-screen">
 
-      <div ref={sectionRef} className="relative w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden p-12 bg-white">
+      <div ref={sectionRef} className="relative w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden bg-white">
 
-        <div className="min-h-screen flex flex-col gap-20 items-center">
+        <div className="min-h-screen flex flex-col gap-6 items-center">
           {/* Main Title */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl text-center lg:text-6xl font-black leading-tight">
+            <h1 className="text-3xl text-center lg:text-6xl font-black leading-tight p-0">
               <span className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-600 bg-clip-text text-transparent">
                 Colégio São Francisco de Assis:
               </span>
               <br />
               <span className="text-center bg-gradient-to-r from-blue-600 via-blue-800 to-blue-900 bg-clip-text text-transparent">
-                Onde cada sonho encontra seu caminho.
+                Onde cada sonho encontra
+                <br /> seu caminho.
               </span>
             </h1>
           </motion.div>
 
           <motion.div
-            className="w-full flex flex-col gap-6 lg:gap-6 order-2 lg:order-1"
+            className="w-full flex flex-col gap-6 lg:gap-6 order-2 lg:order-1 px-6"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={containerVariants}
@@ -69,7 +70,7 @@ export default function SobreColegioSection() {
 
             {/* Description */}
             <motion.div
-              className="space-y-6 text-slate-700 text-lg lg:text-xl leading-relaxed"
+              className="space-y-6 text-slate-700 text-lg lg:text-xl leading-relaxed lg:px-6"
               variants={itemVariants}
             >
               <p>
@@ -92,16 +93,16 @@ export default function SobreColegioSection() {
             </motion.div>
 
             {/* Service Cards */}
-            <motion.div variants={itemVariants}>
+            <motion.div className="lg:px-6" variants={itemVariants}>
               <InfoCardsGrid
                 containerVariants={containerVariants}
                 itemVariants={itemVariants}
               />
             </motion.div>
 
-             {/* Quote Section */}
+            {/* Quote Section */}
             <motion.div
-              className="relative max-w-2xl mx-auto mt-12 bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 text-white shadow-2xl"
+              className="relative px-8 max-w-2xl mx-auto mt-12 bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 text-white shadow-2xl"
               variants={itemVariants}
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.3 }}

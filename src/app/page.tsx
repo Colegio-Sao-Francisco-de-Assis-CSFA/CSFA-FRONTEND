@@ -9,6 +9,7 @@ import CallToAction from '@/components/site/CallToAcion';
 import Formulario from '@/components/site/Formulario';
 import AconteceCsfa from '@/components/site/AconteceCsfa';
 import { AboutMediaSection } from '@/components/site/SobreColegio';
+import CoursosSection from '@/components/sections/CursosSection';
 
 
 export default function Home() {
@@ -19,12 +20,13 @@ export default function Home() {
       {/* Hero Banner Carousel */}
       <HeroCarouselSection />
       <MissaoSection />
+      <CoursosSection />
       <SobreColegioSection />
       {/* <AboutMediaSection /> */}
       <ParceirosSection />
 
-      <Campus />
-      <AconteceCsfa />
+      {/* <Campus /> */}
+      {/* <AconteceCsfa /> */}
 
       {/* <StatsArea /> */}
       {/* <CallToAction
