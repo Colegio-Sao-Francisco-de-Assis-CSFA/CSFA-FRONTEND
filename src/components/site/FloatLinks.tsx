@@ -4,7 +4,7 @@ import { Youtube, Facebook, Instagram, MessageSquare } from 'lucide-react';
 
 const FloatLinks: FC = () => {
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+    <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-[999]">
       {/* YouTube */}
       <Link
         href="/youtube"
@@ -36,7 +36,7 @@ const FloatLinks: FC = () => {
       <Link
         href="/contato"
         className="flex items-center justify-center w-12 h-12 rounded-full bg-green-500 text-white shadow-lg hover:brightness-110 transition-all"
-        aria-label="Chat"
+        aria-label="Whatsapp"
       >
         <MessageSquare size={20} />
       </Link>

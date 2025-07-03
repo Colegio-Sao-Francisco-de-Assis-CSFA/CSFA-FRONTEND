@@ -79,6 +79,9 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  --carousel-duplication-factor: 3;
+  --carousel-scroll-duration: 30s;
 }
 
 .dark {
@@ -120,9 +123,36 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  /* fundo transparente */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0);
+  /* transparente */
+  border-radius: 10px;
+  border: none;
+}
+
+* {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+  -ms-overflow-style: none;
 }
 
 .preserve-3d {
@@ -148,7 +178,7 @@
   border-radius: 0.75rem;
   opacity: 0;
   transition: opacity 0.3s ease;
-  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
   pointer-events: none;
   z-index: 10;
 }
@@ -158,21 +188,24 @@
 }
 
 
-@keyframes infinite-scroll {
-  from {
+@keyframes scroll {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-50%);
+
+  100% {
+    transform: translateX(calc(-100% / 3));
   }
 }
 
-.partners-carousel {
-  display: flex;
-  width: max-content;
-  animation: infinite-scroll 20s linear infinite;
+.animate-scroll {
+  animation: scroll 30s linear infinite;
 }
 
-.partners-carousel:hover {
-  animation-play-state: paused;
+.animate-scroll-slow {
+  animation: scroll 45s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll 20s linear infinite;
 }

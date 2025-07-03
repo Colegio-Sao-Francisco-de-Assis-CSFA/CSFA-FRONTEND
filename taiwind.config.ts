@@ -23,9 +23,9 @@ const config: Config = {
       fontFamily: {
         sans: ["Open Sans"],
       },
-      
     },
   },
+
   plugins: [],
 };
 
