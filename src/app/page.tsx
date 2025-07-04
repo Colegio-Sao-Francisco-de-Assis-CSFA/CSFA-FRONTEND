@@ -1,11 +1,13 @@
 import HeroCarouselSection from '@/components/sections/HeroCarouselSection';
-import Segmentos from '@/components/site/Segmentos';
 import SobreColegioSection from "@/components/sections/SobreColegioSection";
 import MissaoSection from '@/components/sections/MissaoSection';
 import ParceirosSection from '@/components/sections/ParceirosCarouselSection';
+import CallToActionSection from '@/components/sections/CallToActionSection';
+
+
 import Campus from '@/components/site/Campus';
 import StatsArea from '@/components/site/Stats';
-import CallToAction from '@/components/site/CallToAcion';
+import CallToAction from '@/components/site/CallToAction/CallToActionRoot';
 import Formulario from '@/components/site/Formulario';
 import AconteceCsfa from '@/components/site/AconteceCsfa';
 import CoursosSection from '@/components/sections/CursosSection';
@@ -20,10 +22,47 @@ export default function Home() {
       <HeroCarouselSection />
       <MissaoSection />
       <CoursosSection />
+      <CallToActionSection
+        type="map"
+        variant="side-by-side"
+        content={{
+          title: 'Localize Nosso Colégio',
+          description: 'Estamos localizados em um ponto de fácil acesso. Venha nos visitar!',
+          buttonText: 'Como Chegar',
+          buttonHref: 'https://maps.app.goo.gl/seu-endereco-aqui', // Link para o Google Maps
+        }}
+        map={{
+          mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.489721087455!2d-46.635398!3d-23.55052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59a6c9d9d3d3%3A0x6b7b7b7b7b7b7b7b!2sSeu%20Col%C3%A9gio!5e0!3m2!1spt-BR!2sbr!4v1678901234567!5m2!1spt-BR!2sbr', // Exemplo de embed do Google Maps
+        }}
+      />
       <SobreColegioSection />
-      {/* <AboutMediaSection /> */}
+      {/* // centered - content */}
+      <CallToActionSection
+        type="simple"
+        variant="centered"
+        backgroundColor="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-950 via-blue-700 to-blue-500 text-white" // Exemplo de cor customizada
+        content={{
+          title: 'Explore Mais Sobre o Nosso Colégio',
+          description: 'Conheça nossa história, valores e o que nos torna uma instituição de ensino de excelência.',
+          buttonText: 'Saiba Mais',
+          buttonHref: '/sobre',
+          // O ícone não é usado no variant 'centered' para CallToActionContent padrão, mas a prop existe
+        }}
+      />
       <ParceirosSection />
 
+      {/* Exemplo de CTA de Newsletter */}
+      <CallToActionSection
+        type="newsletter"
+        variant="centered"
+        backgroundColor='bg-blue-600 flex flex-col items-center justify-center'
+        newsletterProps={{
+          title: 'Fique por Dentro das Novidades!',
+          description: 'Assine nossa newsletter e receba notícias, eventos e dicas diretamente no seu e-mail.',
+          placeholderText: 'seu.email@exemplo.com',
+          buttonText: 'Inscrever-se',
+        }}
+      />
       {/* <Campus /> */}
       {/* <AconteceCsfa /> */}
 
