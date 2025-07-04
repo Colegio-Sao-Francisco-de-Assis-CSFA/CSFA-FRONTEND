@@ -16,7 +16,7 @@ const ParceiroBeneficioCard: React.FC<ParceiroBeneficioCardProps> = ({ icon, tit
       {/* Conteúdo */}
       <div className="relative z-10">
         {/* Ícone */}
-        <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white shadow-xl shadow-blue-500/25 group-hover:shadow-2xl group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+        <div className="w-16 h-16 bg-gradient-to-bl from-blue-500 via-blue-700 to-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 text-white shadow-xl shadow-blue-500/25 group-hover:shadow-2xl group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
           <div className="text-2xl text-white">
             {icon}
           </div>

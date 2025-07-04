@@ -2,7 +2,6 @@
 "use client"
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react"; // Adicione Sparkles se for usado internamente ou passe via prop
 
 interface CardItemProps {
   icon: React.ElementType;
@@ -21,13 +20,13 @@ export function CardItem({ icon: Icon, title, description, bgColor, iconColor, a
     // Remover whileHover e transition daqui, pois eles serão aplicados na motion.div pai no grid
     >
       {/* Card principal */}
-      <div className="relative w-90 h-86 mx-auto md:w-full md:h-full max-w-md max-h-md overflow-hidden rounded-2xl bg-white border border-gray-300 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col"> 
+      <div className="relative sm:w-90 sm:h-86 mx-auto md:w-full md:h-full max-w-md max-h-md overflow-hidden rounded-2xl bg-white border border-gray-300 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col">
         {/* Header com gradiente */}
         <div className={`${bgColor} p-6 relative overflow-hidden flex-shrink-0`}> {/* flex-shrink-0 para que o header não encolha */}
           {/* Padrão geométrico sutil */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-32 h-32 border-2 border-white/20 rounded-full transform translate-x-16 -translate-y-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 border-2 border-white/20 rounded-full transform -translate-x-12 translate-y-12"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 border-2 border-white/20 rounded-full transform-translate-x-12 translate-y-12"></div>
           </div>
 
           {/* Ícone com efeito especial */}

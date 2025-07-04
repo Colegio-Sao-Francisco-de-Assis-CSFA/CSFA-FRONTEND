@@ -20,11 +20,11 @@ const CarouselLogo: React.FC<CarouselLogoProps> = ({ logo, className = '' }) => 
     <Image
       src={logo.src}
       alt={logo.alt}
-      width={logo.width || 120}
-      height={logo.height || 40}
-      className="object-contain w-full h-auto"
+      width={logo.width}
+      height={logo.height}
+      className="object-contain w-full h-auto md:p-6"
       loading="lazy"
-      quality={85}
+      quality={100}
     />
   </div>
 );

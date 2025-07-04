@@ -23,11 +23,11 @@ const CoursesHeader: React.FC<CoursesHeaderProps> = ({ title, description }) => 
         <GraduationCap className="w-7 h-7 text-white sm:w-8 sm:h-8" /> {/* Ajustado w/h do ícone */}
       </motion.div>
 
-      <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-gray-900 mb-4"> {/* Reduzido text-4xl para text-3xl */}
+      <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-gray-900mb-4"> {/* Reduzido text-4xl para text-3xl */}
         {title}
       </h2>
 
-      <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4"> {/* Reduzido text-xl para text-lg e adicionado px-4 */}
+      <p className="text-sm sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-3 pt-4"> {/* Reduzido text-xl para text-lg e adicionado px-4 */}
         {description}
       </p>
     </motion.div>

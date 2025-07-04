@@ -15,7 +15,7 @@ const MissaoColegio: FC = () => {
   const content = {
     title: "Formando jovens transformadores da sociedade",
     subtitle: "Educação + Espiritualidade + Valores Humanos",
-    buttonText: "Conheça nosso projeto pedagógico",
+    buttonText: "Conheça nosso colégio",
   };
 
   return (

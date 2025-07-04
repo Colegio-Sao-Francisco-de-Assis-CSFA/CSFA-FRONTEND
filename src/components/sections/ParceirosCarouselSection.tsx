@@ -12,7 +12,7 @@ import { CheckCircle, Users, Zap } from 'lucide-react';
 
 // Exemplo de dados de logos (você pode carregar isso de uma API ou de um arquivo de configuração)
 const partnerLogos: PartnerLogo[] = [
-    { src: "/images/partners/sas.png", alt: "Partner 1 Logo", width: 150, height: 50 },
+    { src: "/images/partners/sas.png", alt: "Partner 1 Logo", width: 200, height: 200 },
     { src: "/images/partners/google.png", alt: "Partner 2 Logo", width: 150, height: 50 },
     { src: "/images/partners/notas-ouro.png", alt: "Partner 3 Logo", width: 150, height: 50 },
     { src: "/images/partners/yazigi.png", alt: "Partner 4 Logo", width: 150, height: 50 },
@@ -51,8 +51,6 @@ const ParceirosCarouselSection: React.FC = () => {
                 <ParceirosHeader
                     badgeText=''
                     title="Construindo o Futuro, Juntos." // Novo título mais impactante
-                    subtitle="Acreditamos que a educação de qualidade nasce da união de forças e da construção de confiança mútua."
-                    description="Nossos parceiros não são apenas fornecedores, mas verdadeiros aliados estratégicos no desenvolvimento integral dos nossos alunos. Cada parceria é cuidadosamente cultivada com base em valores compartilhados de excelência educacional, inovação e compromisso com o futuro."
                 />
 
                 {/* Indicadores de Benefícios */}
@@ -89,16 +87,10 @@ const ParceirosCarouselSection: React.FC = () => {
                     <PartnerCarousel
                         logos={partnerLogos}
                         scrollSpeed={scrollSpeed}
-                        logoClassName="p-4"
+                        logoClassName="w-full"
                     />
                 </motion.div>
 
-                {/* Call to Action */}
-                <ParceirosCTA
-                    text="Interessado em fazer parte desta rede de parceiros comprometidos com a educação e com a transformação de vidas?"
-                    buttonText="Seja Nosso Parceiro"
-                    onButtonClick={handleCTAClick}
-                />
             </div>
         </section>
     );

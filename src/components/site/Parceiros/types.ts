@@ -3,8 +3,6 @@
 export interface ParceirosHeaderProps {
   badgeText: string;
   title: string;
-  subtitle: string;
-  description?: string; // Para a descrição extra sobre parcerias
 }
 
 export interface ParceiroBeneficioCardProps {
