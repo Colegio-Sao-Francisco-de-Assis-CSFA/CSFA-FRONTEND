@@ -5,9 +5,8 @@ export { default as CallToActionContent } from './CallToActionContent';
 export { default as CallToActionImage } from './CallToActionImage';
 export { default as CallToActionMap } from './CallToActionMap';
 export { default as CallToActionNewsletter } from './CallToActionNewsletter';
+export { default as CallToActionVisitForm } from './CallToActionVisitForm'; // NOVO
 export * from './types';
-
-
 
 
     // {/* side-by-side - image */}

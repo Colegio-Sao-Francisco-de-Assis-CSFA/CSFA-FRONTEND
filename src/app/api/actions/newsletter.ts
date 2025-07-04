@@ -1,24 +1,14 @@
-// actions/newsletter.ts (ou app/actions.ts)
+// actions/newsletter.ts (ou o nome do seu arquivo de actions)
 'use server';
 
-// Você pode importar seus serviços de banco de dados, e-mail, etc. aqui
+// Importações de serviços de banco de dados, e-mail, etc.
 // import { saveEmailToDatabase } from '@/lib/db';
 // import { sendWelcomeEmail } from '@/lib/email';
 
 export async function subscribeToNewsletter(email: string) {
   console.log(`Server Action: Tentando inscrever o e-mail: ${email}`);
-
-  // Aqui você adicionaria sua lógica de backend:
-  // 1. Validar o e-mail
-  // 2. Salvar no banco de dados
-  // 3. Enviar um e-mail de confirmação
-  // 4. Lidar com erros (e-mail já cadastrado, erro de servidor, etc.)
-
   try {
-    // Exemplo simulado de operação de sucesso
-    // await saveEmailToDatabase(email);
-    // await sendWelcomeEmail(email);
-
+    // Lógica para salvar e-mail na newsletter
     console.log(`Server Action: E-mail ${email} inscrito com sucesso!`);
     return { success: true, message: 'Inscrição realizada com sucesso!' };
   } catch (error) {
@@ -27,9 +17,37 @@ export async function subscribeToNewsletter(email: string) {
   }
 }
 
-// Você pode ter outras Server Actions neste mesmo arquivo
-export async function registerVisit(name: string, date: string) {
-    console.log(`Server Action: Agendando visita para ${name} em ${date}`);
-    // Lógica para agendar visita
-    return { success: true, message: 'Visita agendada!' };
+// NOVA SERVER ACTION AJUSTADA PARA AGENDAMENTO DE VISITA
+export async function registerVisit(formData: FormData) {
+  const responsibleName = formData.get('responsibleName') as string;
+  const studentName = formData.get('studentName') as string;
+  const phone = formData.get('phone') as string;
+  const email = formData.get('email') as string;
+
+  console.log(`Server Action: Agendando visita para:`);
+  console.log(`  Responsável: ${responsibleName}`);
+  console.log(`  Aluno: ${studentName}`);
+  console.log(`  Celular: ${phone}`);
+  console.log(`  E-mail: ${email}`);
+
+  // Aqui você adicionaria sua lógica de backend real:
+  // 1. Validação mais robusta dos campos
+  // 2. Salvar no banco de dados
+  // 3. Enviar confirmação por e-mail ou SMS
+  // 4. Integrar com um sistema de agendamento (ex: Google Calendar API)
+
+  if (!responsibleName || !email || !phone) {
+    return { success: false, message: 'Campos obrigatórios (Nome Responsável, Celular, E-mail) não preenchidos.' };
+  }
+
+  try {
+    // Exemplo simulado de operação de sucesso
+    // await saveVisitToDatabase({ responsibleName, studentName, phone, email });
+    // await sendVisitConfirmationEmail(email, responsibleName);
+
+    return { success: true, message: 'Visita agendada com sucesso! Em breve entraremos em contato.' };
+  } catch (error) {
+    console.error(`Server Action: Erro ao agendar visita:`, error);
+    return { success: false, message: 'Ocorreu um erro ao agendar a visita. Tente novamente.' };
+  }
 }

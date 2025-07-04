@@ -1,4 +1,4 @@
-// components/site/CallToAction/CallToActionMap.tsx
+'use client'; // Se este componente usa hooks de cliente (como `useState`, mas para `CallToActionMap` geralmente não é necessário)
 import React from 'react';
 import { CallToActionMapProps } from './types';
 

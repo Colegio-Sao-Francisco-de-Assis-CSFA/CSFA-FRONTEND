@@ -1,5 +1,5 @@
 // components/sections/CallToActionSection.tsx
-// REMOVA O 'use client;' se quiser que seja um Server Component
+// REMOVA O 'use client;' se quiser que seja um Server Component (como discutido anteriormente)
 
 import React from 'react';
 import {
@@ -8,16 +8,16 @@ import {
   CallToActionImage,
   CallToActionMap,
   CallToActionNewsletter,
+  CallToActionVisitForm,
   CallToActionContentProps,
   CallToActionImageProps,
   CallToActionMapProps,
-  CallToActionNewsletterProps,
+  CallToActionNewsletterProps, // MANTÉM AQUI
+  CallToActionVisitFormProps,
 } from '../site/CallToAction';
 import { ArrowRight } from 'lucide-react';
 
-// Importa a Server Action específica
 import { subscribeToNewsletter, registerVisit } from '@/app/api/actions/newsletter';
-// ... (Resto das suas interfaces e tipos permanecem os mesmos)
 
 interface BaseCallToActionSectionProps {
   variant: 'centered' | 'side-by-side';
@@ -32,24 +32,19 @@ interface ImageCallToActionProps extends BaseCallToActionSectionProps {
 
 interface MapCallToActionProps extends BaseCallToActionSectionProps {
   type: 'map';
-  content: Omit<CallToActionContentProps, 'buttonIcon'>;
   map: CallToActionMapProps;
+  visitForm: Omit<CallToActionVisitFormProps, 'onSubmitAction'>;
 }
 
 interface NewsletterCallToActionProps extends BaseCallToActionSectionProps {
   type: 'newsletter';
-  // Não precisamos mais passar 'onSubmitAction' diretamente aqui.
-  // A ação é definida "implicitamente" pelo tipo.
-  // Poderíamos até ter uma prop para selecionar qual ação usar,
-  // mas vamos simplificar para o exemplo.
-  newsletterProps: Omit<CallToActionNewsletterProps, 'onSubmitAction'>;
+  newsletterProps: Omit<CallToActionNewsletterProps, 'onSubmitAction'>; // Continua omitindo apenas onSubmitAction
 }
 
 interface SimpleCallToActionProps extends BaseCallToActionSectionProps {
   type: 'simple';
   content: CallToActionContentProps;
 }
-
 
 type CallToActionSectionProps =
   | ImageCallToActionProps
@@ -73,13 +68,12 @@ const CallToActionSection: React.FC<CallToActionSectionProps> = (props) => {
   }
 
   if (props.type === 'map') {
-    // Para um CTA de mapa, talvez você queira agendar uma visita
-    // Você poderia ter outro formulário e uma Server Action para 'registerVisit'
     return (
       <CallToActionRoot variant={variant} backgroundColor={backgroundColor}>
-        <div className="md:w-1/2 mb-8 md:mb-0">
-          <CallToActionContent {...props.content} buttonIcon={ArrowRight} />
-        </div>
+        <CallToActionVisitForm
+          {...props.visitForm}
+          onSubmitAction={registerVisit}
+        />
         <CallToActionMap {...props.map} />
       </CallToActionRoot>
     );
@@ -88,10 +82,9 @@ const CallToActionSection: React.FC<CallToActionSectionProps> = (props) => {
   if (props.type === 'newsletter') {
     return (
       <CallToActionRoot variant={variant} backgroundColor={backgroundColor}>
-        {/* Passa a Server Action diretamente para o Client Component */}
         <CallToActionNewsletter
           {...props.newsletterProps}
-          onSubmitAction={subscribeToNewsletter} // A Server Action é passada aqui
+          onSubmitAction={subscribeToNewsletter}
         />
       </CallToActionRoot>
     );

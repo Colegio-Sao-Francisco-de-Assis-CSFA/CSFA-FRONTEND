@@ -21,9 +21,14 @@ export interface CallToActionNewsletterProps {
   title: string;
   description: string;
   placeholderText?: string;
-  buttonText: string;
-  // A função de submissão agora é uma Server Action
+  buttonText: string; // <-- ADICIONE DE VOLTA AQUI
   onSubmitAction: (email: string) => Promise<{ success: boolean; message: string }>;
+}
+
+export interface CallToActionVisitFormProps {
+  title: string;
+  description: string;
+  onSubmitAction: (formData: FormData) => Promise<{ success: boolean; message: string }>;
 }
 
 export interface CallToActionRootProps {
