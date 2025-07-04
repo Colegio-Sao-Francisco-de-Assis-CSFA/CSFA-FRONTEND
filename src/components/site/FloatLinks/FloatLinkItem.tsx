@@ -12,7 +12,6 @@ const FloatLinkItem: React.FC<FloatLinkItemProps> = ({
   icon, // <-- AGORA É UMA STRING
   backgroundColorClass,
   initialIconColorClass = 'text-gray-500',
-  hoverIconColorClass = 'text-white',
 }) => {
   return (
     <Link
