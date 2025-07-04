@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import { Navigation } from "@/components/site/Navigation/Navigation";
 import Footer from '@/components/site/Footer';
-import FloatLinks from "@/components/site/FloatLinks";
+import FloatLinks from "@/components/sections/FloatLinksSection";
 
 
 export default function RootLayout({
