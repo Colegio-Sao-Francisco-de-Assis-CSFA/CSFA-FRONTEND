@@ -10,7 +10,7 @@ function SubmitButton({ isTermsAccepted }: { isTermsAccepted: boolean }) {
   return (
     <button
       type="submit"
-      className="bg-white cursor-pointer m-auto w-52 h-12 transition-all duration-200 ease-in-out border hover:bg-gradient-to-bl hover:from-blue-900 hover:to-blue-600 hover:border-white text-blue-600 hover:text-white font-medium py-3 px-6 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" // Adicionado classes para disabled
+      className="bg-white cursor-pointer w-82 h-12 transition-all duration-200 ease-in-out border hover:bg-gradient-to-bl hover:from-blue-900 hover:to-blue-600 hover:border-white text-blue-600 hover:text-white font-medium py-3 px-6 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" // Adicionado classes para disabled
       disabled={pending || !isTermsAccepted} // Desabilita se pendente OU termos não aceitos
     >
       {pending ? 'Enviando...' : 'Inscrever-se'}
@@ -62,12 +62,14 @@ const CallToActionNewsletter: React.FC<CallToActionNewsletterProps> = ({
   };
 
   return (
-    <div className="max-w-2xl mx-auto mb-8 md:mb-0"> {/* Adicionado mx-auto para centralização */}
-      <h2 className="text-2xl md:text-4xl text-white font-extrabold mb-4 text-center">{title}</h2> {/* Centralizado o título */}
-      <p className="mb-8 text-lg text-center mx-auto pt-4 text-gray-100 max-w-lg">{description}</p>
+    <div className="max-w-4xl flex mx-auto mb-8 md:mb-0 gap-6"> {/* Adicionado mx-auto para centralização */}
+      <div>
+        <h2 className="text-2xl text-start md:text-4xl text-white font-extrabold mb-4">{title}</h2> {/* Centralizado o título */}
+        <p className="text-lg text-start pt-4 text-gray-100 max-w-lg">{description}</p>
+      </div>
 
-      <form action={formAction} className="flex flex-col items-center gap-4"> {/* Ajustado para alinhar itens e criar espaçamento */}
-        <div className='flex flex-col w-full px-4 md:px-0 gap-2 items-center justify-center'> {/* Removido px-20, usando w-full e px-4 para responsividade */}
+      <form action={formAction} className="flex flex-col items-start justify-start gap-4 w-full"> {/* Ajustado para alinhar itens e criar espaçamento */}
+        <div className='flex flex-col w-full px-4 md:px-0 gap-2 items-start justify-center'> {/* Removido px-20, usando w-full e px-4 para responsividade */}
           <input
             type="email"
             name="email"
@@ -78,7 +80,7 @@ const CallToActionNewsletter: React.FC<CallToActionNewsletterProps> = ({
             required
           />
 
-          <label htmlFor="termos" className='p-2 flex gap-2 items-start justify-start text-start text-xs font-bold text-gray-200'>
+          <label htmlFor="termos" className='mt-2 flex gap-2 items-start justify-start text-start text-xs font-bold text-gray-200'>
             <input
               type="checkbox"
               name="termos"
