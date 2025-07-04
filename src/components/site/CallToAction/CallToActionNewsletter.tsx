@@ -62,14 +62,14 @@ const CallToActionNewsletter: React.FC<CallToActionNewsletterProps> = ({
   };
 
   return (
-    <div className="max-w-4xl flex mx-auto mb-8 md:mb-0 gap-6"> {/* Adicionado mx-auto para centralização */}
-      <div>
-        <h2 className="text-2xl text-start md:text-4xl text-white font-extrabold mb-4">{title}</h2> {/* Centralizado o título */}
-        <p className="text-lg text-start pt-4 text-gray-100 max-w-lg">{description}</p>
+    <div className="max-w-4xl flex flex-col items-center justify-center mx-auto mb-8 md:flex-row md:mb-0 gap-6"> {/* Adicionado mx-auto para centralização */}
+      <div className='mx-auto mb-4'>
+        <h2 className="text-2xl text-center md:text-start md:text-4xl text-white font-extrabold mb-4">{title}</h2> {/* Centralizado o título */}
+        <p className="text-lg max-w-96 text-center md:text-start pt-4 text-gray-100 md:max-w-lg">{description}</p>
       </div>
 
-      <form action={formAction} className="flex flex-col items-start justify-start gap-4 w-full"> {/* Ajustado para alinhar itens e criar espaçamento */}
-        <div className='flex flex-col w-full px-4 md:px-0 gap-2 items-start justify-center'> {/* Removido px-20, usando w-full e px-4 para responsividade */}
+      <form action={formAction} className="flex flex-col items-center justify-center md:items-start md:justify-start gap-4 w-full"> {/* Ajustado para alinhar itens e criar espaçamento */}
+        <div className='flex flex-col items-center justify-center mb-6 md:mb-0 w-full px-4 md:px-0 gap-2 md:items-start'> {/* Removido px-20, usando w-full e px-4 para responsividade */}
           <input
             type="email"
             name="email"

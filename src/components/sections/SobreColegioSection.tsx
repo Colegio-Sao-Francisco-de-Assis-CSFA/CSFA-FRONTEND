@@ -42,7 +42,7 @@ export default function SobreColegioSection() {
   return (
     <section className="w-screen">
 
-      <div ref={sectionRef} className="relative w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden bg-white pt-4">
+      <div ref={sectionRef} className="relative mb-12 w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden bg-white pt-4">
 
         <div className="min-h-screen flex flex-col gap-10 items-center">
           {/* Main Title */}
