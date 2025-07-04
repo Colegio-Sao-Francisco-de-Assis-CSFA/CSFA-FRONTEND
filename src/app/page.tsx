@@ -8,7 +8,6 @@ import StatsArea from '@/components/site/Stats';
 import CallToAction from '@/components/site/CallToAcion';
 import Formulario from '@/components/site/Formulario';
 import AconteceCsfa from '@/components/site/AconteceCsfa';
-import { AboutMediaSection } from '@/components/site/SobreColegio';
 import CoursosSection from '@/components/sections/CursosSection';
 
 

@@ -18,26 +18,14 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
       }}
       className="group cursor-pointer h-full"
     >
-      <div className={`${course.bgColor} rounded-2xl p-6 sm:p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between`}>
-        {/* Imagem de Fundo Opcional */}
-        {course.backgroundImageSrc && (
-          <Image
-            src={course.backgroundImageSrc}
-            alt={`${course.title} background`}
-            layout="fill"
-            objectFit="cover"
-            quality={80}
-            className="absolute inset-0 z-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300 rounded-2xl"
-          />
-        )}
-
+      <div className={`${course.bgColor} mx-auto w-80 h-80 md:w-full md:h-full rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between`}>
         {/* Overlay do Gradiente no Hover */}
         <div className={`absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl z-10`}></div>
 
         {/* Icon */}
         <motion.div
           variants={iconVariants}
-          className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/20 mb-4 sm:mb-6 shadow-lg backdrop-blur-sm relative z-20`}
+          className={`inline-flex items-center justify-center p-2 w-14 h-14 rounded-xl bg-white/20 mb-4 sm:mb-6 shadow-lg backdrop-blur-sm relative z-20`}
         >
           <IconComponent className="w-7 h-7 text-white sm:w-8 sm:h-8" />
         </motion.div>
@@ -52,7 +40,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
             {course.subtitle}
           </p>
 
-          <div className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white border border-white/30 mb-5`}>
+          <div className={`hidden md:inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 text-white border border-white/30 mb-5`}>
             {course.ageRange}
           </div>
 
@@ -61,7 +49,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
           </p>
 
           {/* Highlights */}
-          <div className="space-y-1 mb-5">
+          <div className="hidden md:block space-y-1 mb-5 ">
             {course.highlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -81,7 +69,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
         {/* Call to action */}
         <motion.div
           whileHover={{ x: 5 }}
-          className={`inline-flex items-center text-white font-semibold text-sm group-hover:underline relative z-20 mt-4`}
+          className={`inline-flex items-center text-white font-semibold text-sm group-hover:underline relative z-20`}
         >
           Saiba mais
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -21,7 +21,7 @@ export function CardItem({ icon: Icon, title, description, bgColor, iconColor, a
     // Remover whileHover e transition daqui, pois eles serão aplicados na motion.div pai no grid
     >
       {/* Card principal */}
-      <div className="relative w-full h-full max-w-md max-h-md overflow-hidden rounded-2xl bg-white border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col"> {/* Use flex-col para o layout interno */}
+      <div className="relative w-90 h-86 mx-auto md:w-full md:h-full max-w-md max-h-md overflow-hidden rounded-2xl bg-white border border-gray-300 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col"> 
         {/* Header com gradiente */}
         <div className={`${bgColor} p-6 relative overflow-hidden flex-shrink-0`}> {/* flex-shrink-0 para que o header não encolha */}
           {/* Padrão geométrico sutil */}

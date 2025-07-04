@@ -3,7 +3,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import AboutMediaSection from "@/components/sections/AboutMediaSection";
 import InfoCardsGrid from "@/components/site/SobreColegio/InfoCardsGrid";
 import { Sparkles, Quote } from "lucide-react";
 
@@ -44,9 +43,9 @@ export default function SobreColegioSection() {
   return (
     <section className="w-screen">
 
-      <div ref={sectionRef} className="relative w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden bg-white">
+      <div ref={sectionRef} className="relative w-full max-w-screen-2xl mx-auto min-h-screen overflow-hidden bg-white pt-4">
 
-        <div className="min-h-screen flex flex-col gap-6 items-center">
+        <div className="min-h-screen flex flex-col gap-10 items-center">
           {/* Main Title */}
           <motion.div variants={itemVariants}>
             <h1 className="text-3xl text-center lg:text-6xl font-black leading-tight p-0">

@@ -18,7 +18,7 @@ const CoursesHeader: React.FC<CoursesHeaderProps> = ({ title, description }) => 
         whileInView={{ scale: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 via-blue-800 to-blue-900 mb-6 shadow-xl sm:w-16 sm:h-16" // Ajustado w/h para mobile
+        className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-blue-500 via-blue-800 to-blue-900 mb-6 shadow-xl sm:w-16 sm:h-16"
       >
         <GraduationCap className="w-7 h-7 text-white sm:w-8 sm:h-8" /> {/* Ajustado w/h do ícone */}
       </motion.div>

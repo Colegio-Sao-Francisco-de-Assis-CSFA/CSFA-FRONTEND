@@ -16,7 +16,7 @@ export default function InfoCardsGrid({ containerVariants, itemVariants }: InfoC
       icon: GraduationCap,
       title: "Orientação Católica",
       description: "O colégio promove uma educação baseada na solidariedade, respeito e fraternidade, formando cidadãos comprometidos com um mundo mais justo.",
-      bgColor: "bg-gradient-to-br from-blue-600 to-blue-800",
+      bgColor: "bg-gradient-to-br from-blue-600 via-blue-700 to-blue-950",
       iconColor: "text-white",
       accentColor: "from-blue-600 to-blue-800",
       borderGradient: "from-blue-600/20 to-blue-800/20"
@@ -25,7 +25,7 @@ export default function InfoCardsGrid({ containerVariants, itemVariants }: InfoC
       icon: Globe,
       title: "Jovens Transformadores",
       description: "Preparamos nossos alunos para serem agentes de mudança na sociedade, desenvolvendo senso crítico, liderança e responsabilidade social.",
-      bgColor: "bg-gradient-to-br from-blue-600 to-blue-800",
+      bgColor: "bg-gradient-to-tl from-blue-600 via-blue-800 to-blue-950",
       iconColor: "text-white",
       accentColor: "from-blue-600 to-blue-800",
       borderGradient: "from-blue-600/20 to-blue-800/20"
@@ -34,7 +34,7 @@ export default function InfoCardsGrid({ containerVariants, itemVariants }: InfoC
       icon: BookOpen, // Novo ícone
       title: "Inovação Pedagógica",
       description: "Conteúdo atualizado, metodologias ativas e tecnologia integrada para um aprendizado dinâmico e eficaz, preparando para o futuro.",
-      bgColor: "bg-gradient-to-br from-blue-600 to-blue-800",
+      bgColor: "bg-gradient-to-bl from-blue-600 via-blue-700 to-blue-950",
       iconColor: "text-white",
       accentColor: "from-blue-600 to-blue-800",
       borderGradient: "from-blue-600/20 to-blue-800/20"
@@ -43,7 +43,7 @@ export default function InfoCardsGrid({ containerVariants, itemVariants }: InfoC
       icon: Lightbulb, // Novo ícone
       title: "Desenvolvimento",
       description: "Foco no crescimento acadêmico, social e emocional, promovendo autonomia, criatividade e valores essenciais para a vida.",
-      bgColor: "bg-gradient-to-br from-blue-600 to-blue-800",
+      bgColor: "bg-gradient-to-br from-blue-600 via-blue-800 to-blue-950 transition duration-300 ease-in-out hover:bg-gradient-to-tl hover:from-blue-950 hover:via-blue-700 hover:to-blue-600",
       iconColor: "text-white",
       accentColor: "from-blue-600 to-blue-800",
       borderGradient: "from-blue-600/20 to-blue-800/20"

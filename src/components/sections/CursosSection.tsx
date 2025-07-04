@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { BookOpen, Users, GraduationCap, Trophy, Baby } from 'lucide-react'; // Importado 'Baby' icon
 
 // Importar os microcomponentes da pasta site/Courses
-import { CoursesHeader, CourseCard, CoursesCTA, Course } from "@/components/site/Cursos";
+import { CoursesHeader, CourseCard, Course } from "@/components/site/Cursos";
 
 const CoursesSection = () => {
   // Os dados dos cursos permanecem aqui para serem passados aos cards
@@ -20,7 +20,7 @@ const CoursesSection = () => {
       highlights: ["Desenvolvimento motor", "Estimulação cognitiva", "Brincadeiras educativas"],
       icon: Baby, // Ícone para o curso infantil
       color: "bg-pink-600", // Nova cor para o card infantil
-      bgColor: "bg-pink-600",
+      bgColor: "bg-gradient-to-r from-blue-600 via-700 to-blue-950",
       textColor: "text-white",
       backgroundImageSrc: "/images/courses/educacao-infantil.webp" // Exemplo de imagem de fundo para infantil
     },
@@ -33,7 +33,7 @@ const CoursesSection = () => {
       highlights: ["Alfabetização", "Desenvolvimento motor", "Valores éticos"],
       icon: BookOpen,
       color: "bg-blue-600",
-      bgColor: "bg-blue-600",
+      bgColor: "bg-gradient-to-b from-blue-600 via-800 to-blue-900",
       textColor: "text-white",
       backgroundImageSrc: "/images/courses/fundamental-iniciais.webp" // Exemplo de imagem de fundo
     },
@@ -46,7 +46,7 @@ const CoursesSection = () => {
       highlights: ["Pensamento crítico", "Projetos interdisciplinares", "Tecnologia educacional"],
       icon: Users,
       color: "bg-blue-900",
-      bgColor: "bg-blue-900",
+      bgColor: "bg-gradient-to-l from-blue-600 via-700 to-blue-950 ",
       textColor: "text-white",
       backgroundImageSrc: "/images/courses/fundamental-finais.webp" // Exemplo de imagem de fundo
     },
@@ -59,7 +59,7 @@ const CoursesSection = () => {
       highlights: ["Preparação ENEM", "Orientação vocacional", "Liderança"],
       icon: GraduationCap,
       color: "bg-blue-600",
-      bgColor: "bg-blue-600",
+      bgColor: "bg-gradient-to-t from-blue-600 via-800 to-blue-900",
       textColor: "text-white",
       backgroundImageSrc: "/images/courses/ensino-medio.webp" // Exemplo de imagem de fundo
     },
@@ -124,7 +124,7 @@ const CoursesSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden mb-12">
+    <section className="py-20 bg-gradient-to-br from-slate-100 via-white to-blue-100 relative overflow-hidden mb-12">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(120,119,198,0.05),transparent)] pointer-events-none"></div>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(74,222,128,0.05),transparent)] pointer-events-none"></div>
@@ -133,12 +133,9 @@ const CoursesSection = () => {
         {/* Header Section */}
         <CoursesHeader
           title={
-            <>
-              Nossos{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
-                Cursos
-              </span>
-            </>
+            <span className="bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
+              Nossos Cursos
+            </span>
           }
           description="Educação de excelência em todas as etapas da formação escolar, preparando nossos alunos para os desafios do futuro com metodologia inovadora."
         />
