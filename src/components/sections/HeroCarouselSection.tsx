@@ -8,28 +8,16 @@ const HeroSectionCarousel = () => {
     const slides: Slide[] = [
         {
             id: 'slide-1',
-            image: '/images/banner-desktop-1.jpg',
-            mobileImage: '/images/banner-mobile-1.jpg',
-            alt: 'Promoção de Verão',
-            title: 'Promoção de Verão',
-            description: 'Até 50% de desconto em itens selecionados',
+            image: '/images/banner/volta-as-aulas-1920.png',
+            mobileImage: '/images/banner/volta-as-aulas-500.png',
+            alt: 'Volta às aulas',
+            title: 'Volta às aulas',
+            description: 'Volta às aulas é no Magazine são francisco, aprovite nossas ofertas.',
             cta: {
                 text: 'Compre agora',
-                link: '/promo'
+                link: '/'
             }
         },
-        {
-            id: 'slide-2',
-            image: '/images/banner-desktop-2.jpg',
-            mobileImage: '/images/banner-mobile-2.jpg',
-            alt: 'Novos Produtos',
-            title: 'Coleção 2023',
-            description: 'Conheça nossos lançamentos',
-            cta: {
-                text: 'Ver coleção',
-                link: '/new'
-            }
-        }
     ];
 
     return (

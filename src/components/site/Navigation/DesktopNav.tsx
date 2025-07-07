@@ -52,8 +52,8 @@ export const DesktopNav = ({
                   href={item.href}
                   variant="ghost"
                   inactiveClassName ="text-gray-500 text-lg"
-                  activeClassName="text-blue-600 text-lg font-bold" // Adicionado font-bold para destacar
-                  exact={item.href === "/"} // 'Início' deve ser exato para evitar conflito com outras rotas
+                  activeClassName="text-blue-600 text-lg font-bold"
+                  exact={item.href === "/"}
                 >
                   {item.label}
                 </NavLink>

@@ -11,7 +11,7 @@ const CallToActionRoot: React.FC<CallToActionRootProps> = ({
 }) => {
   if (variant === 'centered') {
     return (
-      <section className={`w-full py-8 px-4 ${backgroundColor}`}> {/* Adicionado w-full */}
+      <section className={`w-full py-8 px-8 ${backgroundColor}`}> {/* Adicionado w-full */}
         <div className="max-w-screen-xl mx-auto text-center"> {/* Container para o conteúdo */}
           {children}
         </div>
@@ -20,7 +20,7 @@ const CallToActionRoot: React.FC<CallToActionRootProps> = ({
   }
 
   return (
-    <div className="w-screen py-4 px-8 bg-gradient-to-br from-blue-950 via-blue-700  to-blue-600 text-white"> {/* Adicionado w-full */}
+    <div className="w-screen py-4 bg-gradient-to-br from-blue-950 via-blue-700  to-blue-600 text-white"> {/* Adicionado w-full */}
       <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between"> {/* Container para o conteúdo */}
         {children}
       </div>

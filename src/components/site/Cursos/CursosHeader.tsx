@@ -30,6 +30,14 @@ const CoursesHeader: React.FC<CoursesHeaderProps> = ({ title, description }) => 
       <p className="text-sm sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-3 pt-4"> {/* Reduzido text-xl para text-lg e adicionado px-4 */}
         {description}
       </p>
+
+      <motion.span
+        className="block w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"
+        initial={{ width: 0, opacity: 0 }}
+        whileInView={{ width: 96, opacity: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.7, delay: 0.4 }}
+      ></motion.span>
     </motion.div>
   );
 };

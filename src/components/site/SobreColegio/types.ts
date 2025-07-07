@@ -1,9 +1,24 @@
-// components/SobreColegio/types.ts
+// components/site/SobreColegio/types.ts
+import React from 'react';
+import { LucideIcon } from 'lucide-react'; // Importar LucideIcon para tipagem correta de ícones
 
-export interface CardItemProps {
-  icon: React.ElementType; // Para os ícones do lucide-react
+export interface FeatureCardData {
+  icon: LucideIcon; // Usar LucideIcon para ícones do lucide-react
   title: string;
   description: string;
-  bgColor: string; // Ex: "bg-blue-600"
-  iconColor: string; // Ex: "text-blue-600"
+  bgColor: string;
+  iconColor: string;
+  accentColor: string;
+  borderGradient: string;
+}
+
+export interface SobreColegioHeroProps {
+  mainTitle: React.ReactNode; // Pode ser string ou JSX
+  shortDescription: string;
+  ctaText: string;
+  ctaLink: string;
+}
+
+export interface SobreColegioFeaturesCarouselProps {
+  features: FeatureCardData[];
 }

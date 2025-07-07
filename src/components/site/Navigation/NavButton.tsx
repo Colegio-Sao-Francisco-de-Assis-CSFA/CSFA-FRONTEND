@@ -15,7 +15,7 @@ export interface NavButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorEle
 }
 
 const variantClasses = {
-  primary: "bg-blue-600 text-white hover:bg-blue-700",
+  primary: "bg-gradient-to-b from-indigo-800 via-blue-700 to-blue-500 text-white cursor-pointer",
   secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
   ghost: "text-gray-600 hover:text-blue-600 hover:bg-gray-100",
 };
@@ -45,15 +45,14 @@ export const NavButton = React.forwardRef<HTMLAnchorElement, NavButtonProps>(
       "inline-flex items-center justify-center rounded-md font-medium transition-colors",
       variantClasses[variant],
       sizeClasses[size],
-      // REMOVIDO: active && "text-white", // Esta linha pode estar causando conflito
-      className // O className do NavLink agora será o principal para estilos ativos/inativos
+      className
     );
 
     return (
       <Link
         ref={ref}
         href={href}
-        className={baseClasses} // baseClasses agora é o ponto onde o className do NavLink é aplicado
+        className={baseClasses}
         {...props}
       >
         {icon && iconPosition === "left" && (

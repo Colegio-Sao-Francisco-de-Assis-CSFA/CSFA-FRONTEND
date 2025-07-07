@@ -3,20 +3,8 @@
 
 import React, { useState } from 'react';
 import { CallToActionNewsletterProps } from './types';
-import { useFormStatus } from 'react-dom';
+import { SubmitButton } from '@/components/site/Button';
 
-function SubmitButton({ isTermsAccepted }: { isTermsAccepted: boolean }) {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      type="submit"
-      className="bg-white cursor-pointer w-82 h-12 transition-all duration-200 ease-in-out border hover:bg-gradient-to-bl hover:from-blue-900 hover:to-blue-600 hover:border-white text-blue-600 hover:text-white font-medium py-3 px-6 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" // Adicionado classes para disabled
-      disabled={pending || !isTermsAccepted} // Desabilita se pendente OU termos não aceitos
-    >
-      {pending ? 'Enviando...' : 'Inscrever-se'}
-    </button>
-  );
-}
 
 const CallToActionNewsletter: React.FC<CallToActionNewsletterProps> = ({
   title,
@@ -94,7 +82,7 @@ const CallToActionNewsletter: React.FC<CallToActionNewsletterProps> = ({
             Privacidade do CSFA, em conformidade com a LGPD.
           </label>
         </div>
-        <SubmitButton isTermsAccepted={isTermsAccepted} /> {/* Passa o estado para o botão */}
+        <SubmitButton children='Ficar por dentro' />
       </form>
       {message && (
         <p className={`mt-4 text-sm text-center ${isSuccess ? 'text-green-200' : 'text-red-200'}`}>

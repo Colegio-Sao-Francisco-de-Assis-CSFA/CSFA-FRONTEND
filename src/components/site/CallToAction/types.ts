@@ -1,4 +1,12 @@
 // components/site/CallToAction/types.ts
+/**
+ * @typedef SubmitButtonProps
+ * @property {React.ReactNode} children - O conteúdo do botão quando não está no estado de envio (pending).
+ */
+
+export interface SubmitButtonProps {
+  children: React.ReactNode;
+}
 
 export interface CallToActionContentProps {
   title: string;

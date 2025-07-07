@@ -2,15 +2,9 @@ import HeroCarouselSection from '@/components/sections/HeroCarouselSection';
 import SobreColegioSection from "@/components/sections/SobreColegioSection";
 import MissaoSection from '@/components/sections/MissaoSection';
 import ParceirosSection from '@/components/sections/ParceirosCarouselSection';
-import CallToActionSection from '@/components/sections/CallToActionSection';
-
-
-import Campus from '@/components/site/Campus';
-import StatsArea from '@/components/site/Stats';
-import CallToAction from '@/components/site/CallToAction/CallToActionRoot';
-import Formulario from '@/components/site/Formulario';
-import AconteceCsfa from '@/components/site/AconteceCsfa';
 import CoursosSection from '@/components/sections/CursosSection';
+import CampusShowcaseSection from '@/components/sections/CampusShowcaseSection';
+import NewsSection from '@/components/sections/NewsSection';
 
 
 export default function Home() {
@@ -21,8 +15,12 @@ export default function Home() {
       <HeroCarouselSection />
       <MissaoSection />
       <CoursosSection />
+      <SobreColegioSection />
+      <CampusShowcaseSection/>
+      <NewsSection />
+
       {/* // Exemplo de CTA de Contato */}
-      <CallToActionSection
+      {/* <CallToActionSection
         type="map"
         variant="side-by-side"
         map={{
@@ -32,10 +30,9 @@ export default function Home() {
           title: 'Agende Sua Visita Agora!',
           description: 'Preencha o formulário e nossa equipe entrará em contato para confirmar sua visita ao colégio.',
         }}
-      />
-      <SobreColegioSection />
+      /> */}
       {/* // Exemplo de CTA de Content */}
-      <CallToActionSection
+      {/* <CallToActionSection
         type="simple"
         variant="centered"
         backgroundColor="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-950 via-blue-700 to-blue-500 text-white" // Exemplo de cor customizada
@@ -46,10 +43,10 @@ export default function Home() {
           buttonHref: '/sobre',
           // O ícone não é usado no variant 'centered' para CallToActionContent padrão, mas a prop existe
         }}
-      />
+      /> */}
       <ParceirosSection />
       {/* Exemplo de CTA de Newsletter */}
-      <CallToActionSection
+      {/* <CallToActionSection
         type="newsletter"
         variant="side-by-side"
         newsletterProps={{
@@ -58,7 +55,7 @@ export default function Home() {
           placeholderText: 'seu.email@exemplo.com',
           buttonText: 'Inscrever-se',
         }}
-      />
+      /> */}
 
     </main>
 

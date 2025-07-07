@@ -19,8 +19,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
       className="group cursor-pointer h-full"
     >
       <div className={`${course.bgColor} mx-auto w-80 h-80 md:w-full md:h-full rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between`}>
-        {/* Overlay do Gradiente no Hover */}
-        <div className={`absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl z-10`}></div>
 
         {/* Icon */}
         <motion.div

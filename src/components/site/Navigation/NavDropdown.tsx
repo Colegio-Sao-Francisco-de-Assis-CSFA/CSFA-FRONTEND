@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { NavButton } from "./NavButton";
-import { Icon } from "@iconify/react";
 import { NavLink } from "./NavLink"; // Certifique-se que NavLink está importado
 
 interface DropdownItem {
@@ -49,18 +48,13 @@ export const NavDropdown = ({
       >
         {items.map((item) => (
           <DropdownMenuItem key={item.href} asChild>
-            <NavLink // Usando NavLink para que os estilos ativos/inativos funcionem
+            <NavLink
               href={item.href}
-              variant="ghost" // Isso define o estilo base do NavButton, mas as classes customizadas sobrescrevem
+              variant="ghost"
               className="w-full justify-start"
               icon={item.icon}
-              // ESTILOS PARA OS ITENS DO DROPDOWN "ÁREA RESTRITA":
-              inactiveClassName="text-blue-600 hover:text-blue-700 hover:bg-blue-50" // Azul para links inativos do dropdown
-              activeClassName="text-blue-700 bg-blue-100 font-bold" // Azul mais escuro e fundo mais intenso quando ativo, adicionado font-bold
-              onClick={(e) => { // Adicionado onClick para fechar o dropdown, se necessário
-                // e.preventDefault(); // Comente ou remova se o link deve navegar
-                // handleCloseDropdown(); // Função para fechar o dropdown, se NavDropdown gerenciar seu próprio estado
-              }}
+              inactiveClassName="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+              activeClassName="text-blue-700 bg-blue-100 font-bold"
             >
               {item.label}
             </NavLink>

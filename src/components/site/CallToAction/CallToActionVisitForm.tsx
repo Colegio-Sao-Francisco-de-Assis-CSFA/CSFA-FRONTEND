@@ -2,22 +2,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useFormStatus } from 'react-dom';
 import { CallToActionVisitFormProps } from './types';
+import { SubmitButton } from '@/components/site/Button';
 
 // Componente para o botão de submissão (reutilizado)
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      type="submit"
-      className="bg-white max-w-52 text-blue-600 hover:bg-blue-50 font-medium py-3 px-6 rounded-md transition-colors duration-300 w-full" // w-full para melhor responsividade
-      disabled={pending}
-    >
-      {pending ? 'Enviando...' : 'Agendar Visita'}
-    </button>
-  );
-}
+
 
 const CallToActionVisitForm: React.FC<CallToActionVisitFormProps> = ({
   title,
@@ -82,7 +71,9 @@ const CallToActionVisitForm: React.FC<CallToActionVisitFormProps> = ({
             required
           />
         </div>
-        <SubmitButton />
+        <SubmitButton>
+          Assine já
+        </SubmitButton>
       </form>
 
       {message && (

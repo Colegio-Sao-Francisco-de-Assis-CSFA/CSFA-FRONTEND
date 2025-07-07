@@ -42,7 +42,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       onMouseLeave={() => setAutoPlayActive(autoPlay)}
       onTouchStart={handleTouchStart}
     >
-      <div className="relative w-full max-w-screen-xl h-full">
+      <div className="relative w-full h-full">
         {slides.map((slide, index) => (
           <CarouselSlide
             key={slide.id}
