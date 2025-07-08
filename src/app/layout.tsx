@@ -14,7 +14,7 @@ export const metadata = {
     siteName: 'Colégio São Francisco de Assis',
     images: [
       {
-        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8y_9oulau1Mw_Qh09uVru6ziEsoeS-I9kPA&s', // URL da imagem para compartilhamento
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8bHHKqUsMrTAK0dZpTvstFPkgV6Qdb8sCTw&s', // URL da imagem para compartilhamento
         width: 1200,
         height: 630,
         alt: 'Colégio São Francisco de Assis - Fachada',
@@ -28,7 +28,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Colégio São Francisco de Assis',
     description: 'Colégio São Francisco de Assis: excelência em educação para todas as fases. Matrículas abertas para Ensino Infantil, Fundamental e Médio. Venha nos conhecer!',
-    images: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8y_9oulau1Mw_Qh09uVru6ziEsoeS-I9kPA&s'], // Imagem para Twitter Card
+    images: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8bHHKqUsMrTAK0dZpTvstFPkgV6Qdb8sCTw&s'], // Imagem para Twitter Card
   },
   // Outras meta tags que podem ser úteis
   keywords: ['colégio São Francisco', 'escola particular', 'educação infantil', 'ensino fundamental', 'ensino médio', 'matrículas abertas', 'melhores colégios SP'],
