@@ -17,10 +17,10 @@ const FloatLinkItem: React.FC<FloatLinkItemProps> = ({
     <Link
       href={href}
       className={`
-        relative flex items-center justify-center w-12 h-12 rounded-full shadow-lg
+        relative flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 rounded-full shadow-lg
         group overflow-hidden cursor-pointer outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
 
-        backdrop-filter backdrop-blur-md bg-white/60 border border-white/20
+        lg:backdrop-filter lg:backdrop-blur-md bg-white/60 border lg:border-white/20
 
         transition-all duration-300 ease-in-out
       `}

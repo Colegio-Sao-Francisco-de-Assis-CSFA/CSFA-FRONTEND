@@ -3,9 +3,9 @@
 
 import React, { useState } from 'react';
 import { CampusShowcaseRoot, CampusShowcaseContent, CampusShowcaseNavigation, CampusFeature } from '../site/CampusShowcase';
+import { MousePointerClick, Pointer } from 'lucide-react';
 
 const campusFeatures: CampusFeature[] = [
-  // ... (seus dados de campusFeatures)
   {
     id: 'facade',
     title: 'Fachada Principal',
@@ -51,15 +51,37 @@ const campusFeatures: CampusFeature[] = [
 ];
 
 const CampusShowcaseSection: React.FC = () => {
+  const [swiperInstance, setSwiperInstance] = useState<any>(null);
+
   return (
-    <section className="py-16 md:py-20 px-4 max-w-7xl mx-auto">
+    <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
       <CampusShowcaseContent
-        title="Explore Nosso Colégio"
+        title="Explore Nosso Campus"
         subtitle="Conheça de perto as instalações modernas e os ambientes projetados para o desenvolvimento integral dos nossos alunos."
       />
 
-      <CampusShowcaseRoot children features={campusFeatures} />
-      <CampusShowcaseNavigation />
+      <div className="relative">
+        <CampusShowcaseRoot
+          children
+          features={campusFeatures}
+          onSwiperInit={(swiper) => setSwiperInstance(swiper)}
+        />
+
+        {swiperInstance && (
+          <CampusShowcaseNavigation />
+        )}
+
+        <div className='absolute text-xl w-62 right-1/2 translate-x-1/2 lg:translate-x-0 -bottom-20 text-gray-600/90 font-medium flex items-center cursor-default justify-center gap-2 lg:-bottom-10 lg:right-0 z-20 lg:w-80  h-12 rounded-full bg-gradient-to-tr from-white via-gray-50 to-slate-100 border border-slate-200 transition-colors ease-in-out duration-300 hover:from-white hover:via-blue-100 hover:to-blue-200'>
+          <span className='hidden lg:flex gap-2'>
+            <MousePointerClick className=' w-6 h-6 animate-pulse' />
+            Clique e arraste para passar
+          </span>
+          <span className='flex gap-2 lg:hidden'>
+            <Pointer className='w-6 h-6 animate-pulse' />
+            Arraste para passar
+          </span>
+        </div>
+      </div>
     </section>
   );
 };

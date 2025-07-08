@@ -1,0 +1,10 @@
+export { default as CallToActionSection } from './CallToActionSection';
+export { default as CampusShowcaseSection } from './CampusShowcaseSection';
+export { default as CursosSection } from './CursosSection';
+export { default as FloatLinksSection } from './FloatLinksSection';
+export { default as FooterSection } from './FooterSection';
+export { default as HeroCarouselSection } from './HeroCarouselSection';
+export { default as MissaoSection } from './MissaoSection';
+export { default as NewsSection } from './NewsSection';
+export { default as ParceirosCarouselSection } from './ParceirosCarouselSection';
+export { default as SobreColegioSection } from './SobreColegioSection';

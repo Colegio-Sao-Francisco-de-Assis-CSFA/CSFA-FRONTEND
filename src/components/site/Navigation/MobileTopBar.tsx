@@ -26,7 +26,7 @@ export const MobileTopBar = ({
   return (
     <nav
       // Z-index da barra superior: deve estar acima dos backdrops de dropdown mas abaixo do menu lateral
-      className="lg:hidden fixed top-2 left-1/2 -translate-x-1/2 w-full max-w-32 z-[120] flex h-12 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm gap-4 px-2"
+      className="xl:hidden fixed top-2 left-1/2 -translate-x-1/2 w-full max-w-32 z-[120] flex h-12 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm gap-4 px-2"
     >
       {/* Dropdown de Área Restrita */}
       <div className="relative" ref={dropdownRef}>

@@ -3,17 +3,17 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { CampusShowcaseCardProps } from './types'; // Importa o tipo
+import { CampusShowcaseCardProps } from './types';
 
 const CampusShowcaseCard: React.FC<CampusShowcaseCardProps> = ({ feature }) => {
   return (
     <div className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-      <div className="relative h-56 w-full"> {/* Aumentado a altura para um visual mais impactante */}
+      <div className="relative h-56 w-full"> {/* A altura do card */}
         <Image
           src={feature.imageSrc}
           alt={feature.imageAlt}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Otimização de imagem para Next.js
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover object-center rounded-t-lg"
         />
       </div>

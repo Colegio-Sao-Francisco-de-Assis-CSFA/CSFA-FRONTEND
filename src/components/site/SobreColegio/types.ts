@@ -1,9 +1,9 @@
 // components/site/SobreColegio/types.ts
 import React from 'react';
-import { LucideIcon } from 'lucide-react'; // Importar LucideIcon para tipagem correta de ícones
+import { LucideIcon } from 'lucide-react';
 
 export interface FeatureCardData {
-  icon: LucideIcon; // Usar LucideIcon para ícones do lucide-react
+  icon: LucideIcon;
   title: string;
   description: string;
   bgColor: string;
@@ -13,9 +13,10 @@ export interface FeatureCardData {
 }
 
 export interface SobreColegioHeroProps {
-  mainTitle: React.ReactNode; // Pode ser string ou JSX
-  shortDescription: string;
-  ctaText: string;
+  mainTitle: React.ReactNode;
+  shortDescription?: string;
+  subtitle?: string;
+  ctaText?: string;
   ctaLink: string;
 }
 

@@ -27,7 +27,7 @@ export const DesktopNav = ({
   restrictedItems,
 }: DesktopNavProps) => {
   return (
-    <nav className="hidden fixed top-2 left-1/2 w-full max-w-screen-2xl z-50 -translate-x-1/2 lg:flex h-20 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm">
+    <nav className="hidden fixed top-2 left-1/2 w-full max-w-screen-2xl z-50 -translate-x-1/2 xl:flex h-20 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm">
 
       <div className="w-full flex items-center justify-between mx-auto px-6">
         <Link

@@ -3,7 +3,7 @@
 import { Carousel } from '@/components/site/Caroussel/Carousel';
 import type { Slide } from '@/components/site/Caroussel/types';
 
-const HeroSectionCarousel = () => {
+const HeroCarouselSection = () => {
 
     const slides: Slide[] = [
         {
@@ -30,4 +30,4 @@ const HeroSectionCarousel = () => {
     );
 };
 
-export default HeroSectionCarousel;
+export default HeroCarouselSection;

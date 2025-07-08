@@ -1,10 +1,13 @@
-import HeroCarouselSection from '@/components/sections/HeroCarouselSection';
-import SobreColegioSection from "@/components/sections/SobreColegioSection";
-import MissaoSection from '@/components/sections/MissaoSection';
-import ParceirosSection from '@/components/sections/ParceirosCarouselSection';
-import CoursosSection from '@/components/sections/CursosSection';
-import CampusShowcaseSection from '@/components/sections/CampusShowcaseSection';
-import NewsSection from '@/components/sections/NewsSection';
+import {
+  HeroCarouselSection,
+  MissaoSection,
+  CursosSection,
+  SobreColegioSection,
+  CampusShowcaseSection,
+  NewsSection,
+  ParceirosCarouselSection,
+  CallToActionSection,
+} from '@/components/sections';
 
 
 export default function Home() {
@@ -14,7 +17,7 @@ export default function Home() {
     <main className='w-full'>
       <HeroCarouselSection />
       <MissaoSection />
-      <CoursosSection />
+      <CursosSection />
       <SobreColegioSection />
       <CampusShowcaseSection/>
       <NewsSection />
@@ -44,7 +47,7 @@ export default function Home() {
           // O ícone não é usado no variant 'centered' para CallToActionContent padrão, mas a prop existe
         }}
       /> */}
-      <ParceirosSection />
+      <ParceirosCarouselSection />
       {/* Exemplo de CTA de Newsletter */}
       {/* <CallToActionSection
         type="newsletter"

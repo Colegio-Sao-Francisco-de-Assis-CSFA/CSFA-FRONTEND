@@ -76,7 +76,7 @@ export const MobileNav = ({ logo, navItems, restrictedItems }: MobileNavProps) =
 
       {isDropdownOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-[100] animate-in fade-in-0 duration-200"
+          className="xl:hidden fixed inset-0 bg-black/30 backdrop-blur-sm z-[100] animate-in fade-in-0 duration-200"
           onClick={closeDropdown}
         />
       )}

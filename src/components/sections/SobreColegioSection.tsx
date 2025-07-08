@@ -45,21 +45,15 @@ const defaultFeatures: FeatureCardData[] = [
 ];
 
 export default function SobreColegioSection() {
-  const mainTitle = (
-    <>
-      Colégio São Francisco de Assis:
-      <br className="sm:hidden"/> {/* Quebra de linha para mobile */}
-      Onde cada sonho encontra seu caminho.
-    </>
-  );
-
-  const shortDescription =
-    'Há mais de 40 anos, transformamos vidas. Nosso colégio é um lugar onde jovens descobrem seu potencial e se preparam para liderar o amanhã, com valores essenciais de dignidade, compaixão e justiça.';
+  const mainTitle = 'Colégio São Francisco De Assis'
+  const subtitle = 'Formando Jovens Transformadores da Sociedade'
+  const shortDescription = 'Há mais de 40 anos, transformamos vidas. Nosso colégio é um lugar onde jovens descobrem seu potencial e se preparam para liderar o amanhã, com valores essenciais de dignidade, compaixão e justiça.';
 
   return (
     <section className="w-full">
       <SobreColegioHero
         mainTitle={mainTitle}
+        subtitle={subtitle}
         shortDescription={shortDescription}
         ctaText="Saiba Mais Sobre Nós"
         ctaLink="/sobre"
