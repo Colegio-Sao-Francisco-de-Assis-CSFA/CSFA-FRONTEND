@@ -63,7 +63,7 @@ const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
           priority
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-blue-800/85 to-indigo-900/90"></div>
+        <div className="absolute inset-0 bg-blue-900/60 dark:bg-background/90  "></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
       </motion.div>
 

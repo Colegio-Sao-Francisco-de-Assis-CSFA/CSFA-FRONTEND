@@ -4,14 +4,13 @@ import { ParceiroBeneficioCardProps } from './types';
 
 const ParceiroBeneficioCard: React.FC<ParceiroBeneficioCardProps> = ({ icon, title, description }) => {
   return (
-    <div className="group relative bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/50 p-8 rounded-2xl shadow-lg border border-blue-100/50 backdrop-blur-sm overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl">
+    <div className="group relative bg-white/50 dark:bg-gray-950/50 p-8 rounded-2xl shadow-lg border border-blue-100/50 dark:border-gray-800 backdrop-blur-sm overflow-hidden cursor-pointer transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl dark:hover:shadow-3xl">
 
       {/* Elementos decorativos de fundo */}
       <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-full blur-xl group-hover:scale-150 transition-transform duration-500" />
       <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-tr from-purple-400/10 to-pink-400/10 rounded-full blur-2xl group-hover:scale-125 transition-transform duration-700" />
 
       {/* Borda animada */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/0 via-blue-500/20 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Conteúdo */}
       <div className="relative z-10">
@@ -23,18 +22,15 @@ const ParceiroBeneficioCard: React.FC<ParceiroBeneficioCardProps> = ({ icon, tit
         </div>
 
         {/* Título */}
-        <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center group-hover:text-blue-700 transition-colors duration-300">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center group-hover:text-blue-700 transition-colors duration-300">
           {title}
         </h3>
 
         {/* Descrição */}
-        <p className="text-gray-600 text-center leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+        <p className="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
           {description}
         </p>
       </div>
-
-      {/* Efeito de brilho no hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
     </div>
   );
 };

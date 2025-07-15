@@ -50,7 +50,7 @@ export default function SobreColegioSection() {
   const shortDescription = 'Há mais de 40 anos, transformamos vidas. Nosso colégio é um lugar onde jovens descobrem seu potencial e se preparam para liderar o amanhã, com valores essenciais de dignidade, compaixão e justiça.';
 
   return (
-    <section className="w-full">
+    <section className="w-full bg-background ">
       <SobreColegioHero
         mainTitle={mainTitle}
         subtitle={subtitle}

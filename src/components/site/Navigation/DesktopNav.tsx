@@ -7,7 +7,9 @@ import Link from "next/link";
 import { NavLink } from "./NavLink";
 import { NavDropdown } from "./NavDropdown";
 import { NavItem, RestrictedItem } from "./types";
-import { NavButton } from './NavButton'
+import { NavButton } from './NavButton';
+// Importe o ThemeToggleButton que você criou
+import { ThemeToggleButton } from '@/components/theme-toggle-button';
 
 interface DesktopNavProps {
   logo: {
@@ -15,7 +17,7 @@ interface DesktopNavProps {
     alt: string;
     width: number;
     height: number;
-    href: string; // Added href for logo
+    href: string;
   };
   navItems: NavItem[];
   restrictedItems: RestrictedItem[];
@@ -27,7 +29,8 @@ export const DesktopNav = ({
   restrictedItems,
 }: DesktopNavProps) => {
   return (
-    <nav className="hidden fixed top-2 left-1/2 w-full max-w-screen-2xl z-50 -translate-x-1/2 xl:flex h-20 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm">
+    <nav className="hidden fixed top-2 left-1/2 w-full max-w-screen-2xl z-50 -translate-x-1/2 xl:flex h-20 items-center justify-center bg-white border border-gray-300 mx-auto rounded-full shadow-sm
+                    dark:bg-background dark:border-border dark:text-foreground"> {/* Ajustado para dark mode */}
 
       <div className="w-full flex items-center justify-between mx-auto px-6">
         <Link
@@ -35,6 +38,8 @@ export const DesktopNav = ({
           className="flex-shrink-0"
           passHref
         >
+          {/* Você pode precisar de uma versão escura do seu logo ou ajustar sua cor */}
+          {/* Se o logo for SVG, você pode aplicar `fill-current text-foreground` */}
           <Image
             src={logo.src}
             alt={logo.alt}
@@ -51,8 +56,9 @@ export const DesktopNav = ({
                 <NavLink
                   href={item.href}
                   variant="ghost"
-                  inactiveClassName ="text-gray-500 text-lg"
-                  activeClassName="text-blue-600 text-lg font-bold"
+                  // Ajuste as cores do NavLink para dark mode
+                  inactiveClassName="text-gray-500 text-lg dark:text-muted-foreground hover:dark:text-foreground"
+                  activeClassName="text-blue-600 text-lg font-bold dark:text-primary"
                   exact={item.href === "/"}
                 >
                   {item.label}
@@ -62,14 +68,14 @@ export const DesktopNav = ({
           </ul>
         </div>
 
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 flex items-center space-x-4"> {/* Adicionado para alinhar o botão de tema */}
           <NavDropdown
             trigger={
               <NavButton
                 href="#"
                 icon="mdi:lock"
                 variant="primary"
-                iconPosition="right" // Adicionado para exibir a seta
+                iconPosition="right"
               >
                 Área Restrita
               </NavButton>
@@ -80,6 +86,7 @@ export const DesktopNav = ({
             }))}
             align="end"
           />
+          <ThemeToggleButton /> {/* Adicione o botão de tema aqui */}
         </div>
       </div>
     </nav>

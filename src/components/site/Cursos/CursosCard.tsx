@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { CourseCardProps } from './types'; // <--- ESTA IMPORTAÇÃO É CRUCIAL
 
-const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVariants }) => { // <--- ESTA TIPAGEM É CRUCIAL
+const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVariants }) => {
   const IconComponent = course.icon;
 
   return (
@@ -18,14 +18,16 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
       }}
       className="group cursor-pointer h-full"
     >
-      <div className={`${course.bgColor} mx-auto w-80 h-80 md:w-full md:h-full rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between`}>
+      <div className={`${course.bgColor} mx-auto w-80 h-80 md:w-full md:h-full rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-white/50 backdrop-blur-sm relative overflow-hidden flex flex-col justify-between
+                    dark:border-border`}> {/* Ajusta a borda no dark mode */}
 
         {/* Icon */}
         <motion.div
           variants={iconVariants}
+          // Ajusta o fundo e o texto do ícone para dark mode
           className={`inline-flex items-center justify-center p-2 w-14 h-14 rounded-xl bg-white/20 mb-4 sm:mb-6 shadow-lg backdrop-blur-sm relative z-20`}
         >
-          <IconComponent className="w-7 h-7 text-white sm:w-8 sm:h-8" />
+          <IconComponent className="w-7 h-7 text-white sm:w-8 sm:h-8"/>
         </motion.div>
 
         {/* Content */}
@@ -42,7 +44,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
             {course.ageRange}
           </div>
 
-          <p className="text-sm sm:text-base text-white/90 mb-5 leading-relaxed">
+          <p className="text-sm sm:text-base text-white/60 mb-5 leading-relaxed">
             {course.description}
           </p>
 
@@ -55,8 +57,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ delay: 0.1 * index }}
-                className="flex items-center text-xs sm:text-sm text-white/80"
-              >
+                className="flex items-center text-xs sm:text-sm text-white/60">
                 <div className={`w-1.5 h-1.5 rounded-full bg-white/70 mr-2`}></div>
                 {highlight}
               </motion.div>
@@ -67,8 +68,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, cardVariants, iconVaria
         {/* Call to action */}
         <motion.div
           whileHover={{ x: 5 }}
-          className={`inline-flex items-center text-white font-semibold text-sm group-hover:underline relative z-20`}
-        >
+          className={`inline-flex items-center text-white font-semibold text-sm group-hover:underline relative z-20`}>
           Saiba mais
           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
         </motion.div>

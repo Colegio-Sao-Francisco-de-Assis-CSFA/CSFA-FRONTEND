@@ -54,7 +54,7 @@ const CampusShowcaseSection: React.FC = () => {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
 
   return (
-    <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
+    <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto bg-background ">
       <CampusShowcaseContent
         title="Explore Nosso Campus"
         subtitle="Conheça de perto as instalações modernas e os ambientes projetados para o desenvolvimento integral dos nossos alunos."
@@ -71,7 +71,7 @@ const CampusShowcaseSection: React.FC = () => {
           <CampusShowcaseNavigation />
         )}
 
-        <div className='absolute text-xl w-62 right-1/2 translate-x-1/2 lg:translate-x-0 -bottom-20 text-gray-600/90 font-medium flex items-center cursor-default justify-center gap-2 lg:-bottom-10 lg:right-0 z-20 lg:w-80  h-12 rounded-full bg-gradient-to-tr from-white via-gray-50 to-slate-100 border border-slate-200 transition-colors ease-in-out duration-300 hover:from-white hover:via-blue-100 hover:to-blue-200'>
+        <div className='absolute text-xl w-62 right-1/2 translate-x-1/2 lg:translate-x-0 -bottom-20 text-gray-600/90 bg-background font-medium flex items-center cursor-default justify-center gap-2 lg:-bottom-10 lg:right-0 z-20 lg:w-80  h-12 rounded-full'>
           <span className='hidden lg:flex gap-2'>
             <MousePointerClick className=' w-6 h-6 animate-pulse' />
             Clique e arraste para passar

@@ -2,6 +2,7 @@ import "@/app/globals.css";
 import { Navigation } from "@/components/site/Navigation/Navigation";
 import FooterSection from '@/components/sections/FooterSection';
 import FloatLinks from "@/components/sections/FloatLinksSection";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: 'Colégio São Francisco de Assis',
@@ -42,19 +43,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-
-      <body className="w-dvw h-dvh">
-
-        <FloatLinks />
-        <Navigation />
-        <div className="w-screen">
+    <html lang="pt-br" suppressHydrationWarning>
+      <body className="w-dvw h-dvh" suppressHydrationWarning>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <FloatLinks />
+          <Navigation />
           {children}
-        </div>
-        <FooterSection />
-
+          <FooterSection />
+        </ThemeProvider>
       </body>
-
     </html>
   );
+
 }

@@ -124,10 +124,10 @@ const CoursesSection = () => {
   };
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden mb-12">
+    <section className="py-20 bg-background  relative overflow-hidden mb-12">
       {/* Background decoration */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-screen-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header Section */}
         <CoursesHeader
           title={

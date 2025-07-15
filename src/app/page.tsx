@@ -1,3 +1,5 @@
+'use client';
+
 import {
   HeroCarouselSection,
   MissaoSection,
@@ -7,8 +9,19 @@ import {
   NewsSection,
   ParceirosCarouselSection,
   CallToActionSection,
+  ContactSection,
 } from '@/components/sections';
+import InstagramPosts from '@/components/sections/InstaPostsSection';
 
+import dynamic from 'next/dynamic';
+
+const DynamicContactSection = dynamic(
+  () => import('@/components/sections/ContactSection'),
+  {
+    ssr: false,
+    loading: () => <p>Carregando seção de contato...</p>,
+  }
+);
 
 export default function Home() {
 
@@ -17,10 +30,17 @@ export default function Home() {
     <main className='w-full'>
       <HeroCarouselSection />
       <MissaoSection />
+
       <CursosSection />
       <SobreColegioSection />
-      <CampusShowcaseSection/>
+      <InstagramPosts/>
+      <CampusShowcaseSection />
+      <ParceirosCarouselSection />
       <NewsSection />
+      <DynamicContactSection />
+
+      {/* <ContactSection /> */}
+
 
       {/* // Exemplo de CTA de Contato */}
       {/* <CallToActionSection
@@ -47,7 +67,6 @@ export default function Home() {
           // O ícone não é usado no variant 'centered' para CallToActionContent padrão, mas a prop existe
         }}
       /> */}
-      <ParceirosCarouselSection />
       {/* Exemplo de CTA de Newsletter */}
       {/* <CallToActionSection
         type="newsletter"

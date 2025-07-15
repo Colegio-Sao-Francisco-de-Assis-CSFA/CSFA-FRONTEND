@@ -44,7 +44,7 @@ const ParceirosCarouselSection: React.FC = () => {
     };
 
     return (
-        <section ref={sectionRef} className="py-20 bg-white">
+        <section ref={sectionRef} className="py-20 bg-background ">
             <div className="relative overflow-hidden max-w-screen-xl mx-auto px-6 flex flex-col items-center">
 
                 {/* Cabeçalho da Seção */}

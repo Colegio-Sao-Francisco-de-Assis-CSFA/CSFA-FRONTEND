@@ -15,7 +15,7 @@ export default function ButtonLink({
 }: ButtonLinkProps) {
 
     const baseClasses =
-        "bg-gradient-to-b w-auto text-base md:text=-xl lg:text-2xl from-indigo-800 via-blue-700 to-blue-500 text-white hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-white hover:text-blue-600 text-center max-w-76 font-medium py-3 px-6 rounded-md transition-colors duration-300 w-full border border-blue-600 shadow-sm";
+        "bg-gradient-to-b text-base md:text=-xl lg:text-2xl from-indigo-800 via-blue-700 to-blue-500 text-white hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-white hover:text-blue-600 text-center max-w-76 font-medium py-3 px-6 rounded-md transition-colors duration-300 w-full border border-blue-600 shadow-sm";
 
     if (external) {
         return (

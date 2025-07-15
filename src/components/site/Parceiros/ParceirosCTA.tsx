@@ -26,12 +26,12 @@ const ParceirosCTA: React.FC<ParceirosCTAProps> = ({ text, buttonText, onButtonC
       initial="hidden"
       animate="visible"
     >
-      <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+      <p className="text-lg text-gray-700 dark:text-gray-200 mb-8 max-w-2xl mx-auto">
         {text}
       </p>
       <motion.button
         onClick={onButtonClick}
-        className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold transition-all duration-200 shadow-lg"
+        className="px-8 py-4 bg-blue-600 text-white font-bold rounded-full text-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-700 transition-all duration-300"
         whileHover={buttonHover}
         whileTap={buttonTap}
       >

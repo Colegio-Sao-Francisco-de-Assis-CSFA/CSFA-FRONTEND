@@ -39,7 +39,7 @@ const FooterSection: FC = () => {
 
   return (
     <FooterRoot>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"> {/* Ajuste de gap para responsividade */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 "> 
 
         {/* Column 1 - School Info */}
         <FooterInfoColumn

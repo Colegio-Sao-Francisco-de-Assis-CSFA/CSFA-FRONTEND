@@ -25,7 +25,7 @@ const ParceirosHeader: React.FC<ParceirosHeaderProps> = ({ title }) => {
 
       {/* Subtítulo/Parágrafo introdutório principal */}
       <motion.p
-        className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6"
+        className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto mb-6"
         variants={itemVariants}
         initial="hidden"
         animate="visible"
@@ -38,6 +38,7 @@ const ParceirosHeader: React.FC<ParceirosHeaderProps> = ({ title }) => {
         {' '}— são co-criadores de um futuro mais justo, mais humano e mais cheio de possibilidades.
       </motion.p>
 
+      {/* Linha decorativa */}
       <motion.span
         className="block w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"
         initial={{ width: 0, opacity: 0 }}
