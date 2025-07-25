@@ -8,7 +8,6 @@ import { NavLink } from "./NavLink";
 import { NavDropdown } from "./NavDropdown";
 import { NavItem, RestrictedItem } from "./types";
 import { NavButton } from './NavButton';
-// Importe o ThemeToggleButton que você criou
 import { ThemeToggleButton } from '@/components/theme-toggle-button';
 
 interface DesktopNavProps {
@@ -36,10 +35,7 @@ export const DesktopNav = ({
         <Link
           href={logo.href}
           className="flex-shrink-0"
-          passHref
         >
-          {/* Você pode precisar de uma versão escura do seu logo ou ajustar sua cor */}
-          {/* Se o logo for SVG, você pode aplicar `fill-current text-foreground` */}
           <Image
             src={logo.src}
             alt={logo.alt}
@@ -52,17 +48,40 @@ export const DesktopNav = ({
         <div className="flex-1 flex items-center justify-center">
           <ul className="flex space-x-8">
             {navItems.map((item) => (
-              <li key={item.href}>
-                <NavLink
-                  href={item.href}
-                  variant="ghost"
-                  // Ajuste as cores do NavLink para dark mode
-                  inactiveClassName="text-gray-500 text-lg dark:text-muted-foreground hover:dark:text-foreground"
-                  activeClassName="text-blue-600 text-lg font-bold dark:text-primary"
-                  exact={item.href === "/"}
-                >
-                  {item.label}
-                </NavLink>
+              <li key={item.href}> {/* Adicione a key aqui */}
+                {item.isdropdown ? (
+                  <NavDropdown
+                    trigger={
+                      <NavLink
+                        href={item.href}
+                        variant="ghost"
+                        // Estilos de NavLink para o trigger do dropdown
+                        inactiveClassName="text-gray-500 text-lg dark:text-muted-foreground hover:dark:text-foreground"
+                        activeClassName="text-blue-600 text-lg font-bold dark:text-primary"
+                        icon="mdi:chevron-down"
+                        iconPosition="right"
+                        exact={item.href === "/sobre"}
+                      >
+                        {item.label}
+                      </NavLink>
+                    }
+                    items={item.pages?.map(page => ({
+                      label: page.label,
+                      href: page.link,
+                    })) || []}
+                    align="start"
+                  />
+                ) : (
+                  <NavLink
+                    href={item.href}
+                    variant="ghost"
+                    inactiveClassName="text-gray-500 text-lg dark:text-muted-foreground hover:dark:text-foreground"
+                    activeClassName="text-blue-600 text-lg font-bold dark:text-primary"
+                    exact={item.href === "/"}
+                  >
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
@@ -86,7 +105,7 @@ export const DesktopNav = ({
             }))}
             align="end"
           />
-          <ThemeToggleButton /> {/* Adicione o botão de tema aqui */}
+          <ThemeToggleButton />
         </div>
       </div>
     </nav>

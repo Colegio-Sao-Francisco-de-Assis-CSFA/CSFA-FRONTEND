@@ -1,11 +1,14 @@
 export interface NavItem {
   label: string;
-  href: string; // Required href
+  href: string;
+  isdropdown?: string; // Change to boolean for clarity
+  pages?: { label: string; link: string; }[]; // Define nested pages
 }
 
-export interface RestrictedItem extends NavItem {
+export interface RestrictedItem {
+  label: string;
+  href: string;
   icon?: string;
-  variant?: "default" | "destructive";
 }
 
 export interface NavigationConfig {

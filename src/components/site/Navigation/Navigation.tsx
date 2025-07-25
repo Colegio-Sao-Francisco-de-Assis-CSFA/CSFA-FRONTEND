@@ -14,14 +14,33 @@ const navigationConfig: NavigationConfig = {
     href: "/",
   },
   navItems: [
-    { label: "Início", href: "/" },
-    { label: "Segmentos", href: "/segmentos" },
-    { label: "Sobre Nós", href: "/sobre" },
-    { label: "Diferenciais", href: "/diferenciais" },
-    { label: "Contato", href: "/contato" },
-    { label: "Acontece CSFA", href: "/acontece-csfa" },
-    // ... other items
+    {
+      label: "Início",
+      href: "/"
+    },
+    {
+      label: "Segmentos",
+      href: "/segmentos",
+    },
+    {
+      label: "Sobre Nós",
+      href: "/sobre",
+      isdropdown: 'true',
+      pages: [
+        { label: 'o colégio', link: '/sobre/o-colegio' },
+        { label: 'o fundador', link: '/sobre/o-fundador' }
+      ]
+    },
+    {
+      label: "Diferenciais",
+      href: "/diferenciais"
+    },
+    {
+      label: "Contato",
+      href: "/contato"
+    },
   ],
+
   restrictedItems: [
     {
       label: "E-mail Aluno",

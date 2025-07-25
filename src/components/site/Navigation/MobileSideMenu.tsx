@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { NavLink } from "./NavLink";
 import { NavItem } from "./types";
+import { NavDropdown } from "./NavDropdown"; // Certifique-se de que NavDropdown está importado
 
 interface MobileSideMenuProps {
   isOpen: boolean;
@@ -44,147 +45,86 @@ export const MobileSideMenu = ({ isOpen, onClose, logo, navItems }: MobileSideMe
 
   return (
     <>
-      {/* Backdrop do Menu Principal com animação moderna */}
+      {/* Overlay de fundo */}
       {isOpen && (
-        <div
-          className="xl:hidden fixed inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80 backdrop-blur-lg z-[130] animate-in fade-in-0 duration-500"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40 animate-in fade-in-0" onClick={onClose}></div>
       )}
 
-      {/* CSS para animações personalizadas */}
-      <style jsx>{`
-        @keyframes slideInFromRight {
-          0% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes slideInStagger {
-          0% {
-            transform: translateX(30px);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
-        }
-
-        .menu-item {
-          animation: slideInStagger 0.4s ease-out forwards;
-        }
-
-        .logo-pulse:hover {
-          animation: pulse 0.6s ease-in-out;
-        }
-
-        .glassmorphism {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .gradient-border {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          padding: 2px;
-          border-radius: 16px;
-        }
-
-        .gradient-border-content {
-          background: white;
-          border-radius: 14px;
-          height: 100%;
-          width: 100%;
-        }
-      `}</style>
-
-      {/* Painel do Menu Lateral com design moderno */}
+      {/* Menu lateral */}
       <div
         ref={sideMenuRef}
-        className={`
-          xl:hidden fixed top-0 right-0 w-3/4 max-w-80 z-[140] h-full
-          transform transition-all duration-500 ease-out
-          ${isOpen ? "translate-x-0" : "translate-x-full"}
-          flex flex-col shadow-2xl
-        `}
+        className={`fixed inset-y-0 right-0 w-64 bg-white dark:bg-background shadow-lg z-50 transform transition-transform duration-300 ease-out
+          ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* Container com glassmorphism */}
-        <div className="h-full glassmorphism rounded-tl-3xl overflow-hidden">
-          {/* Decorative gradient line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-800 to-blue-600"></div>
-
-          {/* Header do Menu com design moderno */}
-          <header className="relative bg-gradient-to-r from-blue-50 to-purple-50 flex justify-between items-center p-6 border-b border-gray-200/50 flex-shrink-0">
-            {/* Background pattern */}
-            <Link href={logo.href || "/"} onClick={onClose} className="relative z-10">
-              <div className="logo-pulse transition-transform duration-300 hover:scale-105">
-                <Image
-                  src={logo.src}
-                  alt={logo.alt}
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-12 w-auto ml-4 drop-shadow-lg"
-                />
-              </div>
+        <div className="p-6 flex flex-col h-full">
+          {/* Cabeçalho do menu */}
+          <div className="flex items-center justify-between pb-6 border-b border-gray-200 dark:border-border">
+            <Link href={logo.href} onClick={onClose}>
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                className="h-12 w-auto"
+              />
             </Link>
-
-            <button
-              title="Fechar Menu"
-              onClick={onClose}
-              className="relative z-10 p-3 rounded-full text-white bg-gradient-to-r from-blue-500 to-indigo-800 transition-all duration-300 hover:scale-110 hover:rotate-90 shadow-lg hover:shadow-xl"
-            >
-              <Icon icon="mdi:close" className="text-xl" />
+            <button title="close" onClick={onClose} className="text-gray-600 dark:text-muted-foreground hover:text-gray-900 dark:hover:text-foreground">
+              <Icon icon="mdi:close" className="h-7 w-7" />
             </button>
-          </header>
+          </div>
 
-          {/* Lista de Navegação com animações staggered */}
-          <div className="flex flex-col py-6 px-6 space-y-3 overflow-y-auto">
+          {/* Itens de navegação */}
+          <div className="mt-6 flex-1 space-y-4 overflow-y-auto pr-2">
             {navItems.map((item, index) => (
               <div
                 key={item.href}
-                className="menu-item opacity-0"
+                className="transform transition-all duration-150 ease-out"
                 style={{
-                  animationDelay: `${index * 80}ms`,
-                  animation: isOpen ? `slideInStagger 0.5s ease-out ${index * 80}ms forwards` : 'none'
+                  animationDelay: `${index * 50}ms`,
                 }}
               >
-                <div className="group relative">
-                  {/* Gradient border effect */}
-                  <div className="absolute inset-0 border-2 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                {item.isdropdown ? (
+                  <NavDropdown
+                    trigger={
+                      <NavLink
+                        href={item.href}
+                        variant="ghost"
+                        className="w-full justify-start text-lg"
+                        icon="mdi:chevron-down"
+                        iconPosition="right"
+                        activeClassName="text-white bg-gradient-to-r from-blue-500 to-purple-500 font-bold shadow-lg border-transparent"
+                        inactiveClassName="text-gray-700 hover:text-blue-600"
+                        exact={true}
+                      >
+                        <span className="relative z-10 font-medium tracking-wide">
+                          {item.label}
+                        </span>
+                      </NavLink>
+                    }
+                    items={item.pages?.map(page => ({
+                      label: page.label,
+                      href: page.link,
+                    })) || []}
+                    align="start"
 
+                  />
+                ) : (
                   <NavLink
                     href={item.href}
                     variant="ghost"
-                    size="lg"
-                    className="relative justify-start px-6 py-4 w-full rounded-xl bg-white/0 backdrop-blur-sm hover:bg-white/90 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border border-white/20 hover:border-white/40"
+                    className="w-full justify-start text-lg"
                     activeClassName="text-white bg-gradient-to-r from-blue-500 to-purple-500 font-bold shadow-lg border-transparent"
                     inactiveClassName="text-gray-700 hover:text-blue-600"
                     exact={item.href === "/"}
-                    onClick={onClose}
+                    onClick={onClose} // Mantido: Clicar em um link direto fecha o menu
                   >
                     <span className="relative z-10 font-medium tracking-wide">
                       {item.label}
                     </span>
-
                     {/* Decorative dot */}
                     <div className="absolute left-2 top-1/2 w-1 h-1 bg-current rounded-full opacity-60 transform -translate-y-1/2"></div>
                   </NavLink>
-                </div>
+                )}
               </div>
             ))}
           </div>

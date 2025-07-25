@@ -15,7 +15,6 @@ export const MobileRestrictedDropdown = ({ isOpen, items, onItemClick }: MobileR
   if (!isOpen) return null;
 
   return (
-    // Z-index para o conteúdo do dropdown deve ser o mais alto para o dropdown
     <div className="absolute -left-16 top-full mt-2 w-56 z-[110] animate-in fade-in-0 zoom-in-95 slide-in-from-top-2 duration-200">
       <div className="rounded-lg bg-white shadow-xl border border-gray-200">
         <div className="py-2" role="menu" aria-orientation="vertical">
@@ -30,13 +29,13 @@ export const MobileRestrictedDropdown = ({ isOpen, items, onItemClick }: MobileR
               <NavLink
                 href={item.href}
                 variant="ghost"
-                size="lg"
-                className="flex w-full items-center justify-start px-4 py-3 text-sm transition-colors duration-150 rounded-none"
+                size="lg" // Mantido 'lg' para padding e altura, mas o text-size é controlado pelo className abaixo
+                className="flex w-full items-center justify-start px-4 py-3 text-base transition-colors duration-150 rounded-none" // ALTERADO: de text-sm para text-base
                 inactiveClassName="text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                 activeClassName="bg-blue-50 text-blue-700 font-medium"
                 icon={item.icon}
+                iconPosition="left"
                 onClick={onItemClick}
-                role="menuitem"
               >
                 {item.label}
               </NavLink>

@@ -1,3 +1,4 @@
+// NavLink.tsx
 "use client";
 
 import React from "react";
@@ -7,8 +8,8 @@ import { NavButton, NavButtonProps } from "./NavButton";
 export const NavLink = ({
   href,
   exact = false,
-  activeClassName = "",
-  inactiveClassName = "",
+  activeClassName,
+  inactiveClassName,
   ...props
 }: NavButtonProps & {
   exact?: boolean;
