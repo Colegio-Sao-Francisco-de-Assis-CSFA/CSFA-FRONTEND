@@ -1,24 +1,12 @@
-export interface NavItem {
-  label: string;
-  href: string;
-  isdropdown?: string; // Change to boolean for clarity
-  pages?: { label: string; link: string; }[]; // Define nested pages
-}
-
-export interface RestrictedItem {
-  label: string;
-  href: string;
-  icon?: string;
-}
-
-export interface NavigationConfig {
-  logo: {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
+export interface SubLink {
     href: string;
-  };
-  navItems: NavItem[];
-  restrictedItems: RestrictedItem[];
+    label: string;
+    icon?: React.ComponentType<{ className?: string }>;
+}
+
+export interface NavItem {
+    href?: string;
+    label: string;
+    subLinks?: SubLink[];
+    icon?: React.ComponentType<{ className?: string }>;
 }

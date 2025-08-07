@@ -33,8 +33,19 @@ export default function Home() {
 
       <CursosSection />
       <SobreColegioSection />
-      <InstagramPosts/>
+      {/* <InstagramPosts/> */}
       <CampusShowcaseSection />
+      <CallToActionSection
+        type="simple"
+        variant="centered"
+        backgroundColor="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-950 via-blue-700 to-blue-500 text-white" // Exemplo de cor customizada
+        content={{
+          title: 'Explore Mais Sobre o Nosso Colégio',
+          description: 'Conheça nossa história, valores e o que nos torna uma instituição de ensino de excelência.',
+          buttonText: 'Saiba Mais',
+          buttonHref: '/sobre',
+        }}
+      />
       <ParceirosCarouselSection />
       <NewsSection />
       <DynamicContactSection />
@@ -55,18 +66,7 @@ export default function Home() {
         }}
       /> */}
       {/* // Exemplo de CTA de Content */}
-      {/* <CallToActionSection
-        type="simple"
-        variant="centered"
-        backgroundColor="flex flex-col items-center justify-center p-6 bg-gradient-to-br from-blue-950 via-blue-700 to-blue-500 text-white" // Exemplo de cor customizada
-        content={{
-          title: 'Explore Mais Sobre o Nosso Colégio',
-          description: 'Conheça nossa história, valores e o que nos torna uma instituição de ensino de excelência.',
-          buttonText: 'Saiba Mais',
-          buttonHref: '/sobre',
-          // O ícone não é usado no variant 'centered' para CallToActionContent padrão, mas a prop existe
-        }}
-      /> */}
+
       {/* Exemplo de CTA de Newsletter */}
       {/* <CallToActionSection
         type="newsletter"
