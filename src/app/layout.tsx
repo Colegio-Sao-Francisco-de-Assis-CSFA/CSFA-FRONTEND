@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import Navigation  from "@/components/site/Navigation/Desktop/NavDeskHeader";
+import { Header } from "@/components/site/Header";
 import FooterSection from '@/components/sections/FooterSection';
 import FloatLinks from "@/components/sections/FloatLinksSection";
 export const metadata = {
@@ -44,7 +44,7 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <body className="w-dvw h-dvh" suppressHydrationWarning>
           <FloatLinks />
-          <Navigation />
+          <Header />
           {children}
           <FooterSection />
       </body>

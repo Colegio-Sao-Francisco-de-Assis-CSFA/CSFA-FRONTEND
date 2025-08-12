@@ -11,7 +11,6 @@ import {
   CallToActionSection,
   ContactSection,
 } from '@/components/sections';
-import InstagramPosts from '@/components/sections/InstaPostsSection';
 
 import dynamic from 'next/dynamic';
 
@@ -28,6 +27,7 @@ export default function Home() {
   return (
 
     <main className='w-full'>
+
       <HeroCarouselSection />
       <MissaoSection />
 

@@ -1,6 +1,6 @@
 export const segmentos = [
     {
-        url: 'educacao-infantil',
+        url: 'infantil',
         metadescricao: 'Descubra um mundo de aprendizado lúdico e desenvolvimento integral para os pequenos.',
         cursos: [{
             nome: 'Educação Infantil',
@@ -72,7 +72,7 @@ Diferenciais:
         ],
     },
     {
-        url: 'ensino-fundamental-anos-finais',
+        url: 'anos-finais',
         metadescricao: 'Aprofundamento do conhecimento e preparação para os desafios do Ensino Médio.',
         cursos: [{
             nome: 'Anos Finais',
@@ -315,35 +315,5 @@ Diferenciais:
             { iconName: 'Heart', title: 'Expressão Artística', description: 'Desenvolvimento da capacidade de transmitir emoções pela dança.' },
             { imageUrl: 'https://placehold.co/64x64/EE82EE/FFFFFF?text=Flexibilidade', title: 'Flexibilidade e Força', description: 'Melhora da amplitude de movimento e do tônus muscular.' },
         ],
-    },
-    {
-        url: 'curso-nao-disponivel-1', // URL mais específica para o item desabilitado
-        metadescricao: 'Este curso não está disponível no momento. Em breve teremos novidades!',
-        cursos: [
-            {
-                nome: 'Em Breve',
-                descricao: 'Estamos trabalhando para trazer novos e incríveis cursos para você. Fique atento às nossas atualizações!',
-                path: [{
-                    img1: 'https://placehold.co/600x400/CCCCCC/666666?text=Em+Breve',
-                    img2: 'https://placehold.co/600x400/BBBBBB/333333?text=Novidades'
-                }]
-            }],
-        produto: 'disable',
-        banner: 'https://placehold.co/1200x400/CCCCCC/666666?text=Banner+Em+Breve'
-    },
-    {
-        url: 'curso-nao-disponivel-2', // URL mais específica para o item desabilitado
-        metadescricao: 'Este curso não está disponível no momento. Em breve teremos novidades!',
-        cursos: [
-            {
-                nome: 'Em Construção',
-                descricao: 'Nossa equipe está desenvolvendo um conteúdo exclusivo para este curso. Acompanhe nossas redes sociais para saber mais!',
-                path: [{
-                    img1: 'https://placehold.co/600x400/AAAAAA/555555?text=Em+Construção',
-                    img2: 'https://placehold.co/600x400/999999/222222?text=Desenvolvimento'
-                }]
-            }],
-        produto: 'disable',
-        banner: 'https://placehold.co/1200x400/AAAAAA/555555?text=Banner+Em+Construção'
     },
 ];
