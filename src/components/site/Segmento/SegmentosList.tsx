@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segmento } from '@/app/segmentos/types';
+import { Segmento } from './types';
 import { SegmentoCard } from './SegmentoCard';
 
 interface SegmentosListProps {

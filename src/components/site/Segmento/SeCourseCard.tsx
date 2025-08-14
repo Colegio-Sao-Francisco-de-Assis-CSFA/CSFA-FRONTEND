@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { Course } from '@/app/segmentos/types';
+import { Course } from './types';
 
 interface CourseCardProps {
   curso: Course;

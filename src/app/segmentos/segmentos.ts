@@ -24,8 +24,11 @@ Ambiente seguro e acolhedor para aprendizado e diversão.
 
 Nosso compromisso é contribuir para a formação de crianças autônomas, felizes e preparadas para os desafios do futuro, sempre respeitando suas individualidades e potencialidades.`,
             path: [{
-                img1: '/images/courses/infantil.webp',
-                img2: '/images/courses/infantil.webp'
+                // img1: '/images/courses/infantil.webp',
+                img2: 'https://images.unsplash.com/photo-1721598518633-9671a80bbb77',
+                img3: 'https://images.unsplash.com/photo-1721495201081-3111b75a401b',
+                img4: 'https://images.unsplash.com/photo-1721390979318-473d48eda789',
+                img5: 'https://images.unsplash.com/photo-1721588225542-f236f0535232',
             }]
         }],
         produto: 'disponivel',
@@ -42,7 +45,7 @@ Nosso compromisso é contribuir para a formação de crianças autônomas, feliz
         ],
     },
     {
-        url: 'ensino-fundamental-anos-iniciais',
+        url: 'anos-iniciais',
         metadescricao: 'Os primeiros passos no conhecimento, com foco em leitura, escrita e raciocínio lógico.',
         cursos: [{
             nome: 'Anos Iniciais',
@@ -68,7 +71,6 @@ Diferenciais:
             { iconName: 'Book', title: 'Alfabetização Completa', description: 'Métodos eficazes para leitura, escrita e interpretação textual.' },
             { iconName: 'Calculator', title: 'Raciocínio Lógico', description: 'Desenvolvimento de habilidades matemáticas e resolução de problemas.' },
             { iconName: 'Globe', title: 'Conhecimento de Mundo', description: 'Exploração de temas de ciências, história e geografia de forma interativa.' },
-            { imageUrl: 'https://placehold.co/64x64/FFD700/000000?text=Criatividade', title: 'Criatividade e Expressão', description: 'Incentivo à arte, música e outras formas de expressão.' },
         ],
     },
     {
@@ -88,8 +90,7 @@ Diferenciais:
 - Programas de intercâmbio e atividades extracurriculares.
 - Desenvolvimento de liderança e trabalho em equipe.`,
             path: [{
-                img1: 'https://placehold.co/600x400/6A5ACD/FFFFFF?text=Ensino+Fundamental+II',
-                img2: 'https://placehold.co/600x400/9370DB/000000?text=Debate+Fundamental+II'
+                
             }]
         }],
         produto: 'disponivel',
