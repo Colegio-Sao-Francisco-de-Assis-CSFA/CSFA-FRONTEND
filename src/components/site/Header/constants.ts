@@ -3,17 +3,28 @@ import { NavMenu } from './types';
 
 export const mainNavItems: NavMenu[] = [
   { type: 'link', label: 'Início', href: '/' },
-  { type: 'link', label: 'Matrículas', href: '/matriculas' },
   {
     type: 'dropdown',
     label: 'O Colégio',
     items: [
-      { label: 'Projeto Pedagógico', href: '/colegio/projeto-pedagogico' },
-      { label: 'Nossa História', href: '/colegio/nossa-historia' },
-      { label: 'Contato', href: '/colegio/contato' },
-      { label: 'Contato', href: '/colegio/diferenciais' },
-      { label: 'Metodologia de Ensino', href: '/colegio/metodologia-de-ensino' },
-
+      { label: 'Matrículas', href: '/o-colegio/matriculas'},
+      { label: 'Contato', href: '/o-colegio/contato' },
+      { label: 'Quem Somos', href: '/o-colegio/quem-somos' },
+      { label: 'Informações Úteis', href: '/o-colegio/informacoes-uteis' },
+      { label: 'Nossa História', href: '/o-colegio/nossa-historia' },
+      { label: 'Metodologia de Ensino', href: '/o-colegio/metodologia-de-ensino' },
+      { label: 'Trabalhe Conosco', href: '/o-colegio/trabalhe-conosco' },
+    ],
+  },
+  {
+    type: 'dropdown',
+    label: 'Como Educamos',
+    items: [
+      { label: 'Proposta Pedagógica', href: '/colegio/proposta-pedagogica' },
+      { label: 'Extracurriculares', href: '/colegio/extracurriculares' },
+      { label: 'Parcerias', href: '/colegio/parcerias' },
+      { label: 'Tecnologia Educacional', href: '/colegio/tecnologia-educacional' },
+      { label: 'Pastoral', href: '/colegio/pastoral' },
     ],
   },
   {
@@ -40,12 +51,15 @@ export const mainNavItems: NavMenu[] = [
       { label: 'Lista de materiais', href: '/alunos/lista-de-materiais' },
       { label: 'Calendário escolar', href: '/alunos/calendario-escolar' },
       { label: 'Uniformes', href: '/alunos/uniformes' },
-      { label: 'Google Classroom & Gmail', href: '/alunos/google-classroom-gmail' },
-      { label: 'ClaassApp', href: '/alunos/classapp' },
-      { label: 'Sas Aluno', href: '/alunos/sas-aluno' },
+      { label: 'Tecnologia educacional', href: '/alunos/tecnologia-educacional' },
+      // { label: 'Google Classroom & Gmail', href: '/alunos/google-classroom-gmail' },
+      // { label: 'ClaassApp', href: '/alunos/classapp' },
+      // { label: 'Sas Aluno', href: '/alunos/sas-aluno' },
+      { label: 'Editais', href: '/alunos/editais' },
+      { label: 'Biblioteca', href: '/alunos/biblioteca' },
     ],
   },
-  { type: 'link', label: 'Acontece no CSFA', href: '/blog/acontece' },
+  // { type: 'link', label: 'Acontece no CSFA', href: '/blog/acontece' },
 
 ];
 
@@ -55,8 +69,13 @@ export const restrictedAreaButton: NavMenu = {
   icon: 'mdi:lock',
   items: [
     { label: 'Classroom', href: '#', icon: 'material-symbols-light:cast-for-education-rounded', },
-    { label: 'Classapp', href: '#', icon: 'mdi:cellphone' },
+    { label: 'Classapp', href: '#', icon: 'subway:book' },
     { label: 'Sas Aluno', href: '#', icon: 'mdi:school' },
-    { label: 'E-mail Aluno', href: '#', icon: 'mdi:email-outline' },
+    { label: 'E-mail Aluno', href: '#', icon: 'mdi:email' },
+    { label: 'Cantina', href: '#', icon: 'ic:round-fastfood' },
+    { label: 'Diário Eletrônico', href: '#', icon: 'ic:round-menu-book' },
+    { label: 'Coorporativo', href: '#', icon: 'mdi:email-lock' },
+    { label: 'Csfa Interno', href: '#', icon: 'bxs:business' },
+
   ]
 };
