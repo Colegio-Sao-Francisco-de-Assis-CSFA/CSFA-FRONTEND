@@ -1,3 +1,5 @@
+import { JSX } from "react";
+
 export interface Step {
   icon: JSX.Element;
   title: string;
