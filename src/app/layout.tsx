@@ -42,11 +42,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br" suppressHydrationWarning>
+      <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon.png" />
+        <link rel="icon" type="image/svg" sizes="32x32" href="/icon/icon0.svg" />
+        <link rel="icon" type="image/svg" sizes="16x16" href="/icon/icon0.svg" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className="w-dvw h-dvh" suppressHydrationWarning>
-          <FloatLinks />
-          <Header />
-          {children}
-          <FooterSection />
+        <FloatLinks />
+        <Header />
+        {children}
+        <FooterSection />
       </body>
     </html>
   );

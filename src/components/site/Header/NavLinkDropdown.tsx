@@ -21,12 +21,10 @@ export function NavLinkDropdown({ label, items }: NavLinkDropdownProps) {
       <NavigationMenuList>
         <NavigationMenuItem className='m-0 p-0'>
 
-          {/* Link do menu */}
           <NavigationMenuTrigger className="text-lg p-0 m-0 font-medium text-gray-600 hover:text-blue-600 transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-200 hover:after:w-full">
               {label}
           </NavigationMenuTrigger>
 
-          {/* Conteúdo do link dropdown */}
           <NavigationMenuContent>
               {items.map(
                 (item) => (
@@ -41,7 +39,6 @@ export function NavLinkDropdown({ label, items }: NavLinkDropdownProps) {
   );
 }
 
-// Componente auxiliar para os itens da lista
 const ListItem = ({ href, title }: { href: string; title: string }) => (
   <NavigationMenuLink className='p-0 m-0 w-44 rounded-none' asChild>
     <Link
