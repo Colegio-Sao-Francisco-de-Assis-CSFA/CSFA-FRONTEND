@@ -1,11 +1,13 @@
+import TitleHeaderComponent from '@/components/site/TitleHeader';
+
 export default function Matriculas() {
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <section className="min-h-screen bg-white text-gray-800 pt-32">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12 text-center">
-        <h1 className="text-4xl font-bold">Matrículas Abertas</h1>
-        <p className="mt-2 text-lg">Confira os períodos disponíveis e os documentos necessários</p>
-      </div>
+      <TitleHeaderComponent
+        title=' Matriculas Abertas'
+        subtitle=''
+      />
 
       {/* Períodos de Matrícula */}
       <section className="max-w-4xl mx-auto px-6 py-12">
@@ -51,6 +53,6 @@ export default function Matriculas() {
           Fale Conosco
         </button>
       </div>
-    </div>
+    </section>
   );
 }
