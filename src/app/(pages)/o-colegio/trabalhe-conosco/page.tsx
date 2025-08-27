@@ -1,13 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
     Search,
     MapPin,
-    Filter,
-    ChevronDown,
-    Heart,
-    Share2,
     Building,
     Clock,
     DollarSign,
@@ -22,6 +18,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 
+// Interface definitions for Job, ApplicationForm, and Toast
 interface Job {
     id: string;
     title: string;
@@ -34,11 +31,9 @@ interface Job {
     description: string;
     requirements: string[];
     benefits: string[];
-    isNew?: boolean;
-    isUrgent?: boolean;
-    isRemote?: boolean;
     postedDate: string;
     applicants?: string;
+    badges?: string[];
 }
 
 interface ApplicationForm {
@@ -55,13 +50,14 @@ interface Toast {
     type: 'success' | 'error';
 }
 
+// Mock data for job listings
 const jobsData: Job[] = [
     {
         id: '1',
         title: 'Sales Manager (Portuguese)',
         company: 'North America Electrical Energy Equipments CO., Ltd',
         companyRating: 4.2,
-        location: 'Home Office',
+        location: 'São Paulo, SP',
         salary: 'R$ 70.000 - R$ 200.000 por ano',
         type: 'Tempo integral',
         schedule: 'De segunda à sexta-feira',
@@ -76,21 +72,18 @@ const jobsData: Job[] = [
             'Plano de saúde e odontológico',
             'Vale refeição',
             'Participação nos lucros',
-            'Home office',
             'Horário flexível'
         ],
-        isNew: false,
-        isUrgent: false,
-        isRemote: true,
         postedDate: 'Há 2 dias',
-        applicants: '+ de 20.000 vagas'
+        applicants: '+ de 20.000 vagas',
+        badges: ['Home Office']
     },
     {
         id: '2',
         title: 'Instrutor(a) de Inglês - Aulas Online (Autônomo)',
         company: 'Aliança América Idiomas',
         companyRating: 2.3,
-        location: 'Home Office',
+        location: 'Remoto',
         salary: 'R$ 1.518 - R$ 2.700 por mês',
         type: 'Autônomo / PJ',
         schedule: 'Turno Noturno',
@@ -106,11 +99,9 @@ const jobsData: Job[] = [
             'Horário flexível',
             'Pagamento por aula ministrada'
         ],
-        isNew: true,
-        isUrgent: true,
-        isRemote: true,
         postedDate: 'Há 1 dia',
-        applicants: 'Contratando vários candidatos'
+        applicants: 'Contratando vários candidatos',
+        badges: ['Home Office', 'Urgente']
     },
     {
         id: '3',
@@ -135,10 +126,9 @@ const jobsData: Job[] = [
             'Auxílio home office',
             'Participação nos lucros'
         ],
-        isNew: true,
-        isRemote: false,
         postedDate: 'Há 3 horas',
-        applicants: '15 candidatos'
+        applicants: '15 candidatos',
+        badges: ['Presencial', 'Imediato']
     },
     {
         id: '4',
@@ -162,118 +152,129 @@ const jobsData: Job[] = [
             'Vale refeição',
             'Cursos e certificações'
         ],
-        isRemote: false,
         postedDate: 'Há 1 semana',
-        applicants: '32 candidatos'
+        applicants: '32 candidatos',
+        badges: ['Híbrido']
     },
     {
-        id: '4',
-        title: 'Analista de Marketing Digital',
-        company: 'Marketing Pro Agency',
-        companyRating: 4.1,
-        location: 'Rio de Janeiro, RJ',
-        salary: 'R$ 4.500 - R$ 7.000 por mês',
+        id: '5',
+        title: 'Gerente de Vendas Senior',
+        company: 'Startup Inovadora Tech',
+        companyRating: 4.5,
+        location: 'Belo Horizonte, MG',
+        salary: 'R$ 12.000 - R$ 18.000 por mês',
+        type: 'CLT',
+        schedule: 'Flexível',
+        description: 'Buscamos um gerente de vendas experiente para liderar nossa expansão no mercado mineiro.',
+        requirements: [
+            'MBA em Vendas ou área relacionada',
+            'Experiência mínima de 8 anos em gestão comercial',
+            'Conhecimento em CRM e ferramentas de automação',
+            'Liderança de equipes'
+        ],
+        benefits: [
+            'Stock options',
+            'Plano de saúde premium',
+            'Vale refeição R$ 1.200',
+            'Carro da empresa',
+            'Comissões atrativas'
+        ],
+        postedDate: 'Há 4 dias',
+        applicants: '8 candidatos',
+        badges: ['Presencial', 'Urgente']
+    },
+    {
+        id: '6',
+        title: 'Designer UX/UI Pleno',
+        company: 'Creative Digital Studio',
+        companyRating: 4.7,
+        location: 'Porto Alegre, RS',
+        salary: 'R$ 6.000 - R$ 10.000 por mês',
         type: 'CLT',
         schedule: 'Híbrido',
-        description: 'Vaga para analista de marketing digital com foco em campanhas pagas e analytics.',
+        description: 'Procuramos designer UX/UI para criar experiências digitais incríveis para nossos clientes.',
         requirements: [
-            'Experiência com Google Ads e Facebook Ads',
-            'Conhecimento em Google Analytics',
-            'Experiência com automação de marketing',
-            'Conhecimento em SEO/SEM'
+            'Portfólio sólido em UX/UI',
+            'Proficiência em Figma, Adobe XD',
+            'Conhecimento em Design System',
+            'Experiência com prototipagem'
         ],
         benefits: [
             'Trabalho híbrido',
             'Plano de saúde',
-            'Vale refeição',
-            'Cursos e certificações'
+            'Auxílio educação',
+            'Equipamentos modernos',
+            '14º salário'
         ],
-        isRemote: false,
-        postedDate: 'Há 1 semana',
-        applicants: '32 candidatos'
+        postedDate: 'Há 5 dias',
+        applicants: '27 candidatos',
+        badges: ['Híbrido']
     },
     {
-        id: '4',
-        title: 'Analista de Marketing Digital',
-        company: 'Marketing Pro Agency',
-        companyRating: 4.1,
-        location: 'Rio de Janeiro, RJ',
-        salary: 'R$ 4.500 - R$ 7.000 por mês',
-        type: 'CLT',
-        schedule: 'Híbrido',
-        description: 'Vaga para analista de marketing digital com foco em campanhas pagas e analytics.',
+        id: '7',
+        title: 'Consultor de TI - Cloud AWS',
+        company: 'CloudTech Solutions',
+        companyRating: 4.3,
+        location: 'Remoto',
+        salary: 'R$ 15.000 - R$ 25.000 por mês',
+        type: 'PJ',
+        schedule: 'Flexível',
+        description: 'Vaga para consultor especialista em soluções AWS para projetos de migração e otimização.',
         requirements: [
-            'Experiência com Google Ads e Facebook Ads',
-            'Conhecimento em Google Analytics',
-            'Experiência com automação de marketing',
-            'Conhecimento em SEO/SEM'
+            'Certificações AWS (Solutions Architect, SysOps)',
+            'Experiência mínima de 6 anos com Cloud',
+            'Conhecimento em DevOps e CI/CD',
+            'Inglês avançado'
         ],
         benefits: [
-            'Trabalho híbrido',
-            'Plano de saúde',
-            'Vale refeição',
-            'Cursos e certificações'
+            'Trabalho 100% remoto',
+            'Flexibilidade total de horários',
+            'Projetos internacionais',
+            'Bonificações por certificações'
         ],
-        isRemote: false,
-        postedDate: 'Há 1 semana',
-        applicants: '32 candidatos'
+        postedDate: 'Há 6 dias',
+        applicants: '12 candidatos',
+        badges: ['Home Office', 'Imediato']
     },
     {
-        id: '4',
-        title: 'Analista de Marketing Digital',
-        company: 'Marketing Pro Agency',
-        companyRating: 4.1,
-        location: 'Rio de Janeiro, RJ',
-        salary: 'R$ 4.500 - R$ 7.000 por mês',
+        id: '8',
+        title: 'Analista Financeiro Júnior',
+        company: 'Empresa Tradicional S.A.',
+        companyRating: 3.8,
+        location: 'São Paulo, SP',
+        salary: 'R$ 3.500 - R$ 5.500 por mês',
         type: 'CLT',
-        schedule: 'Híbrido',
-        description: 'Vaga para analista de marketing digital com foco em campanhas pagas e analytics.',
+        schedule: 'De segunda à sexta-feira',
+        description: 'Oportunidade para analista financeiro júnior em empresa consolidada no mercado.',
         requirements: [
-            'Experiência com Google Ads e Facebook Ads',
-            'Conhecimento em Google Analytics',
-            'Experiência com automação de marketing',
-            'Conhecimento em SEO/SEM'
+            'Graduação em Administração, Economia ou Contabilidade',
+            'Conhecimento em Excel avançado',
+            'Experiência com análise de demonstrativos',
+            'Inglês intermediário'
         ],
         benefits: [
-            'Trabalho híbrido',
             'Plano de saúde',
             'Vale refeição',
-            'Cursos e certificações'
+            'Vale transporte',
+            'Desconto em produtos da empresa'
         ],
-        isRemote: false,
         postedDate: 'Há 1 semana',
-        applicants: '32 candidatos'
-    },
-    {
-        id: '4',
-        title: 'Analista de Marketing Digital',
-        company: 'Marketing Pro Agency',
-        companyRating: 4.1,
-        location: 'Rio de Janeiro, RJ',
-        salary: 'R$ 4.500 - R$ 7.000 por mês',
-        type: 'CLT',
-        schedule: 'Híbrido',
-        description: 'Vaga para analista de marketing digital com foco em campanhas pagas e analytics.',
-        requirements: [
-            'Experiência com Google Ads e Facebook Ads',
-            'Conhecimento em Google Analytics',
-            'Experiência com automação de marketing',
-            'Conhecimento em SEO/SEM'
-        ],
-        benefits: [
-            'Trabalho híbrido',
-            'Plano de saúde',
-            'Vale refeição',
-            'Cursos e certificações'
-        ],
-        isRemote: false,
-        postedDate: 'Há 1 semana',
-        applicants: '32 candidatos'
+        applicants: '45 candidatos',
+        badges: ['Presencial']
     }
 ];
 
-const ToastNotification: React.FC<{ toast: Toast; onClose: () => void }> = ({ toast, onClose }) => {
+// Styles for different job badges
+const badgeStyles: Record<string, string> = {
+    'Home Office': 'bg-green-100 text-green-800 border-green-200',
+    'Híbrido': 'bg-blue-100 text-blue-800 border-blue-200',
+    'Presencial': 'bg-purple-100 text-purple-800 border-purple-200',
+    'Urgente': 'bg-red-100 text-red-800 border-red-200',
+    'Imediato': 'bg-orange-100 text-orange-800 border-orange-200'
+};
 
+// Toast notification component
+const ToastNotification: React.FC<{ toast: Toast; onClose: () => void }> = ({ toast, onClose }) => {
     useEffect(() => {
         if (toast.show) {
             const timer = setTimeout(() => {
@@ -312,13 +313,11 @@ const ToastNotification: React.FC<{ toast: Toast; onClose: () => void }> = ({ to
     );
 };
 
+// Main component for the Job Search Page
 const JobSearchPage: React.FC = () => {
-
     const [searchTerm, setSearchTerm] = useState('home office');
     const [location, setLocation] = useState('');
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-    const [savedJobs, setSavedJobs] = useState<Set<string>>(new Set());
-    const [showFilters, setShowFilters] = useState(false);
     const [showApplicationModal, setShowApplicationModal] = useState(false);
     const [applicationForm, setApplicationForm] = useState<ApplicationForm>({
         name: '',
@@ -328,12 +327,67 @@ const JobSearchPage: React.FC = () => {
         file: null
     });
     const [toast, setToast] = useState<Toast>({ show: false, message: '', type: 'success' });
+
+    // Effect to disable body scroll when the modal is open
+    useEffect(() => {
+        if (showApplicationModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        // Cleanup function to restore scroll on component unmount
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showApplicationModal]);
+
+
+    // Memoized filtering logic
+    const filteredJobs = useMemo(() => {
+        const lowercasedSearchTerm = searchTerm.toLowerCase().trim();
+        const lowercasedLocation = location.toLowerCase().trim();
+
+        if (lowercasedSearchTerm === '' && lowercasedLocation === '') {
+            return jobsData;
+        }
+
+        return jobsData.filter(job => {
+            const searchableContent = [
+                job.title,
+                job.company,
+                job.description,
+                ...(job.badges || []),
+                ...(job.requirements || [])
+            ].join(' ').toLowerCase();
+
+            const matchesSearchTerm = lowercasedSearchTerm === '' || searchableContent.includes(lowercasedSearchTerm);
+            const matchesLocation = lowercasedLocation === '' || job.location.toLowerCase().includes(lowercasedLocation);
+
+            return matchesSearchTerm && matchesLocation;
+        });
+    }, [searchTerm, location]);
+
+    // Effect to handle selection changes when the filter is applied
+    useEffect(() => {
+        const isSelectedJobInFilteredList = filteredJobs.some(job => job.id === selectedJob?.id);
+        if (!isSelectedJobInFilteredList) {
+            setSelectedJob(filteredJobs[0] || null);
+        }
+    }, [filteredJobs, selectedJob]);
+
+
+    // Function to show a toast notification
     const showToast = (message: string, type: 'success' | 'error' = 'success') => {
         setToast({ show: true, message, type });
     };
+
+    // Function to hide the toast notification
     const hideToast = () => {
         setToast(prev => ({ ...prev, show: false }));
     };
+
+    // Open the application modal and pre-fill the message
     const openApplicationModal = (job: Job) => {
         setSelectedJob(job);
         setShowApplicationModal(true);
@@ -342,6 +396,8 @@ const JobSearchPage: React.FC = () => {
             message: `Tenho interesse na vaga de ${job.title} na ${job.company}.`
         }));
     };
+
+    // Close the application modal and reset the form
     const closeApplicationModal = () => {
         setShowApplicationModal(false);
         setApplicationForm({
@@ -352,12 +408,16 @@ const JobSearchPage: React.FC = () => {
             file: null
         });
     };
+
+    // Handle input changes in the application form
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name, value } = e.target;
         setApplicationForm(prev => ({ ...prev, [name]: value }));
     };
+
+    // Handle file selection for the resume
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0] || null;
         if (file && (file.type === 'application/pdf' ||
@@ -369,10 +429,11 @@ const JobSearchPage: React.FC = () => {
             e.target.value = '';
         }
     };
+
+    // Handle the submission of the job application
     const handleApplicationSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Aqui você fará a integração com seu NodeMailer
         const formData = new FormData();
         formData.append('name', applicationForm.name);
         formData.append('email', applicationForm.email);
@@ -385,368 +446,286 @@ const JobSearchPage: React.FC = () => {
         }
 
         try {
-            // Simular envio - substitua pela sua API
+            // Simulate API call
             console.log('Enviando candidatura:', {
                 ...applicationForm,
                 jobTitle: selectedJob?.title,
                 company: selectedJob?.company
             });
 
-            // Fechar modal
             closeApplicationModal();
-
-            // Mostrar toast de sucesso
             showToast(`Candidatura para ${selectedJob?.title} enviada com sucesso!`);
 
         } catch (error) {
             showToast('Erro ao enviar candidatura. Tente novamente.', 'error');
         }
     };
-    const toggleSaveJob = (jobId: string) => {
-        setSavedJobs(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(jobId)) {
-                newSet.delete(jobId);
-                showToast('Vaga removida dos favoritos');
-            } else {
-                newSet.add(jobId);
-                showToast('Vaga salva nos favoritos');
-            }
-            return newSet;
-        });
-    };
+
+    // Handle the "Apply" button click
     const handleApply = (job: Job) => {
         openApplicationModal(job);
     };
 
     return (
-        <section className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 font-sans">
             <ToastNotification toast={toast} onClose={hideToast} />
 
-            {/* Header */}
-            <header className="bg-white border-b border-gray-200 sticky top-0 z-20">
-                <div className="max-w-7xl mx-auto px-4 py-4">
-                    {/* Search Bar */}
-                    <div className="flex gap-4 mb-4">
+            <section className="pt-32 max-w-7xl mx-auto px-4 py-6">
+                {/* Header with search inputs */}
+                <div className="mb-6">
+                    <div className="flex flex-col sm:flex-row gap-4 mb-4">
                         <div className="flex-1 relative">
-                            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                             <input
                                 type="text"
+                                placeholder="Buscar vagas..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                placeholder="Título da vaga, palavras-chave ou empresa"
-                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                             />
                         </div>
-                        <div className="flex-1 relative">
-                            <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <div className="flex-1 sm:flex-none relative">
+                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                             <input
                                 type="text"
+                                placeholder="Localização"
                                 value={location}
                                 onChange={(e) => setLocation(e.target.value)}
-                                placeholder='Cidade, estado, região ou "remoto"'
-                                className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                             />
                         </div>
-                        <button className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
-                            Achar vagas
+                        <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Buscar
                         </button>
                     </div>
 
-                    {/* Filters */}
-                    <div className="flex items-center gap-4 text-sm">
-                        <button
-                            onClick={() => setShowFilters(!showFilters)}
-                            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                        >
-                            <Filter className="w-4 h-4" />
-                            Filtros
-                            <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
-                            Salário <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
-                            Remoto <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
-                            Empresa <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
-                            Tipo de vaga <ChevronDown className="w-4 h-4" />
-                        </button>
-                        <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
-                            Data do anúncio <ChevronDown className="w-4 h-4" />
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-            <div className="max-w-7xl mx-auto px-4 py-6 flex gap-6">
-                {/* Sidebar Info */}
-                <div className="w-80">
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                        <p className="text-sm text-blue-800">
-                            <strong>Crie seu currículo</strong> - Seja encontrado pelas empresas!
-                        </p>
-                    </div>
-
-                    <div className="text-sm text-gray-600 mb-6">
-                        <p>Vagas: home office</p>
+                    <div className="text-sm text-gray-600">
                         <p className="flex items-center gap-2">
-                            Ordenar por: <strong>relevância</strong> - <button className="text-blue-600 hover:underline">data</button>
+                            Vagas encontradas: <strong>{filteredJobs.length}</strong> •
+                            Ordenar por: <strong>relevância</strong>
                         </p>
-                        <p className="text-gray-500">+ de 20.000 vagas 🤔</p>
-                    </div>
-
-                    {/* Job Cards */}
-                    <div className="space-y-4">
-                        {jobsData.map((job) => (
-                            <div
-                                key={job.id}
-                                className={`bg-white border rounded-lg p-4 cursor-pointer transition-all hover:shadow-md ${
-                                    selectedJob?.id === job.id ? 'border-blue-500 shadow-md' : 'border-gray-200'
-                                }`}
-                                onClick={() => setSelectedJob(job)}
-                            >
-                                <div className="flex justify-between items-start mb-2">
-                                    <h3 className="font-semibold text-gray-900 text-sm leading-tight">
-                                        {job.title}
-                                    </h3>
-                                    <button
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            toggleSaveJob(job.id);
-                                        }}
-                                        className="p-1 hover:bg-gray-100 rounded"
-                                    >
-                                        <Heart
-                                            className={`w-4 h-4 ${
-                                                savedJobs.has(job.id)
-                                                    ? 'fill-red-500 text-red-500'
-                                                    : 'text-gray-400'
-                                            }`}
-                                        />
-                                    </button>
-                                </div>
-
-                                <div className="text-sm text-gray-600 mb-2">
-                                    <p className="font-medium">{job.company}</p>
-                                    <div className="flex items-center gap-1">
-                                        <span>{job.location}</span>
-                                        {job.isRemote && (
-                                            <span className="bg-green-100 text-green-800 px-2 py-0.5 rounded text-xs">
-                                                Remoto
-                                            </span>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="text-sm mb-2">
-                                    <p className="font-medium text-gray-900">{job.salary}</p>
-                                    <p className="text-gray-600">{job.type} {job.schedule && `• ${job.schedule}`}</p>
-                                </div>
-
-                                <div className="flex items-center gap-4 text-xs text-gray-500">
-                                    <span>{job.postedDate}</span>
-                                    {job.applicants && <span>{job.applicants}</span>}
-                                </div>
-
-                                {(job.isNew || job.isUrgent) && (
-                                    <div className="flex gap-2 mt-2">
-                                        {job.isNew && (
-                                            <span className="bg-pink-100 text-pink-800 px-2 py-0.5 rounded text-xs font-medium">
-                                                nova
-                                            </span>
-                                        )}
-                                        {job.isUrgent && (
-                                            <span className="bg-orange-100 text-orange-800 px-2 py-0.5 rounded text-xs font-medium">
-                                                Contratando vários candidatos
-                                            </span>
-                                        )}
-                                    </div>
-                                )}
-
-                                <div className="mt-2">
-                                    <button
-                                        onClick={() => openApplicationModal(job)}
-                                        className="text-blue-600 text-xs hover:underline flex items-center gap-1"
-                                    >
-                                        <Send className="w-3 h-3" />
-                                        Candidate-se facilmente
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
                     </div>
                 </div>
 
-                {/* Job Details Panel */}
-                <div className="flex-1">
-                    {selectedJob ? (
-                        <div className="bg-white border border-gray-200 rounded-lg">
-                            {/* Header */}
-                            <div className="border-b border-gray-200 p-6">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-                                            {selectedJob.title}
-                                        </h1>
-                                        <div className="flex items-center gap-2 text-gray-600 mb-2">
-                                            <span className="font-medium">{selectedJob.company}</span>
-                                            <div className="flex items-center gap-1">
-                                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                                <span className="text-sm">{selectedJob.companyRating}</span>
+                <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-220px)]">
+                    {/* Sidebar - Job List */}
+                    <aside className="w-full lg:w-96 bg-white rounded-lg border border-gray-200 flex flex-col">
+                        <div className="p-4 border-b border-gray-200">
+                            <h2 className="font-semibold text-gray-900">Vagas Disponíveis</h2>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto">
+                            <div className="p-4 space-y-4">
+                                {filteredJobs.length > 0 ? (
+                                    filteredJobs.map((job) => (
+                                        <div
+                                            key={job.id}
+                                            className={`border rounded-lg p-4 cursor-pointer transition-all hover:shadow-md ${
+                                                selectedJob?.id === job.id
+                                                    ? 'border-blue-500 bg-blue-50 shadow-md'
+                                                    : 'border-gray-200 hover:border-gray-300'
+                                            }`}
+                                            onClick={() => setSelectedJob(job)}
+                                        >
+                                            <div className="mb-2">
+                                                <h3 className="font-semibold text-gray-900 text-sm leading-tight mb-1">
+                                                    {job.title}
+                                                </h3>
+                                                <p className="text-sm text-gray-600 font-medium">{job.company}</p>
+                                            </div>
+
+                                            <div className="text-sm text-gray-600 mb-2">
+                                                <p className="flex items-center gap-1 mb-1">
+                                                    <MapPin className="w-3 h-3" />
+                                                    {job.location}
+                                                </p>
+                                                <p className="font-medium text-gray-900">{job.salary}</p>
+                                                <p className="text-gray-600">{job.type}</p>
+                                            </div>
+
+                                            {job.badges && job.badges.length > 0 && (
+                                                <div className="flex flex-wrap gap-1 mb-2">
+                                                    {job.badges.map((badge, index) => (
+                                                        <span
+                                                            key={index}
+                                                            className={`px-2 py-1 rounded-full text-xs font-medium border ${
+                                                                badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
+                                                            }`}
+                                                        >
+                                                            {badge}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            <div className="flex items-center justify-between text-xs text-gray-500">
+                                                <span>{job.postedDate}</span>
+                                                {job.applicants && <span>{job.applicants}</span>}
                                             </div>
                                         </div>
-                                        <p className="text-gray-600 mb-2">{selectedJob.location}</p>
-                                        <p className="text-lg font-semibold text-gray-900">
-                                            {selectedJob.salary}
-                                        </p>
+                                    ))
+                                ) : (
+                                    <div className="text-center text-gray-500 p-8">
+                                        <h3 className="font-semibold">Nenhuma vaga encontrada</h3>
+                                        <p className="text-sm">Tente ajustar seus termos de busca.</p>
                                     </div>
-                                    <button
-                                        onClick={() => setSelectedJob(null)}
-                                        className="p-2 hover:bg-gray-100 rounded-lg"
-                                    >
-                                        <X className="w-5 h-5 text-gray-400" />
-                                    </button>
-                                </div>
+                                )}
+                            </div>
+                        </div>
+                    </aside>
 
-                                <div className="flex gap-3">
+                    {/* Job Details Panel */}
+                    <div className="flex-1 bg-white rounded-lg border border-gray-200 flex flex-col">
+                        {selectedJob ? (
+                            <>
+                                {/* Fixed Header */}
+                                <div className="border-b border-gray-200 p-6 flex-shrink-0">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div className="flex-1">
+                                            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+                                                {selectedJob.title}
+                                            </h1>
+                                            <div className="flex items-center gap-2 text-gray-600 mb-2">
+                                                <span className="font-medium">{selectedJob.company}</span>
+                                                <div className="flex items-center gap-1">
+                                                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                                    <span className="text-sm">{selectedJob.companyRating}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2 text-gray-600 mb-2">
+                                                <MapPin className="w-4 h-4" />
+                                                <span>{selectedJob.location}</span>
+                                            </div>
+                                            <p className="text-lg font-semibold text-gray-900">
+                                                {selectedJob.salary}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {selectedJob.badges && selectedJob.badges.length > 0 && (
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {selectedJob.badges.map((badge, index) => (
+                                                <span
+                                                    key={index}
+                                                    className={`px-3 py-1 rounded-full text-sm font-medium border ${
+                                                        badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
+                                                    }`}
+                                                >
+                                                    {badge}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )}
+
                                     <button
                                         onClick={() => handleApply(selectedJob)}
                                         className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
                                     >
                                         Candidatar-se
                                     </button>
-                                    <button
-                                        onClick={() => toggleSaveJob(selectedJob.id)}
-                                        className={`p-2 border rounded-lg transition-colors ${
-                                            savedJobs.has(selectedJob.id)
-                                                ? 'border-red-500 bg-red-50'
-                                                : 'border-gray-300 hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        <Heart
-                                            className={`w-5 h-5 ${
-                                                savedJobs.has(selectedJob.id)
-                                                    ? 'fill-red-500 text-red-500'
-                                                    : 'text-gray-600'
-                                            }`}
-                                        />
-                                    </button>
-                                    <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                                        <Share2 className="w-5 h-5 text-gray-600" />
-                                    </button>
                                 </div>
-                            </div>
 
-                            {/* Job Details */}
-                            <div className="p-6">
-                                <div className="space-y-6">
-                                    {/* Dados da vaga */}
-                                    <section>
-                                        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                                            <Building className="w-5 h-5" />
-                                            Dados da vaga
-                                        </h2>
-                                        <div className="space-y-3">
-                                            <div className="flex items-center gap-3">
-                                                <DollarSign className="w-5 h-5 text-gray-400" />
-                                                <div>
-                                                    <p className="font-medium text-gray-700">Salário</p>
-                                                    <p className="text-gray-600">{selectedJob.salary}</p>
+                                {/* Scrollable Content */}
+                                <div className="flex-1 overflow-y-auto p-6">
+                                    <div className="space-y-6">
+                                        {/* Job Data */}
+                                        <section>
+                                            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                                                <Building className="w-5 h-5" />
+                                                Dados da vaga
+                                            </h2>
+                                            <div className="space-y-3">
+                                                <div className="flex items-center gap-3">
+                                                    <DollarSign className="w-5 h-5 text-gray-400" />
+                                                    <div>
+                                                        <p className="font-medium text-gray-700">Salário</p>
+                                                        <p className="text-gray-600">{selectedJob.salary}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                <Clock className="w-5 h-5 text-gray-400" />
-                                                <div>
-                                                    <p className="font-medium text-gray-700">Tipo de vaga</p>
-                                                    <div className="flex gap-2">
+                                                <div className="flex items-center gap-3">
+                                                    <Clock className="w-5 h-5 text-gray-400" />
+                                                    <div>
+                                                        <p className="font-medium text-gray-700">Tipo de vaga</p>
                                                         <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm">
                                                             {selectedJob.type}
                                                         </span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                <Calendar className="w-5 h-5 text-gray-400" />
-                                                <div>
-                                                    <p className="font-medium text-gray-700">Turno e horário de trabalho</p>
-                                                    <p className="text-gray-600">{selectedJob.schedule}</p>
+                                                <div className="flex items-center gap-3">
+                                                    <Calendar className="w-5 h-5 text-gray-400" />
+                                                    <div>
+                                                        <p className="font-medium text-gray-700">Horário de trabalho</p>
+                                                        <p className="text-gray-600">{selectedJob.schedule}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </section>
+                                        </section>
 
-                                    {/* Description */}
-                                    <section>
-                                        <h2 className="text-lg font-semibold text-gray-900 mb-3">
-                                            Descrição da vaga
-                                        </h2>
-                                        <p className="text-gray-700 leading-relaxed">
-                                            {selectedJob.description}
-                                        </p>
-                                    </section>
+                                        {/* Description */}
+                                        <section>
+                                            <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                                                Descrição da vaga
+                                            </h2>
+                                            <p className="text-gray-700 leading-relaxed">
+                                                {selectedJob.description}
+                                            </p>
+                                        </section>
 
-                                    {/* Requirements */}
-                                    <section>
-                                        <h2 className="text-lg font-semibold text-gray-900 mb-3">
-                                            Requisitos
-                                        </h2>
-                                        <ul className="space-y-2">
-                                            {selectedJob.requirements.map((req, index) => (
-                                                <li key={index} className="flex items-start gap-3">
-                                                    <span className="text-blue-600 font-bold">•</span>
-                                                    <span className="text-gray-700">{req}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </section>
+                                        {/* Requirements */}
+                                        <section>
+                                            <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                                                Requisitos
+                                            </h2>
+                                            <ul className="space-y-2">
+                                                {selectedJob.requirements.map((req, index) => (
+                                                    <li key={index} className="flex items-start gap-3">
+                                                        <span className="text-blue-600 font-bold mt-1">•</span>
+                                                        <span className="text-gray-700">{req}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </section>
 
-                                    {/* Benefits */}
-                                    <section>
-                                        <h2 className="text-lg font-semibold text-gray-900 mb-3">
-                                            Benefícios
-                                        </h2>
-                                        <p className="text-sm text-gray-600 mb-3">
-                                            Retirados da descrição completa da vaga
-                                        </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {selectedJob.benefits.map((benefit, index) => (
-                                                <span
-                                                    key={index}
-                                                    className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                                                >
-                                                    {benefit}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </section>
+                                        {/* Benefits */}
+                                        <section>
+                                            <h2 className="text-lg font-semibold text-gray-900 mb-3">
+                                                Benefícios
+                                            </h2>
+                                            <div className="flex flex-wrap gap-2">
+                                                {selectedJob.benefits.map((benefit, index) => (
+                                                    <span
+                                                        key={index}
+                                                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+                                                    >
+                                                        {benefit}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <div className="flex-1 flex items-center justify-center">
+                                <div className="text-center">
+                                    <Building className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                                    <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                                        Selecione uma vaga
+                                    </h2>
+                                    <p className="text-gray-600">
+                                        Clique em uma vaga à esquerda para ver os detalhes
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    ) : (
-                        <div className="bg-white border border-gray-200 rounded-lg p-8 text-center">
-                            <div className="text-gray-400 mb-4">
-                                <Building className="w-16 h-16 mx-auto mb-4" />
-                            </div>
-                            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                                Selecione uma vaga
-                            </h2>
-                            <p className="text-gray-600">
-                                Clique em uma vaga à esquerda para ver os detalhes
-                            </p>
-                        </div>
-                    )}
+                        )}
+                    </div>
                 </div>
-            </div>
+            </section>
 
             {/* Application Modal */}
             {showApplicationModal && selectedJob && (
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
-                        {/* Modal Header */}
+                    <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col">
                         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -766,9 +745,7 @@ const JobSearchPage: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Modal Content */}
-                        <form onSubmit={handleApplicationSubmit} className="p-6 space-y-6">
-                            {/* Nome */}
+                        <form onSubmit={handleApplicationSubmit} className="p-6 space-y-6 overflow-y-auto">
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     <User className="w-4 h-4 inline mr-1" />
@@ -785,7 +762,6 @@ const JobSearchPage: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Email */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     <Mail className="w-4 h-4 inline mr-1" />
@@ -802,7 +778,6 @@ const JobSearchPage: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Telefone */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Telefone
@@ -817,7 +792,6 @@ const JobSearchPage: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Mensagem */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     <MessageSquare className="w-4 h-4 inline mr-1" />
@@ -834,7 +808,6 @@ const JobSearchPage: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Upload de Currículo */}
                             <div>
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     <Paperclip className="w-4 h-4 inline mr-1" />
@@ -863,7 +836,6 @@ const JobSearchPage: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Informações da vaga */}
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
                                 <h3 className="font-semibold text-blue-900 mb-2">Detalhes da vaga:</h3>
                                 <div className="space-y-1 text-sm text-blue-800">
@@ -874,7 +846,6 @@ const JobSearchPage: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Submit Buttons */}
                             <div className="flex gap-3 pt-4">
                                 <button
                                     type="button"
@@ -895,7 +866,7 @@ const JobSearchPage: React.FC = () => {
                     </div>
                 </div>
             )}
-        </section>
+        </div>
     );
 };
 
