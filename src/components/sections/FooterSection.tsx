@@ -7,7 +7,7 @@ import {
   FooterContactColumn,
   FooterBottomBar,
   FooterLinkProps,
-} from '@/components/site/Footer';
+} from '@/components/layouts/Footer';
 
 const FooterSection: FC = () => {
   const year = new Date().getFullYear();
@@ -39,7 +39,7 @@ const FooterSection: FC = () => {
 
   return (
     <FooterRoot>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 "> 
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 ">
 
         {/* Column 1 - School Info */}
         <FooterInfoColumn

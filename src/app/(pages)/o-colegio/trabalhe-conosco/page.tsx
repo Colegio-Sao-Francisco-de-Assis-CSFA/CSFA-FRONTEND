@@ -398,6 +398,7 @@ const JobSearchPage: React.FC = () => {
     };
 
     // Close the application modal and reset the form
+
     const closeApplicationModal = () => {
         setShowApplicationModal(false);
         setApplicationForm({
@@ -472,7 +473,7 @@ const JobSearchPage: React.FC = () => {
 
             <section className="pt-32 max-w-7xl mx-auto px-4 py-6">
                 {/* Header with search inputs */}
-                <div className="mb-6">
+                <header className="mb-6">
                     <div className="flex flex-col sm:flex-row gap-4 mb-4">
                         <div className="flex-1 relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -505,7 +506,7 @@ const JobSearchPage: React.FC = () => {
                             Ordenar por: <strong>relevância</strong>
                         </p>
                     </div>
-                </div>
+                </header>
 
                 <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-220px)]">
                     {/* Sidebar - Job List */}
@@ -520,11 +521,10 @@ const JobSearchPage: React.FC = () => {
                                     filteredJobs.map((job) => (
                                         <div
                                             key={job.id}
-                                            className={`border rounded-lg p-4 cursor-pointer transition-all hover:shadow-md ${
-                                                selectedJob?.id === job.id
+                                            className={`border rounded-lg p-4 cursor-pointer transition-all hover:shadow-md ${selectedJob?.id === job.id
                                                     ? 'border-blue-500 bg-blue-50 shadow-md'
                                                     : 'border-gray-200 hover:border-gray-300'
-                                            }`}
+                                                }`}
                                             onClick={() => setSelectedJob(job)}
                                         >
                                             <div className="mb-2">
@@ -548,9 +548,8 @@ const JobSearchPage: React.FC = () => {
                                                     {job.badges.map((badge, index) => (
                                                         <span
                                                             key={index}
-                                                            className={`px-2 py-1 rounded-full text-xs font-medium border ${
-                                                                badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
-                                                            }`}
+                                                            className={`px-2 py-1 rounded-full text-xs font-medium border ${badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
+                                                                }`}
                                                         >
                                                             {badge}
                                                         </span>
@@ -575,7 +574,7 @@ const JobSearchPage: React.FC = () => {
                     </aside>
 
                     {/* Job Details Panel */}
-                    <div className="flex-1 bg-white rounded-lg border border-gray-200 flex flex-col">
+                    <main className="flex-1 bg-white rounded-lg border border-gray-200 flex flex-col">
                         {selectedJob ? (
                             <>
                                 {/* Fixed Header */}
@@ -607,9 +606,8 @@ const JobSearchPage: React.FC = () => {
                                             {selectedJob.badges.map((badge, index) => (
                                                 <span
                                                     key={index}
-                                                    className={`px-3 py-1 rounded-full text-sm font-medium border ${
-                                                        badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
-                                                    }`}
+                                                    className={`px-3 py-1 rounded-full text-sm font-medium border ${badgeStyles[badge] || 'bg-gray-100 text-gray-700 border-gray-200'
+                                                        }`}
                                                 >
                                                     {badge}
                                                 </span>
@@ -718,13 +716,13 @@ const JobSearchPage: React.FC = () => {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </main>
                 </div>
             </section>
 
             {/* Application Modal */}
             {showApplicationModal && selectedJob && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
                     <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col">
                         <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl">
                             <div className="flex items-center justify-between">

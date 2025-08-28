@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import { Header } from "@/components/site/Header";
+import { Header } from "@/components/layouts/Header";
 import FooterSection from '@/components/sections/FooterSection';
 import FloatLinks from "@/components/sections/FloatLinksSection";
 export const metadata = {

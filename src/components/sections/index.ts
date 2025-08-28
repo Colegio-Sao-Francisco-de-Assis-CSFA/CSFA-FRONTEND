@@ -1,4 +1,3 @@
-export { default as CallToActionSection } from './CallToActionSection';
 export { default as CampusShowcaseSection } from './CampusShowcaseSection';
 export { default as CursosSection } from './CursosSection';
 export { default as FloatLinksSection } from './FloatLinksSection';

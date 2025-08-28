@@ -31,7 +31,7 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-4 md:flex">
-             <ButtonDropdown {...restrictedAreaButton} />
+            <ButtonDropdown {...restrictedAreaButton} />
           </div>
 
           {/* Menu Mobile */}
