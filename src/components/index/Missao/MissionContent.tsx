@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import type { FC } from 'react';
 import { MissionContentProps } from './types';
-import { LinkButton } from '@/components/site/Button'
+import { LinkButton } from '@/components/index/Button'
 
 export const MissionContent: FC<MissionContentProps> = ({ title, subtitle, buttonText }) => (
   <div className="sm:px-6 md:px-8 lg:px-10 flex flex-col gap-2 lg:gap-6">

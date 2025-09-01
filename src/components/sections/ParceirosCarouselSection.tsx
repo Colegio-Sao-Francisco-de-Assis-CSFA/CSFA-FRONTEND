@@ -3,14 +3,12 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { PartnerCarousel } from "@/components/site/ParceirosCarousel";
-import { PartnerLogo, ScrollSpeed } from "@/components/site/ParceirosCarousel/types";
-import { ParceirosHeader, ParceiroBeneficioCard, ParceirosCTA } from "@/components/site/Parceiros";
+import { PartnerCarousel, PartnerLogo, ScrollSpeed } from "@/components/index/ParceirosCarousel";
+import { ParceirosHeader, ParceiroBeneficioCard } from "@/components/index/Parceiros";
 
 // Ícones para os cards de benefício
 import { CheckCircle, Users, Zap } from 'lucide-react';
 
-// Exemplo de dados de logos (você pode carregar isso de uma API ou de um arquivo de configuração)
 const partnerLogos: PartnerLogo[] = [
     { src: "/images/partners/sas.png", alt: "Partner 1 Logo", width: 300, height: 200 },
     { src: "/images/partners/google.png", alt: "Partner 2 Logo", width: 200, height: 100 },
@@ -28,17 +26,15 @@ const ParceirosCarouselSection: React.FC = () => {
 
     const handleCTAClick = () => {
         console.log("Botão 'Seja Nosso Parceiro' clicado!");
-        // Adicione aqui a lógica para o botão CTA (ex: redirecionar para formulário)
     };
 
-    // Variantes para animação de entrada dos cards de benefício
     const cardGridVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.15,
-                delayChildren: 0.5 // Atraso para o grid começar a animar depois do cabeçalho
+                delayChildren: 0.5
             }
         }
     };

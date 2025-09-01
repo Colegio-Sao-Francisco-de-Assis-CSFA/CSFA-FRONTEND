@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import { LinkButton } from '@/components/site/Button';
+import { LinkButton } from '@/components/index/Button';
 import { SobreColegioHeroProps } from './types';
 
 const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({

@@ -6,12 +6,12 @@ import FooterSocialLink from './FooterSocialLink';
 
 const FooterInfoColumn: React.FC<FooterInfoColumnProps> = ({ title, description, socialLinks }) => {
   return (
-    <div>
+    <div className="p-6">
       <FooterSectionHeader title={title} />
-      <p className="text-gray-300 text-sm mb-6 max-w-xs leading-relaxed">
+      <p className="text-blue-100 text-sm mb-8 max-w-xs leading-relaxed opacity-90">
         {description}
       </p>
-      <div className="flex space-x-4">
+      <div className="flex space-x-3">
         {socialLinks.map((link, index) => (
           <FooterSocialLink key={index} {...link} />
         ))}

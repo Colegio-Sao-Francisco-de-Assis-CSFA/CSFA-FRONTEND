@@ -14,11 +14,11 @@ const FooterSection: FC = () => {
 
   const quickLinks: FooterLinkProps[] = [
     { href: "/", text: "Início" },
-    { href: "/segmentos", text: "Segmentos" }, // Ajustado para corresponder ao seu texto "Sobre nós"
-    { href: "/sobre", text: "Sobre nós" },     // Ajustado
-    { href: "/diferenciais", text: "Diferenciais" }, // Ajustado
+    { href: "/segmentos", text: "Segmentos" },
+    { href: "/sobre", text: "Sobre nós" },
+    { href: "/diferenciais", text: "Diferenciais" },
     { href: "/contato", text: "Contato" },
-    { href: "/acontece", text: "Acontece Csfa" }, // Ajustado
+    { href: "/acontece", text: "Acontece Csfa" }, 
   ];
 
   const responsavelLinks: FooterLinkProps[] = [
@@ -39,7 +39,7 @@ const FooterSection: FC = () => {
 
   return (
     <FooterRoot>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 ">
 
         {/* Column 1 - School Info */}
         <FooterInfoColumn

@@ -11,7 +11,7 @@ import {
   ContactDetails,
   SocialMediaLinks,
   ContactInfoCardProps
-} from '@/components/site/Contact'; // Ajuste o caminho conforme sua estrutura
+} from '@/components/index/Contact'; 
 
 const ContactSection: React.FC = () => {
   const containerVariants = {

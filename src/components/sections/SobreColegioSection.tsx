@@ -1,9 +1,8 @@
-// components/sections/SobreColegioSection.tsx
 'use client';
 
 import React from 'react';
 import { GraduationCap, Globe, BookOpen, Lightbulb } from "lucide-react";
-import { FeatureCardData, SobreColegioFeaturesCarousel, SobreColegioHero } from '@/components/site/SobreColegio';
+import { FeatureCardData, SobreColegioFeaturesCarousel, SobreColegioHero } from '@/components/index/SobreColegio';
 
 const defaultFeatures: FeatureCardData[] = [
   {

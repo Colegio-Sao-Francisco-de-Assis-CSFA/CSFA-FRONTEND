@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { NewsGrid, NewsItem } from '@/components/site/News';
+import { NewsGrid, NewsItem } from '@/components/index/News';
 export default function NewsSection() {
 
   const newsData: NewsItem[] = [

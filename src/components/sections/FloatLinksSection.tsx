@@ -1,10 +1,8 @@
-// components/sections/FloatLinksSection.tsx
 import { FC } from 'react';
-// import { Youtube, Facebook, Instagram, MessageSquare } from 'lucide-react'; // <-- REMOVIDO IMPORTS DO LUCIDE-REACT
 import {
     FloatLinksRoot,
     FloatLinkItem,
-} from '@/components/site/FloatLinks';
+} from '@/components/index/FloatLinks';
 
 const FloatLinksSection: FC = () => {
     return (

@@ -6,7 +6,7 @@ import {
   MatriculasSteps,
   MatriculasInfoCard,
   Step,
-} from "@/components/site/Matrículas";
+} from "@/components/index/Matrículas";
 
 export default function MatriculasSection() {
   const steps: Step[] = [

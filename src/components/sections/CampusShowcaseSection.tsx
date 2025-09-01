@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CampusShowcaseRoot, CampusShowcaseContent, CampusShowcaseNavigation, CampusFeature } from '../site/CampusShowcase';
+import { CampusShowcaseRoot, CampusShowcaseContent, CampusShowcaseNavigation, CampusFeature } from '@/components/index/CampusShowcase';
 import { MousePointerClick, Pointer } from 'lucide-react';
 
 const campusFeatures: CampusFeature[] = [

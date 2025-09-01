@@ -1,4 +1,4 @@
-import MissaoColegio from "../site/Missao";
+import MissaoColegio from "@/components/index/Missao";
 
 export default function MissaoSection() {
     return (

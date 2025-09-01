@@ -1,15 +1,12 @@
-// components/sections/CoursesSection.tsx
 "use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Users, GraduationCap, Trophy, Baby } from 'lucide-react'; // Importado 'Baby' icon
-
-// Importar os microcomponentes da pasta site/Courses
-import { CoursesHeader, CourseCard, Course } from "@/components/site/Cursos";
+import { BookOpen, Users, GraduationCap, Baby } from 'lucide-react';
+import { CoursesHeader, CourseCard, Course } from "@/components/index/Cursos";
 
 const CoursesSection = () => {
-  // Os dados dos cursos permanecem aqui para serem passados aos cards
+
   const courses: Course[] = [
     {
       id: 1,
@@ -125,10 +122,9 @@ const CoursesSection = () => {
 
   return (
     <section className="py-20 bg-background  relative overflow-hidden mb-12">
-      {/* Background decoration */}
 
       <div className="max-w-screen-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header Section */}
+
         <CoursesHeader
           title={
             <span className="bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
@@ -138,7 +134,6 @@ const CoursesSection = () => {
           description="Educação de excelência em todas as etapas da formação escolar, preparando nossos alunos para os desafios do futuro com metodologia inovadora."
         />
 
-        {/* Cards Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -155,12 +150,7 @@ const CoursesSection = () => {
             />
           ))}
         </motion.div>
-
-        {/* Bottom CTA */}
-        {/* <CoursesCTA
-          buttonText="Agende uma Visita"
-          onClick={handleCTAClick}
-        /> */}
+        
       </div>
     </section>
   );

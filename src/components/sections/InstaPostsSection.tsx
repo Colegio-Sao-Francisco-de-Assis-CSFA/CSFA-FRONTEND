@@ -1,7 +1,7 @@
 // components/InstagramPosts.tsx
 import React, { useState, useEffect } from 'react';
 import { Heart, MessageCircle, ExternalLink, AlertCircle } from 'lucide-react';
-import ButtonLink from '../site/Button/LinkButton';
+import {LinkButton as ButtonLink} from '@/components/index/Button';
 import { motion } from 'framer-motion';
 import { InstagramPost } from '@/types/instagram-types';
 
