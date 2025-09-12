@@ -48,11 +48,8 @@ export const mainNavItems: NavMenu[] = [
     type: 'dropdown',
     label: 'Alunos',
     items: [
-      { label: 'Lista de materiais', href: '/alunos/lista-de-materiais' },
+      { label: 'Turmas', href: '/alunos/turmas' },
       { label: 'Calendário escolar', href: '/alunos/calendario-escolar' },
-      { label: 'Uniformes', href: '/alunos/uniformes' },
-      { label: 'Tecnologia educacional', href: '/alunos/tecnologia-educacional' },
-      { label: 'Editais', href: '/alunos/editais' },
       { label: 'Biblioteca', href: '/alunos/biblioteca' },
     ],
   },

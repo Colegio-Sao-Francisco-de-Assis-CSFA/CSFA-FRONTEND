@@ -315,8 +315,7 @@ const ToastNotification: React.FC<{ toast: Toast; onClose: () => void }> = ({ to
 
 // Main component for the Job Search Page
 const JobSearchPage: React.FC = () => {
-    const [searchTerm, setSearchTerm] = useState('home office');
-    const [location, setLocation] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
     const [showApplicationModal, setShowApplicationModal] = useState(false);
     const [applicationForm, setApplicationForm] = useState<ApplicationForm>({
@@ -346,11 +345,6 @@ const JobSearchPage: React.FC = () => {
     // Memoized filtering logic
     const filteredJobs = useMemo(() => {
         const lowercasedSearchTerm = searchTerm.toLowerCase().trim();
-        const lowercasedLocation = location.toLowerCase().trim();
-
-        if (lowercasedSearchTerm === '' && lowercasedLocation === '') {
-            return jobsData;
-        }
 
         return jobsData.filter(job => {
             const searchableContent = [
@@ -362,9 +356,8 @@ const JobSearchPage: React.FC = () => {
             ].join(' ').toLowerCase();
 
             const matchesSearchTerm = lowercasedSearchTerm === '' || searchableContent.includes(lowercasedSearchTerm);
-            const matchesLocation = lowercasedLocation === '' || job.location.toLowerCase().includes(lowercasedLocation);
 
-            return matchesSearchTerm && matchesLocation;
+            return matchesSearchTerm;
         });
     }, [searchTerm, location]);
 
@@ -485,16 +478,7 @@ const JobSearchPage: React.FC = () => {
                                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                             />
                         </div>
-                        <div className="flex-1 sm:flex-none relative">
-                            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                            <input
-                                type="text"
-                                placeholder="Localização"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
-                            />
-                        </div>
+
                         <button className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                             Buscar
                         </button>

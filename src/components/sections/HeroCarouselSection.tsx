@@ -1,7 +1,7 @@
 "use client";
 
-import { Carousel } from '@/components/index/Caroussel/Carousel';
-import type { Slide } from '@/components/index/Caroussel/types';
+import { Carousel } from '@/components/shared/Banner/Carousel/Carousel';
+import type { Slide } from '@/components/shared/Banner/Carousel/types';
 
 const HeroCarouselSection = () => {
 

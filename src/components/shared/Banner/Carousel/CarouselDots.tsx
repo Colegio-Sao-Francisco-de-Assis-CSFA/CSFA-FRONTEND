@@ -12,11 +12,10 @@ export const CarouselDots: React.FC<CarouselControls> = ({
         <button
           key={index}
           onClick={() => goToSlide(index)}
-          className={`w-3 h-3 rounded-full transition-all duration-300 ${
-            currentSlide === index
-              ? 'bg-white scale-120'
-              : 'bg-white bg-opacity-50'
-          }`}
+          className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
+            ? 'bg-white scale-120'
+            : 'bg-white bg-opacity-50'
+            }`}
           aria-label={`Go to slide ${index + 1}`}
         />
       ))}
