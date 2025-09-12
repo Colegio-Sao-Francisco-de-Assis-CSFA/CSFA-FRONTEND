@@ -24,7 +24,6 @@ interface Job {
     title: string;
     company: string;
     companyRating: number;
-    location: string;
     salary: string;
     type: string;
     schedule: string;
@@ -57,7 +56,6 @@ const jobsData: Job[] = [
         title: 'Sales Manager (Portuguese)',
         company: 'North America Electrical Energy Equipments CO., Ltd',
         companyRating: 4.2,
-        location: 'São Paulo, SP',
         salary: 'R$ 70.000 - R$ 200.000 por ano',
         type: 'Tempo integral',
         schedule: 'De segunda à sexta-feira',
@@ -83,7 +81,6 @@ const jobsData: Job[] = [
         title: 'Instrutor(a) de Inglês - Aulas Online (Autônomo)',
         company: 'Aliança América Idiomas',
         companyRating: 2.3,
-        location: 'Remoto',
         salary: 'R$ 1.518 - R$ 2.700 por mês',
         type: 'Autônomo / PJ',
         schedule: 'Turno Noturno',
@@ -108,7 +105,6 @@ const jobsData: Job[] = [
         title: 'Desenvolvedor Frontend React',
         company: 'Tech Solutions Brasil',
         companyRating: 4.8,
-        location: 'São Paulo, SP',
         salary: 'R$ 8.000 - R$ 15.000 por mês',
         type: 'CLT',
         schedule: 'De segunda à sexta-feira',
@@ -135,7 +131,6 @@ const jobsData: Job[] = [
         title: 'Analista de Marketing Digital',
         company: 'Marketing Pro Agency',
         companyRating: 4.1,
-        location: 'Rio de Janeiro, RJ',
         salary: 'R$ 4.500 - R$ 7.000 por mês',
         type: 'CLT',
         schedule: 'Híbrido',
@@ -161,7 +156,6 @@ const jobsData: Job[] = [
         title: 'Gerente de Vendas Senior',
         company: 'Startup Inovadora Tech',
         companyRating: 4.5,
-        location: 'Belo Horizonte, MG',
         salary: 'R$ 12.000 - R$ 18.000 por mês',
         type: 'CLT',
         schedule: 'Flexível',
@@ -188,7 +182,6 @@ const jobsData: Job[] = [
         title: 'Designer UX/UI Pleno',
         company: 'Creative Digital Studio',
         companyRating: 4.7,
-        location: 'Porto Alegre, RS',
         salary: 'R$ 6.000 - R$ 10.000 por mês',
         type: 'CLT',
         schedule: 'Híbrido',
@@ -215,7 +208,6 @@ const jobsData: Job[] = [
         title: 'Consultor de TI - Cloud AWS',
         company: 'CloudTech Solutions',
         companyRating: 4.3,
-        location: 'Remoto',
         salary: 'R$ 15.000 - R$ 25.000 por mês',
         type: 'PJ',
         schedule: 'Flexível',
@@ -241,7 +233,6 @@ const jobsData: Job[] = [
         title: 'Analista Financeiro Júnior',
         company: 'Empresa Tradicional S.A.',
         companyRating: 3.8,
-        location: 'São Paulo, SP',
         salary: 'R$ 3.500 - R$ 5.500 por mês',
         type: 'CLT',
         schedule: 'De segunda à sexta-feira',
@@ -359,7 +350,7 @@ const JobSearchPage: React.FC = () => {
 
             return matchesSearchTerm;
         });
-    }, [searchTerm, location]);
+    }, [searchTerm]);
 
     // Effect to handle selection changes when the filter is applied
     useEffect(() => {
@@ -519,10 +510,6 @@ const JobSearchPage: React.FC = () => {
                                             </div>
 
                                             <div className="text-sm text-gray-600 mb-2">
-                                                <p className="flex items-center gap-1 mb-1">
-                                                    <MapPin className="w-3 h-3" />
-                                                    {job.location}
-                                                </p>
                                                 <p className="font-medium text-gray-900">{job.salary}</p>
                                                 <p className="text-gray-600">{job.type}</p>
                                             </div>
@@ -574,10 +561,6 @@ const JobSearchPage: React.FC = () => {
                                                     <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                                                     <span className="text-sm">{selectedJob.companyRating}</span>
                                                 </div>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-gray-600 mb-2">
-                                                <MapPin className="w-4 h-4" />
-                                                <span>{selectedJob.location}</span>
                                             </div>
                                             <p className="text-lg font-semibold text-gray-900">
                                                 {selectedJob.salary}
@@ -823,7 +806,6 @@ const JobSearchPage: React.FC = () => {
                                 <div className="space-y-1 text-sm text-blue-800">
                                     <p><strong>Posição:</strong> {selectedJob.title}</p>
                                     <p><strong>Empresa:</strong> {selectedJob.company}</p>
-                                    <p><strong>Localização:</strong> {selectedJob.location}</p>
                                     <p><strong>Salário:</strong> {selectedJob.salary}</p>
                                 </div>
                             </div>
