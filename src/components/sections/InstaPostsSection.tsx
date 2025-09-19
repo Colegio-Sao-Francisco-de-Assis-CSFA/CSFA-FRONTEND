@@ -1,7 +1,7 @@
 // components/InstagramPosts.tsx
 import React, { useState, useEffect } from 'react';
 import { Heart, MessageCircle, ExternalLink, AlertCircle } from 'lucide-react';
-import {LinkButton as ButtonLink} from '@/components/index/Button';
+import { Button } from '@/components/shared/Button';
 import { motion } from 'framer-motion';
 import { InstagramPost } from '@/types/instagram-types';
 
@@ -167,10 +167,10 @@ const InstagramPosts: React.FC = () => {
           ))}
         </div>
 
-        <ButtonLink className='max-w-[350px] flex items-center justify-center gap-4 mx-auto' href={`https://instagram.com/${IG_USERNAME}`} external>
+        <Button className='max-w-[350px] flex items-center justify-center gap-4 mx-auto' href={`https://instagram.com/${IG_USERNAME}`} external variant="csfa" size="lg">
           Ver mais no instagram
           <ExternalLink className="mt-1 w-6 h-6" />
-        </ButtonLink>
+        </Button>
 
         {posts.length === 0 && (
           <div className="text-center py-12">

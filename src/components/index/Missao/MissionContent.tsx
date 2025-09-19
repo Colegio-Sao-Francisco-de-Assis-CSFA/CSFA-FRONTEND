@@ -1,8 +1,7 @@
 // MissionContent.tsx
-import { Button } from '@/components/ui/button';
 import type { FC } from 'react';
 import { MissionContentProps } from './types';
-import { LinkButton } from '@/components/index/Button'
+import { Button } from '@/components/shared/Button'
 
 export const MissionContent: FC<MissionContentProps> = ({ title, subtitle, buttonText }) => (
   <div className="sm:px-6 md:px-8 lg:px-10 flex flex-col gap-2 lg:gap-6">
@@ -24,9 +23,9 @@ export const MissionContent: FC<MissionContentProps> = ({ title, subtitle, butto
     </p>
     <div className="flex justify-center mt-6 sm:mt-8">
 
-      <LinkButton href='/'>
+      <Button href='/' variant="csfa" size="lg">
         {buttonText}
-      </LinkButton>
+      </Button>
     </div>
   </div>
 );

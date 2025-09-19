@@ -5,7 +5,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 // Remover AnimatePresence e motion pois a mensagem "clique e arraste" será removida
-// import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'motion/react';
 
 // Import Swiper styles
 import 'swiper/css';

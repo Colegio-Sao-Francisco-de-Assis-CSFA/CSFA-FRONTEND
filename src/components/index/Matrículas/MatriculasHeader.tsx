@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 
 export default function MatriculasHeader() {
@@ -10,11 +10,11 @@ export default function MatriculasHeader() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-bold text-indigo-600"
+        className="text-4xl font-bold text-primary"
       >
         Matrículas Abertas
       </motion.h2>
-      <p className="text-lg text-gray-600 mt-4">
+      <p className="text-lg text-muted-foreground mt-4">
         Garanta já a vaga do seu filho e faça parte da nossa comunidade de
         educação transformadora.
       </p>

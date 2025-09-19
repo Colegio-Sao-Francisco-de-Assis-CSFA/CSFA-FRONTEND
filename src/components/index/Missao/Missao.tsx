@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionProps } from 'framer-motion';
+import { MotionProps } from 'motion/react';
 import type { FC } from 'react';
 import { AnimatedSection } from './AnimateSection';
 import { MissionContent } from './MissionContent';

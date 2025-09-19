@@ -28,13 +28,12 @@ export default function Home() {
 
       <HeroCarouselSection />
       <MissaoSection />
-
       <CursosSection />
       <SobreColegioSection />
       <CampusShowcaseSection />
       <ParceirosCarouselSection />
       <NewsSection />
-      <DynamicContactSection />
+      {/* <DynamicContactSection /> */}
 
 
     </main>

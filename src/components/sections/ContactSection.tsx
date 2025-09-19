@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 import {
   ContactHeader,
@@ -11,7 +11,7 @@ import {
   ContactDetails,
   SocialMediaLinks,
   ContactInfoCardProps
-} from '@/components/index/Contact'; 
+} from '@/components/index/Contact';
 
 const ContactSection: React.FC = () => {
   const containerVariants = {
@@ -25,8 +25,8 @@ const ContactSection: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    hidden: { opacity: 0},
+    show: { opacity: 1},
   };
 
   return (

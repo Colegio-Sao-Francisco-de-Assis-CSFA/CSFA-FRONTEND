@@ -2,12 +2,12 @@
 'use client'; // ESSENCIAL: Garante que este componente é um Client Component
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Icon } from '@iconify/react'; // Importa Icon do Iconify
 import { ContactDetailProps } from './types'; // Importa a interface
 
 interface Props {
-  variants: any; // framer-motion variants
+  variants: any; // motion/react variants
 }
 
 const contactDetailsData: ContactDetailProps[] = [

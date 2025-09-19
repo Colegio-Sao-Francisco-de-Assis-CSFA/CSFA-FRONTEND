@@ -1,7 +1,7 @@
 // components/site/Courses/CourseCard.tsx
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { CourseCardProps } from './types'; // <--- ESTA IMPORTAÇÃO É CRUCIAL
 

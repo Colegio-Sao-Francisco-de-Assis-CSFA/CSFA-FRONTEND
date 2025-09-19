@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Step } from "./types";
 
 export default function MatriculasSteps({ steps }: { steps: Step[] }) {
@@ -12,13 +12,13 @@ export default function MatriculasSteps({ steps }: { steps: Step[] }) {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: i * 0.2 }}
-          className="bg-white rounded-2xl shadow-lg p-6 text-center"
+          className="bg-card rounded-2xl shadow-lg p-6 text-center border border-border"
         >
-          <div className="text-indigo-600 text-4xl mb-4 flex justify-center">
+          <div className="text-primary text-4xl mb-4 flex justify-center">
             {step.icon}
           </div>
-          <h3 className="font-semibold text-lg">{step.title}</h3>
-          <p className="text-gray-500 text-sm mt-2">{step.desc}</p>
+          <h3 className="font-semibold text-lg text-card-foreground">{step.title}</h3>
+          <p className="text-muted-foreground text-sm mt-2">{step.desc}</p>
         </motion.div>
       ))}
     </div>

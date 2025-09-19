@@ -1,6 +1,6 @@
 // components/site/Parceiros/ParceirosCTA.tsx
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ParceirosCTAProps } from './types';
 
 const ParceirosCTA: React.FC<ParceirosCTAProps> = ({ text, buttonText, onButtonClick }) => {

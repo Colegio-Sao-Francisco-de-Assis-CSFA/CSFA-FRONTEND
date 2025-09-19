@@ -2,7 +2,7 @@
 'use client'; // ESSENCIAL: Garante que este é um Client Component
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 // Definir uma interface para a estrutura de cada input
 interface FormInputConfig {
@@ -92,7 +92,7 @@ Mensagem: ${message}
       value: name,
       onChange: (e) => setName(e.target.value),
       placeholder: "Seu nome",
-      className: "flex h-12 w-full rounded-md border bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-blue-600 disabled:cursor-not-allowed disabled:opacity-50",
+      className: "flex h-12 w-full rounded-md border border-input bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
       required: true,
       component: 'input',
     },
@@ -104,7 +104,7 @@ Mensagem: ${message}
       value: email,
       onChange: (e) => setEmail(e.target.value),
       placeholder: "seu.email@exemplo.com",
-      className: "flex h-12 w-full rounded-md border bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+      className: "flex h-12 w-full rounded-md border border-input bg-background px-4 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
       required: true,
       component: 'input',
     },
@@ -116,7 +116,7 @@ Mensagem: ${message}
       value: message,
       onChange: (e) => setMessage(e.target.value),
       placeholder: "Digite sua mensagem aqui...",
-      className: "flex w-full rounded-md border bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none",
+      className: "flex w-full rounded-md border border-input bg-background px-4 py-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none",
       required: true,
       component: 'textarea', // Indicar que este é um textarea
       rows: 5,
@@ -164,7 +164,7 @@ Mensagem: ${message}
         {/* Botão de Envio - Mantido fora do map pois é único */}
         <motion.button
           type="submit"
-          className="cursor-pointer w-full bg-gradient-to-b from-indigo-800 via-blue-700 to-blue-500 text-white hover:bg-gradient-to-b hover:from-white hover:via-white hover:to-white hover:text-blue-600 font-medium py-3 px-6 rounded-md transition-colors duration-300 border border-blue-200 shadow-sm"
+          className="cursor-pointer w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-3 px-6 rounded-md transition-colors duration-300 border border-border shadow-sm"
           whileHover={{ scale: 1.02, y: -2 }}
           whileTap={{ scale: 0.98 }}
           variants={itemVariants}
@@ -175,7 +175,7 @@ Mensagem: ${message}
 
         {submitSuccess !== null && (
           <motion.p
-            className={`text-center text-sm font-medium ${submitSuccess ? 'text-green-600' : 'text-red-600'
+            className={`text-center text-sm font-medium ${submitSuccess ? 'text-green-600' : 'text-destructive'
               }`}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}

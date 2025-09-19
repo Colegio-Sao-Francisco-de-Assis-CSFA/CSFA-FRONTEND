@@ -10,7 +10,7 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 z-50 w-full">
       <div className="container mx-auto max-w-screen-xl px-4 py-2">
-        <div className="flex h-20 items-center justify-between rounded-full bg-white border border-gray-400/40 shadow-xl px-6">
+        <div className="flex h-20 items-center justify-between rounded-full bg-background border border-border shadow-xl px-6">
           <Link href="/" className="flex items-center gap-2 w-10 lg:w-16" >
             <img src="/logo/logo40anos.svg" alt="logo colégio 40 anos" className='w-full object-cover' />
           </Link>
