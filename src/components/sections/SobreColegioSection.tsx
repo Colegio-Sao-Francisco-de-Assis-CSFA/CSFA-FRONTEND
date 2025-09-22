@@ -1,62 +1,63 @@
 'use client';
 
-import React from 'react';
-import { GraduationCap, Globe, BookOpen, Lightbulb } from "lucide-react";
-import { FeatureCardData, SobreColegioFeaturesCarousel, SobreColegioHero } from '@/components/index/SobreColegio';
+import React, { useRef } from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/shared/Button/Button';
+// 1. Importar o TitleHeaderComponent
+import TitleHeaderComponent from '@/components/shared/TitleHeader';
 
-const defaultFeatures: FeatureCardData[] = [
-  {
-    icon: GraduationCap,
-    title: "Orientação Católica",
-    description: "O colégio promove uma educação baseada na solidariedade, respeito e fraternidade, formando cidadãos comprometidos com um mundo mais justo.",
-    bgColor: "bg-gradient-to-b from-blue-600 via-blue-700 to-indigo-900",
-    iconColor: "text-white",
-    accentColor: "from-indigo-900 via-blue-800 to-blue-600",
-    borderGradient: "from-blue-600/20 to-blue-800/20"
-  },
-  {
-    icon: Globe,
-    title: "Jovens Transformadores",
-    description: "Preparamos nossos alunos para serem agentes de mudança na sociedade, desenvolvendo senso crítico, liderança e responsabilidade social.",
-    bgColor: "bg-gradient-to-b from-blue-600 via-blue-700 to-indigo-900",
-    iconColor: "text-white",
-    accentColor: "from-indigo-900 via-blue-800 to-blue-600",
-    borderGradient: "from-blue-600/20 to-blue-800/20"
-  },
-  {
-    icon: BookOpen,
-    title: "Inovação Pedagógica",
-    description: "Conteúdo atualizado, metodologias ativas e tecnologia integrada para um aprendizado dinâmico e eficaz, preparando para o futuro.",
-    bgColor: "bg-gradient-to-b from-blue-600 via-blue-700 to-indigo-900",
-    iconColor: "text-white",
-    accentColor: "from-indigo-900 via-blue-800 to-blue-600",
-    borderGradient: "from-blue-600/20 to-blue-800/20"
-  },
-  {
-    icon: Lightbulb,
-    title: "Desenvolvimento Integral",
-    description: "Foco no crescimento acadêmico, social e emocional, promovendo autonomia, criatividade e valores essenciais para a vida.",
-    bgColor: "bg-gradient-to-b from-blue-600 via-blue-700 to-indigo-900",
-    iconColor: "text-white",
-    accentColor: "from-indigo-900 via-blue-800 to-blue-600",
-    borderGradient: "from-blue-600/20 to-blue-800/20"
-  },
-];
 
-export default function SobreColegioSection() {
-  const mainTitle = 'Colégio São Francisco De Assis'
-  const subtitle = 'Formando Jovens Transformadores da Sociedade'
-  const shortDescription = 'Há mais de 40 anos, transformamos vidas. Nosso colégio é um lugar onde jovens descobrem seu potencial e se preparam para liderar o amanhã, com valores essenciais de dignidade, compaixão e justiça.';
+const SobreColegioHero = ({
 
-  return (
-    <section className="w-full bg-background ">
-      <SobreColegioHero
-        mainTitle={mainTitle}
-        subtitle={subtitle}
-        shortDescription={shortDescription}
-        ctaText="Saiba Mais Sobre Nós"
-        ctaLink="/sobre"
-      />
-    </section>
-  );
-}
+}) => {
+    const ref = useRef<HTMLDivElement>(null);
+
+    const mainTitle = 'O colégio são francisco de assis';
+    const subtitle = 'Formando jovens transformadores da sociedade';
+    const shortDescription = 'teste';
+    const ctaText = 'Saiba mais';
+    const ctaLink = '/o-colegio/quem-somos';
+
+
+    return (
+        <div
+            ref={ref}
+            className="relative w-full min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-screen overflow-hidden flex items-center justify-start px-4 sm:px-6 lg:px-8 py-16"
+        >
+            <motion.div
+                className="absolute inset-0 z-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <Image
+                    src="/images/background-site.png"
+                    alt="Alunos no campus do colégio"
+                    fill
+                    sizes="100vw"
+                    priority
+                    className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-blue-900/60 dark:bg-background/90"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+            </motion.div>
+
+            <div className="relative z-10 text-white max-w-screen-xl mx-auto w-full">
+                <TitleHeaderComponent
+                    variant="hero-complete"
+                    color="white"
+                    title="Colégio São Francisco De Assis"
+                    tagline="Formando Jovens Transformadores da Sociedade"
+                    subtitle="Há mais de 40 anos, transformamos vidas..."
+                    ctaText="Saiba Mais Sobre Nós"
+                    ctaLink="/sobre"
+                    taglineTypingEffect={true}
+                />
+
+            </div>
+        </div>
+    );
+};
+
+export default SobreColegioHero;

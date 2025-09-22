@@ -2,8 +2,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CampusShowcaseRoot, CampusShowcaseContent, CampusShowcaseNavigation, CampusFeature } from '@/components/index/CampusShowcase';
+import { CampusShowcaseRoot, CampusShowcaseNavigation, CampusFeature } from '@/components/index/CampusShowcase';
 import { MousePointerClick, Pointer } from 'lucide-react';
+import TitleHeaderComponent from '../shared/TitleHeader';
 
 const campusFeatures: CampusFeature[] = [
   {
@@ -55,7 +56,7 @@ const CampusShowcaseSection: React.FC = () => {
 
   return (
     <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto bg-background ">
-      <CampusShowcaseContent
+      <TitleHeaderComponent
         title="Explore Nosso Campus"
         subtitle="Conheça de perto as instalações modernas e os ambientes projetados para o desenvolvimento integral dos nossos alunos."
       />

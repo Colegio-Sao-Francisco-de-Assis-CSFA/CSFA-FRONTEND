@@ -2,11 +2,10 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
-import { Button } from '@/components/shared/Button';
-import { SobreColegioHeroProps } from './types';
+import { motion, useInView } from 'motion/react';
+import { LinkButton } from '@/components/shared/Button';
 
-const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
+const SobreColegioHero = ({
   mainTitle,
   subtitle,
   shortDescription,
@@ -28,18 +27,8 @@ const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 18,
-        mass: 0.8,
-        duration: 0.7,
-      },
-    },
+    hidden: { opacity: 0},
+    visible: { opacity: 1},
   };
 
 
@@ -110,9 +99,9 @@ const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
         </motion.p>
 
         <motion.div variants={itemVariants}>
-          <Button href={ctaLink} variant="csfa" size="lg">
+          <LinkButton href={ctaLink}>
             {ctaText}
-          </Button>
+          </LinkButton>
         </motion.div>
       </motion.div>
 
@@ -147,7 +136,7 @@ const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
         }}
       />
       <motion.div
-        className="absolute top-1/2 left-[15%] w-6 h-6 md:w-8 md:h-8 bg-primary/20 rounded-full blur-sm"
+        className="absolute top-1/2 left-[15%] w-6 h-6 md:w-8 md:h-8 bg-indigo-200/20 rounded-full blur-sm"
         animate={{
           y: [0, -18, 0],
           x: [0, 12, 0],
