@@ -3,15 +3,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Users, GraduationCap, Baby } from 'lucide-react';
-import { Course } from "@/components/index/Cursos";
+
 import TitleHeaderComponent from '../shared/TitleHeader';
 import { CourseCard } from '../shared/Card/CourseCard';
 
-// import finais from'/images/courses/finais.webp';
+
 
 const CoursesSection = () => {
 
-  const courses: Course[] = [
+  const courses = [
     {
       id: 1,
       title: "Educação Infantil",
@@ -19,7 +19,7 @@ const CoursesSection = () => {
       description: "Ambiente lúdico e seguro para os primeiros passos no aprendizado. Estímulo à criatividade, socialização e desenvolvimento integral dos pequenos.",
       ageRange: "1 a 5 anos",
       highlights: ["Desenvolvimento motor", "Estimulação cognitiva", "Brincadeiras educativas"],
-      icon: Baby,
+      icon: 'lucide:baby',
       color: "bg-pink-600",
       bgColor: "bg-gradient-to-t from-blue-600 via-blue-800 to-indigo-950 transition-colors duration-600 hover:from-indigo-800 hover:via-blue-800 hover:to-blue-600",
       textColor: "text-white",
@@ -32,7 +32,7 @@ const CoursesSection = () => {
       description: "Formação integral com foco no desenvolvimento cognitivo, social e emocional. Metodologia lúdica e interativa para despertar o amor pelo aprendizado.",
       ageRange: "6 a 10 anos",
       highlights: ["Alfabetização", "Desenvolvimento motor", "Valores éticos"],
-      icon: BookOpen,
+      icon: 'lucide:book-open-text',
       color: "bg-blue-600",
       bgColor: "bg-gradient-to-t from-blue-600 via-blue-800 to-indigo-950 transition-colors duration-600 hover:from-indigo-800 hover:via-blue-800 hover:to-blue-600",
       textColor: "text-white",
@@ -45,7 +45,7 @@ const CoursesSection = () => {
       description: "Preparação para desafios acadêmicos com metodologia inovadora. Desenvolvimento do pensamento crítico e autonomia intelectual.",
       ageRange: "11 a 14 anos",
       highlights: ["Pensamento crítico", "Projetos interdisciplinares", "Tecnologia educacional"],
-      icon: Users,
+      icon: 'lucide:users-round',
       color: "bg-blue-900",
       bgColor: "bg-gradient-to-t from-blue-600 via-blue-800 to-indigo-950 transition-colors duration-600 hover:from-indigo-800 hover:via-blue-800 hover:to-blue-600",
       textColor: "text-white",
@@ -58,7 +58,7 @@ const CoursesSection = () => {
       description: "Excelência acadêmica com foco no ingresso ao ensino superior. Orientação vocacional e desenvolvimento de competências para o futuro.",
       ageRange: "15 a 17 anos",
       highlights: ["Preparação ENEM", "Orientação vocacional", "Liderança"],
-      icon: GraduationCap,
+      icon: 'lucide:graduation-cap',
       color: "bg-blue-600",
       bgColor: "bg-gradient-to-t from-blue-600 via-blue-800 to-indigo-950 transition-colors duration-600 hover:from-indigo-800 hover:via-blue-800 hover:to-blue-600",
       textColor: "text-white",
@@ -88,10 +88,9 @@ const CoursesSection = () => {
         />
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {courses.map((course) => (

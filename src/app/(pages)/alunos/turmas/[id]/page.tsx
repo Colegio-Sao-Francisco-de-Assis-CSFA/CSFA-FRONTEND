@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { DADOS_ESCOLA } from '@/lib/data-turma';
+import { DADOS_ESCOLA } from '@/lib/data/turma';
 import DetalhesTurmaCliente from '../components/DetalhesTurma';
 import { ArrowLeft, Calendar, GraduationCap } from 'lucide-react';
 
@@ -9,7 +9,7 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params; 
+  const { id } = await params;
   const turma = DADOS_ESCOLA.find(t => t.id === parseInt(id));
 
   return {

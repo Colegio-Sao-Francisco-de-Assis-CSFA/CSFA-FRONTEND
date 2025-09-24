@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Heart, MessageCircle, ExternalLink, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/shared/Button';
 import { motion } from 'framer-motion';
-import { InstagramPost } from '@/types/instagram-types';
+import { InstagramPost } from '@/types/instagram.types';
 
 const InstagramPosts: React.FC = () => {
 

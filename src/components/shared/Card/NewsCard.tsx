@@ -8,7 +8,6 @@ import type { NewsCardProps } from './types'
 export const NewsCard: React.FC<NewsCardProps> = ({ item, className }) => {
     return (
         <Card variant="news" className={className}>
-            {/* Image with Badge */}
             <div className="relative">
                 <CardImage
                     src={item.imageUrl}
@@ -31,8 +30,8 @@ export const NewsCard: React.FC<NewsCardProps> = ({ item, className }) => {
             </CardContent>
 
             {/* Footer */}
-            <CardFooter>
-                <CardDate date={item.date} icon={<CalendarIcon size={16} />} />
+            <CardFooter className='pt-4 flex flex-row justify-between items-center'>
+                <CardDate className='pt-2' date={item.date} icon={<CalendarIcon size={16} />} />
                 <CardAction href={item.slug}>
                     Leia Mais
                     <ChevronRightIcon size={16} className="ml-1" />

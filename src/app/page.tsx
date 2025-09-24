@@ -13,7 +13,7 @@ import {
 import dynamic from 'next/dynamic';
 
 const DynamicContactSection = dynamic(
-  () => import('@/components/sections/ContactSection'),
+  () => import('@/components/sections/ContatoSection'),
   {
     ssr: false,
     loading: () => <p>Carregando seção de contato...</p>,

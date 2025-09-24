@@ -6,7 +6,7 @@ import { CampusCard } from '@/components/shared/Card';
 import { CampusShowcaseCardProps } from './types';
 
 const CampusShowcaseCard: React.FC<CampusShowcaseCardProps> = ({ feature }) => {
-  return <CampusCard feature={feature} />;
+  return <CampusCard className='bg-white' feature={feature} />;
 };
 
 export default CampusShowcaseCard;

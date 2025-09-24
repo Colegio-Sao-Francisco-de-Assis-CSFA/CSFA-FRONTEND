@@ -1,4 +1,4 @@
-export { default as CampusShowcaseSection } from './CampusShowcaseSection';
+export { default as CampusShowcaseSection } from './CampusSection';
 export { default as CursosSection } from './CursosSection';
 export { default as FloatLinksSection } from './FloatLinksSection';
 export { default as FooterSection } from './FooterSection';
@@ -7,4 +7,4 @@ export { default as MissaoSection } from './MissaoSection';
 export { default as NewsSection } from './NewsSection';
 export { default as ParceirosCarouselSection } from './ParceirosCarouselSection';
 export { default as SobreColegioSection } from './SobreColegioSection';
-export {default as ContactSection} from './ContactSection';
+export { default as ContactSection } from './ContatoSection';

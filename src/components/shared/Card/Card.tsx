@@ -1,12 +1,12 @@
 'use client'
 
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'motion/react'
-import { cn } from '@/lib/utils'
-import { Button } from '../Button'
-import type { CardProps } from './types'
+import React from 'react';
+import Image from 'next/image';
+import { motion } from 'motion/react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/shared/Button/Button';
+import type { CardProps } from './types';
+import { Icon } from '@iconify/react';
 
 export const Card: React.FC<CardProps> = ({
     variant = 'default',
@@ -42,7 +42,6 @@ export const Card: React.FC<CardProps> = ({
             )}
             whileHover={variant === 'news' ? { y: -5 } : undefined}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            {...props}
         >
             {children}
         </motion.div>
@@ -69,7 +68,7 @@ export const CardImage: React.FC<{
 )
 
 export const CardIcon: React.FC<{
-    icon: React.ReactNode
+    icon: string
     className?: string
     variant?: 'default' | 'gradient' | 'outline'
 }> = ({ icon, className, variant = 'default' }) => {
@@ -81,7 +80,7 @@ export const CardIcon: React.FC<{
 
     return (
         <div className={cn(iconVariants[variant], className)}>
-            <div className="text-2xl">{icon}</div>
+            <Icon className="text-2xl" icon={icon} />
         </div>
     )
 }
@@ -199,7 +198,6 @@ export const CardAction: React.FC<{
     buttonSize = 'default',
     className
 }) => {
-        if (variant === 'button') {
             return (
                 <Button
                     href={href}
@@ -214,42 +212,5 @@ export const CardAction: React.FC<{
             )
         }
 
-        if (href) {
-            if (external) {
-                return (
-                    <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={cn("inline-flex items-center text-primary hover:text-primary/90 text-sm font-medium", className)}
-                    >
-                        {children}
-                    </a>
-                )
-            }
-
-            return (
-                <Link
-                    href={href}
-                    className={cn("inline-flex items-center text-primary hover:text-primary/90 text-sm font-medium", className)}
-                >
-                    {children}
-                </Link>
-            )
-        }
-
-        if (onClick) {
-            return (
-                <button
-                    onClick={onClick}
-                    className={cn("inline-flex items-center text-primary hover:text-primary/90 text-sm font-medium", className)}
-                >
-                    {children}
-                </button>
-            )
-        }
-
-        return null
-    }
 
 export default Card

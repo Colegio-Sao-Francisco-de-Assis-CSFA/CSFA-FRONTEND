@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Search, School } from 'lucide-react';
-import { DADOS_ESCOLA } from '@/lib/data-turma';
+import { DADOS_ESCOLA } from '@/lib/data/turma';
 import type { Aluno, Turma } from './types';
 import ResultadoBusca from '../turmas/components/ResultadosBusca';
 // Interface para o resultado da busca

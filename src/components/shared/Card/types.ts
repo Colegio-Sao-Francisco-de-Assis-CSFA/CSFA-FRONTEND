@@ -110,7 +110,7 @@ export interface CampusCardProps {
 }
 
 export interface ParceirosCardProps {
-    icon: React.ReactNode
+    icon: string
     title: string
     description: string
     className?: string

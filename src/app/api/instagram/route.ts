@@ -1,6 +1,6 @@
 // app/api/instagram/route.ts
 import { NextResponse } from 'next/server';
-import { InstagramPost } from '@/types/instagram-types';
+import { InstagramPost } from '@/types/instagram.types';
 
 // Variáveis de Cache (cache em memória simples para demonstração)
 // Em produção, considere um cache persistente como Redis ou banco de dados.
