@@ -1,0 +1,151 @@
+name: CI/CD Pipeline com SSH Deploy
+
+# Triggers do workflow
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+# Variáveis de ambiente globais
+env:
+  NODE_VERSION: '18'
+  
+jobs:
+  # Job de build e testes
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        
+    - name: Instalar dependências
+      run: npm ci
+      
+    - name: Executar testes
+      run: npm test
+      
+    - name: Build da aplicação
+      run: npm run build
+      
+    - name: Upload dos artefatos de build
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-files
+        path: |
+          dist/
+          build/
+          public/
+        retention-days: 1
+
+  # Job de deploy (só executa se o build passar)
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+      
+    - name: Download dos artefatos
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+        
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        # Configurações do servidor (definir nos secrets)
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT || 22 }}
+        
+        # Comandos a serem executados no servidor
+        script: |
+          # Navegar para o diretório da aplicação
+          cd /var/www/html/minha-app
+          
+          # Fazer backup da versão atual
+          if [ -d "current" ]; then
+            mv current backup-$(date +%Y%m%d_%H%M%S)
+          fi
+          
+          # Criar diretório para nova versão
+          mkdir -p current
+          
+          # Parar serviços se necessário (exemplo: PM2)
+          # pm2 stop minha-app || true
+          
+          echo "Deploy realizado com sucesso em $(date)"
+
+    - name: Upload de arquivos via SSH
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT || 22 }}
+        
+        # Arquivos/diretórios para upload
+        source: |
+          dist/*
+          package.json
+          package-lock.json
+          
+        # Diretório de destino no servidor
+        target: /var/www/html/minha-app/current/
+        
+        # Remove o caminho source do target
+        strip_components: 1
+        
+    - name: Pós-deploy via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT || 22 }}
+        
+        script: |
+          cd /var/www/html/minha-app/current
+          
+          # Instalar dependências de produção (se necessário)
+          # npm ci --only=production
+          
+          # Reiniciar serviços
+          # pm2 restart minha-app || pm2 start ecosystem.config.js
+          # sudo systemctl restart nginx
+          
+          # Limpar backups antigos (manter apenas os 5 mais recentes)
+          cd /var/www/html/minha-app
+          ls -t backup-* 2>/dev/null | tail -n +6 | xargs rm -rf 2>/dev/null || true
+          
+          echo "Pós-deploy concluído!"
+
+  # Job de notificação (opcional)
+  notify:
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Notificar sucesso
+      if: needs.deploy.result == 'success'
+      run: |
+        echo "✅ Deploy realizado com sucesso!"
+        # Aqui você pode integrar com Slack, Discord, email, etc.
+        
+    - name: Notificar falha
+      if: needs.build.result == 'failure' || needs.deploy.result == 'failure'
+      run: |
+        echo "❌ Deploy falhou!"
+        # Notificação de erro
