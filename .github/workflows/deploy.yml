@@ -9,7 +9,7 @@ on:
 
 # Variáveis de ambiente globais
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '22'
   
 jobs:
   # Job de build e testes
