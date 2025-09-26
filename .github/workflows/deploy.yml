@@ -18,7 +18,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd frontend
+          cd /home/colsaofrancisco/htdocs/www.colsaofrancisco.com.br/CSFA-FRONTEND
           git pull origin main
           npm install
           npm run build
