@@ -1,10 +1,7 @@
 // src/components/layout/Header/NavLink.tsx
 import Link from 'next/link';
 
-interface NavLinkProps {
-  href: string;
-  children: React.ReactNode;
-}
+import { NavLinkProps } from './types';
 
 export function NavLink({ href, children }: NavLinkProps) {
   return (

@@ -4,25 +4,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 
-// Definir uma interface para a estrutura de cada input
-interface FormInputConfig {
-  label: string;
-  type: string;
-  id: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  placeholder: string;
-  className: string;
-  required: boolean;
-  // Adicionar uma propriedade opcional para determinar se é um textarea
-  component?: 'input' | 'textarea';
-  rows?: number; // Para textareas
-}
-
-interface SimpleFormProps {
-  itemVariants?: any; // Opcional, para passar variantes de animação
-}
+import { FormInputConfig, SimpleFormProps } from './types';
 
 const SimpleContactForm: React.FC<SimpleFormProps> = ({ itemVariants }) => {
   const [name, setName] = useState('');

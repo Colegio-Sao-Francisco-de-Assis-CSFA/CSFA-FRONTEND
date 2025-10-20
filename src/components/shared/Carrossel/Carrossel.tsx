@@ -10,18 +10,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-interface ReusableCarouselProps<T> {
-  items: T[];
-  renderItem: (item: T) => React.ReactNode;
-  onSwiperInit?: (swiper: SwiperCore) => void;
-  swiperOptions?: SwiperOptions;
-  className?: string;
-  swiperClassName?: string;
-}
-
-type ItemWithId = {
-  id: string | number;
-};
+import { ReusableCarouselProps, ItemWithId } from './types';
 
 const ReusableCarousel = <T extends ItemWithId>({
   items,

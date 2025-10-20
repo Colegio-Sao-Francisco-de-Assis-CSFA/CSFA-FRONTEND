@@ -4,11 +4,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Icon } from '@iconify/react'; // Importa Icon do Iconify
-import { ContactDetailProps } from './types'; // Importa a interface
-
-interface Props {
-  variants: any; // motion/react variants
-}
+import { ContactDetailProps, ContactDetailsProps } from './types'; // Importa a interface
 
 const contactDetailsData: ContactDetailProps[] = [
   {
@@ -37,7 +33,7 @@ const contactDetailsData: ContactDetailProps[] = [
   }
 ];
 
-const ContactDetails: React.FC<Props> = ({ variants }) => {
+const ContactDetails: React.FC<ContactDetailsProps> = ({ variants }) => {
   return (
     <motion.div
       // Usa bg-card e border-border do globals.css

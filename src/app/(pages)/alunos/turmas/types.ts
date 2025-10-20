@@ -33,3 +33,23 @@ export interface Turma {
   professores: Professor[];
   documentos: Documento[];
 }
+
+export type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export interface ResultadoBuscaProps {
+  aluno: Aluno;
+  turma: Turma;
+}
+
+export interface StudentModalProps {
+  aluno: Aluno;
+  turma: string;
+  onClose: () => void;
+}
+
+export interface Resultado {
+  aluno: Aluno;
+  turma: Turma;
+}

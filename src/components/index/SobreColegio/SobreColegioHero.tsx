@@ -3,9 +3,11 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useInView } from 'motion/react';
-import { LinkButton } from '@/components/shared/Button';
+import Button from '@/components/shared/Button';
 
-const SobreColegioHero = ({
+import { SobreColegioHeroProps } from './types';
+
+const SobreColegioHero: React.FC<SobreColegioHeroProps> = ({
   mainTitle,
   subtitle,
   shortDescription,
@@ -99,9 +101,9 @@ const SobreColegioHero = ({
         </motion.p>
 
         <motion.div variants={itemVariants}>
-          <LinkButton href={ctaLink}>
+          <Button href={ctaLink}>
             {ctaText}
-          </LinkButton>
+          </Button>
         </motion.div>
       </motion.div>
 

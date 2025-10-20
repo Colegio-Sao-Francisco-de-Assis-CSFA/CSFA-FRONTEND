@@ -18,36 +18,7 @@ import {
     MessageSquare
 } from 'lucide-react';
 
-// Interface definitions for Job, ApplicationForm, and Toast
-interface Job {
-    id: string;
-    title: string;
-    company: string;
-    companyRating: number;
-    salary: string;
-    type: string;
-    schedule: string;
-    description: string;
-    requirements: string[];
-    benefits: string[];
-    postedDate: string;
-    applicants?: string;
-    badges?: string[];
-}
-
-interface ApplicationForm {
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-    file: File | null;
-}
-
-interface Toast {
-    show: boolean;
-    message: string;
-    type: 'success' | 'error';
-}
+import { Job, ApplicationForm, Toast } from './types';
 
 // Mock data for job listings
 const jobsData: Job[] = [

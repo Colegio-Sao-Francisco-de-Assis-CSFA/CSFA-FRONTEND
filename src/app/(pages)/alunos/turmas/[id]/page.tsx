@@ -4,9 +4,7 @@ import { DADOS_ESCOLA } from '@/lib/data/turma';
 import DetalhesTurmaCliente from '../components/DetalhesTurma';
 import { ArrowLeft, Calendar, GraduationCap } from 'lucide-react';
 
-type PageProps = {
-  params: Promise<{ id: string }>;
-};
+import { PageProps } from '../types';
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;

@@ -6,7 +6,7 @@ export interface ParceirosHeaderProps {
 }
 
 export interface ParceiroBeneficioCardProps {
-  icon: React.ReactNode;
+  icon: string;
   title: string;
   description: string;
 }

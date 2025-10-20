@@ -56,7 +56,7 @@ export interface CardBadgeProps {
 
 export interface CardDateProps {
     date: string
-    icon?: React.ReactNode
+    icon?: string
     className?: string
 }
 

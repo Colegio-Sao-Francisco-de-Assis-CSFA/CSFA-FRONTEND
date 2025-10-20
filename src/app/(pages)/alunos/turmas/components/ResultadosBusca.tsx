@@ -4,13 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Users, GraduationCap, FileText, ChevronRight, Mail, Eye } from 'lucide-react';
 
-import { Turma, Aluno } from '../types';
+import { Turma, Aluno, ResultadoBuscaProps } from '../types';
 import StudentModal from './StudentModal';
-
-interface ResultadoBuscaProps {
-  aluno: Aluno;
-  turma: Turma;
-}
 
 export default function ResultadoBusca({ aluno, turma }: ResultadoBuscaProps) {
   const [activeTab, setActiveTab] = useState('aluno');

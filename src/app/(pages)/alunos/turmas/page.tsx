@@ -3,13 +3,8 @@
 import { useState } from 'react';
 import { Search, School } from 'lucide-react';
 import { DADOS_ESCOLA } from '@/lib/data/turma';
-import type { Aluno, Turma } from './types';
-import ResultadoBusca from '../turmas/components/ResultadosBusca';
-// Interface para o resultado da busca
-interface Resultado {
-  aluno: Aluno;
-  turma: Turma;
-}
+import type { Aluno, Turma, Resultado } from './types';
+import ResultadoBusca from './components/ResultadosBusca';
 
 export default function PaginaBuscaAluno() {
 

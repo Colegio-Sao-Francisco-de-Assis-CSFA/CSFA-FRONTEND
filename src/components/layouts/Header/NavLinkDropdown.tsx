@@ -8,12 +8,7 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import Link from 'next/link';
-import { NavItem } from './types';
-
-interface NavLinkDropdownProps {
-  label: string;
-  items: NavItem[];
-}
+import { NavItem, NavLinkDropdownProps, ListItemProps } from './types';
 
 export function NavLinkDropdown({ label, items }: NavLinkDropdownProps) {
   return (
@@ -39,7 +34,7 @@ export function NavLinkDropdown({ label, items }: NavLinkDropdownProps) {
   );
 }
 
-const ListItem = ({ href, title }: { href: string; title: string }) => (
+const ListItem = ({ href, title }: ListItemProps) => (
   <NavigationMenuLink className='p-0 m-0 w-44 rounded-none' asChild>
     <Link
       href={href}

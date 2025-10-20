@@ -1,14 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Slide } from './types';
-
-interface CarouselSlideProps {
-  slide: Slide;
-  isActive: boolean;
-  isMobile: boolean;
-  className?: string;
-}
+import { Slide, CarouselSlideProps } from './types';
 
 export const CarouselSlide: React.FC<CarouselSlideProps> = ({
   slide,

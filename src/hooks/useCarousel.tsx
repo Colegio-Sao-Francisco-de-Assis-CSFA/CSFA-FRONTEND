@@ -2,12 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-interface UseCarouselProps {
-  slidesCount: number;
-  autoPlay?: boolean;
-  interval?: number;
-  isMobile?: boolean;
-}
+import { UseCarouselProps } from './types';
 
 const useCarousel = ({
   slidesCount,

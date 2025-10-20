@@ -4,15 +4,12 @@
 import React from 'react';
 import { motion, TargetAndTransition } from 'motion/react'; // Ajuste a importação
 
-interface Props {
-  initial: TargetAndTransition; // Tipo correto para 'initial' e 'animate'
-  animate: TargetAndTransition;
-}
+import { ContactHeaderProps } from './types';
 
 const title = 'Entre em contato';
 const subtitle = 'Estamos aqui para ajudar você. Envie sua mensagem e nossa equipe entrará em contato o mais breve possível.'
 
-const ContactHeader: React.FC<Props> = ({ initial, animate }) => { // Remova as props não usadas
+const ContactHeader: React.FC<ContactHeaderProps> = ({ initial, animate }) => { // Remova as props não usadas
   return (
     <div className="text-start mb-4">
 

@@ -4,14 +4,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Icon } from '@iconify/react'; // Importa Icon do Iconify
-import { ContactInfoCardProps } from './types'; // Importa a interface
+import { ContactInfoCardProps, ContactInfoCardComponentProps } from './types'; // Importa a interface
 
-interface Props {
-  item: ContactInfoCardProps;
-  variants: any; // motion/react variants
-}
-
-const ContactInfoCard: React.FC<Props> = ({ item, variants }) => {
+const ContactInfoCard: React.FC<ContactInfoCardComponentProps> = ({ item, variants }) => {
   return (
     <motion.div
       // Usa bg-card, border-border do globals.css

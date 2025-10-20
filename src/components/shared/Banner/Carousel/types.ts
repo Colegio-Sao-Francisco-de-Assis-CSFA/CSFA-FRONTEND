@@ -27,3 +27,10 @@ export interface CarouselControls {
   currentSlide: number;
   slidesCount: number;
 }
+
+export interface CarouselSlideProps {
+  slide: Slide;
+  isActive: boolean;
+  isMobile: boolean;
+  className?: string;
+}

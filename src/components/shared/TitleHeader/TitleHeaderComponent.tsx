@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button as LinkButton } from '@/components/shared/Button/Button';
 import TypingEffect from '@/components/shared/TypingEffect';
-import { TitleProps } from './types';
+import { TitleProps } from './types.ts';
 
 const TitleHeaderComponent: React.FC<TitleProps> = ({
     title,

@@ -6,14 +6,7 @@ import { Swiper as SwiperCore } from 'swiper/types';
 import { SwiperOptions } from 'swiper/types';
 import ReusableCarousel from '@/components/shared/Carrossel/Carrossel';
 import CampusShowcaseCard from './CampusShowcaseCard';
-import {CampusFeature, CampusShowcaseRootProps} from './types';
-
-
-
-interface CampusShowcaseRootWithFeaturesProps extends CampusShowcaseRootProps {
-  features: CampusFeature[];
-  onSwiperInit?: (swiper: SwiperCore) => void;
-}
+import {CampusFeature, CampusShowcaseRootProps, CampusShowcaseRootWithFeaturesProps} from './types';
 
 const CampusShowcaseRoot: React.FC<CampusShowcaseRootWithFeaturesProps> = ({ features, onSwiperInit }) => {
   const showcaseSwiperOptions: SwiperOptions = {

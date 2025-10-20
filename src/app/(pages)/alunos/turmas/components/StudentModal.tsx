@@ -1,17 +1,5 @@
-import { Aluno } from "../types";
-import {
-  X,
-  Mail,
-  UserCheck,
-  Settings,
-  Globe
-} from 'lucide-react';
-
-interface StudentModalProps {
-  aluno: Aluno;
-  turma: string;
-  onClose: () => void;
-}
+import { Aluno, StudentModalProps } from "../types";
+import { X, UserCheck, Mail, Settings, Globe } from 'lucide-react';
 
 export default function StudentModal({ aluno, turma, onClose }:StudentModalProps) {
   return (

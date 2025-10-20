@@ -1,4 +1,6 @@
 // components/site/CampusShowcase/types.ts
+import { Swiper as SwiperCore } from 'swiper/types';
+
 export interface CampusShowcaseCardProps {
   feature: CampusFeature;
 }
@@ -20,3 +22,7 @@ export interface CampusFeature {
   imageSrc: string;
 }
 
+export interface CampusShowcaseRootWithFeaturesProps extends CampusShowcaseRootProps {
+  features: CampusFeature[];
+  onSwiperInit?: (swiper: SwiperCore) => void;
+}

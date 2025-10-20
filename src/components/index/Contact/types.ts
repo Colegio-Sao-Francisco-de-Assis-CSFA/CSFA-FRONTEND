@@ -1,5 +1,6 @@
 // site/Contact/types.ts
 import React from 'react'; // Certifique-se de que React está importado para React.ReactNode
+import { TargetAndTransition } from 'motion/react';
 
 export interface ContactInfoCardProps {
   icon: string; // Ícones Iconify são strings
@@ -41,4 +42,36 @@ export interface SubjectOption {
   value: string;
   label: string;
   icon: string | null; // Ícones Iconify são strings ou null
+}
+
+export interface ContactDetailsProps {
+  variants: any; // motion/react variants
+}
+
+export interface FormInputConfig {
+  label: string;
+  type: string;
+  id: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  placeholder: string;
+  className: string;
+  required: boolean;
+  component?: 'input' | 'textarea';
+  rows?: number; // Para textareas
+}
+
+export interface SimpleFormProps {
+  itemVariants?: any; // Opcional, para passar variantes de animação
+}
+
+export interface ContactHeaderProps {
+  initial: TargetAndTransition; // Tipo correto para 'initial' e 'animate'
+  animate: TargetAndTransition;
+}
+
+export interface ContactInfoCardComponentProps {
+  item: ContactInfoCardProps;
+  variants: any; // motion/react variants
 }

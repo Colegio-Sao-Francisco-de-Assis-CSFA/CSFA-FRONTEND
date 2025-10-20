@@ -3,21 +3,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Users, Calendar, BookOpen, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
-interface Statistic {
-  id: string;
-  icon: React.ReactNode;
-  value: string;
-  description: string;
-  endValue: number;
-  suffix?: string;
-}
+import { AnimatedCounterProps, Statistic } from './types';
 
-// Counter component that animates a number from 0 to target value
-const AnimatedCounter: React.FC<{
-  endValue: number;
-  duration?: number;
-  suffix?: string;
-}> = ({ endValue, duration = 2000, suffix = '' }) => {
+const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ endValue, duration = 2000, suffix = '' }) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
