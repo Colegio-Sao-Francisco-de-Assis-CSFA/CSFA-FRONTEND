@@ -4,7 +4,6 @@
 
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { NewsCard } from '@/components/index/News//NewsCard';
 import { NewsItem } from '@/components/index/News/types';
 import TitleHeaderComponent from '@/components/shared/TitleHeader';
@@ -66,16 +65,13 @@ export default function NewsSection() {
         subtitle={subtitle}
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+      <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
         {news.map((item) => (
           <NewsCard key={item.id} item={item} />
         ))}
-      </motion.div>
+      </div>
 
     </div>
   );

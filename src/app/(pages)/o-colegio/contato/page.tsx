@@ -1,51 +1,32 @@
-"use client";
+// src/app/(pages)/o-colegio/contato/page.tsx
+import { 
+  ContactForm, 
+  ContactInfo, 
+  Map, 
+  ContactReasons 
+} from '@/components/contato';
 
-
-import TitleHeaderComponent from '@/components/shared/TitleHeader';
-import { Static as BannerStatic } from '@/components/shared/Banner/Static/Static';
-import type { Slide } from '@/components/shared/Banner/Carousel/types';
-
-const Contato = () => {
-
-    const slides: Slide[] = [
-        {
-            id: 'slide-1',
-            image: '/images/banner/volta-as-aulas-1920.png',
-            mobileImage: '/images/banner/volta-as-aulas-500.png',
-            alt: 'Volta às aulas',
-            title: 'Volta às aulas',
-            description: 'Volta às aulas é no Magazine são francisco, aprovite nossas ofertas.',
-            cta: {
-                text: 'Compre agora',
-                link: '/'
-            }
-        },
-    ];
-
+export default function ContatoPage() {
     return (
-        <section className='w-full'>
-
-            <BannerStatic
-                image='/images/banner/static/franciscano-1920.png'
-                mobileImage='/images/banner/volta-as-aulas-500.png'
-                alt='Banner página contato'
-                className="mx-auto bg-blue-600"
-            />
-
-            <section className="min-h-screen bg-white text-gray-800 pt-32">
-                {/* Header */}
-                <TitleHeaderComponent
-                    title='Entre em contato'
-                    subtitle='Tire sua dúvidas ou agende sua visita.'
-                />
-            </section>
-
-        </section>
+        <div className="bg-white">
+            <div className="container mx-auto px-4 py-20">
+                <ContactReasons />
+                <div className="grid lg:grid-cols-2 gap-16">
+                    <div className="lg:pr-8">
+                        <h1 className="text-4xl font-bold mb-4">Ou nos envie uma mensagem</h1>
+                        <p className="text-lg text-gray-600 mb-8">
+                            Preencha o formulário abaixo e nossa equipe responderá o mais breve possível.
+                        </p>
+                        <ContactForm />
+                    </div>
+                    <div className="space-y-8">
+                        <div className="h-80">
+                            <Map />
+                        </div>
+                        <ContactInfo />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
-
-
-};
-
-export default Contato;
-
-
+}

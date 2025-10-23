@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Button } from '@/components/shared/Button/Button';
 // 1. Importar o TitleHeaderComponent
 import TitleHeaderComponent from '@/components/shared/TitleHeader';
@@ -25,11 +24,8 @@ const SobreColegioHero = ({
             ref={ref}
             className="relative w-full min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-screen overflow-hidden flex items-center justify-start px-4 sm:px-6 lg:px-8 py-16"
         >
-            <motion.div
+            <div
                 className="absolute inset-0 z-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
             >
                 <Image
                     src="/images/background-site.png"
@@ -41,7 +37,7 @@ const SobreColegioHero = ({
                 />
                 <div className="absolute inset-0 bg-blue-900/60 dark:bg-background/90"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-            </motion.div>
+            </div>
 
             <div className="relative z-10 text-white max-w-screen-xl mx-auto w-full">
                 <TitleHeaderComponent

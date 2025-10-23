@@ -1,35 +1,20 @@
-"use client";
+// src/app/(pages)/o-colegio/quem-somos/page.tsx
+import {
+  HeroSection,
+  HistoryTimeline,
+  MissionVisionValues,
+  PedagogySummary,
+  PhotoGallery,
+} from '@/components/quem-somos';
 
-
-import TitleHeaderComponent from '@/components/shared/TitleHeader';
-import { Static as BannerStatic } from '@/components/shared/Banner/Static/Static';
-
-const QuemSomos = () => {
-
-    return (
-        <section className='w-full'>
-
-            <BannerStatic
-                image='/images/banner/static/franciscano-1920.png'
-                mobileImage='/images/banner/volta-as-aulas-500.png'
-                alt='Banner página contato'
-                className="mx-auto bg-blue-600"
-            />
-
-            <section className="min-h-screen bg-white text-gray-800 pt-32">
-                {/* Header */}
-                <TitleHeaderComponent
-                    title='Quem Somos'
-                    subtitle='Tire sua dúvidas ou agende sua visita.'
-                />
-            </section>
-
-        </section>
-    );
-
-
-};
-
-export default QuemSomos;
-
-
+export default function QuemSomosPage() {
+  return (
+    <div>
+      <HeroSection />
+      <HistoryTimeline />
+      <MissionVisionValues />
+      <PedagogySummary />
+      <PhotoGallery />
+    </div>
+  );
+}

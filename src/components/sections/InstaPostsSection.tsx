@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, MessageCircle, ExternalLink, AlertCircle } from 'lucide-react';
 import Button from '@/components/shared/Button';
-import { motion } from 'framer-motion';
 import { InstagramPost } from '@/types/instagram.types';
 
 const InstagramPosts: React.FC = () => {
@@ -110,25 +109,22 @@ const InstagramPosts: React.FC = () => {
       <div className="max-w-screen-xl space-y-6 mx-auto py-12">
 
         <div className="text-center mb-12">
-          <motion.h2
+          <h2
             className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-bl from-blue-950 via-blue-800 to-blue-500 bg-clip-text text-transparent leading-tight mb-4"
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.2 }}
           >
             {title}
-          </motion.h2>
+          </h2>
 
-          <motion.p
+          <p
             className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto mb-6
                    dark:text-muted-foreground">
             {subtitle}
-          </motion.p>
+          </p>
 
-          <motion.span
+          <span
             className="block w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full
                    dark:bg-primary">
-          </motion.span>
+          </span>
         </div>
 
         <div className="grid grid-cols-4 gap-1 max-w-6xl bg-foreground mx-auto">

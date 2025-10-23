@@ -20,11 +20,11 @@ export const mainNavItems: NavMenu[] = [
     type: 'dropdown',
     label: 'Como Educamos',
     items: [
-      { label: 'Proposta Pedagógica', href: '/colegio/proposta-pedagogica' },
-      { label: 'Extracurriculares', href: '/colegio/extracurriculares' },
-      { label: 'Parcerias', href: '/colegio/parcerias' },
-      { label: 'Tecnologia Educacional', href: '/colegio/tecnologia-educacional' },
-      { label: 'Pastoral', href: '/colegio/pastoral' },
+      { label: 'Proposta Pedagógica', href: '/como-educamos/proposta-pedagogica' },
+      { label: 'Extracurriculares', href: '/como-educamos/extracurriculares' },
+      { label: 'Parcerias', href: '/como-educamos/parcerias' },
+      { label: 'Tecnologia Educacional', href: '/como-educamos/tecnologia-educacional' },
+      { label: 'Pastoral', href: '/como-educamos/pastoral' },
     ],
   },
   {

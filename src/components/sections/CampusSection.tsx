@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { CampusShowcaseRoot, CampusFeature } from '@/components/index/CampusShowcase';
 import { MousePointerClick, Pointer } from 'lucide-react';
 import TitleHeaderComponent from '../shared/TitleHeader';
-import { motion } from 'motion/react';
 
 const campusFeatures: CampusFeature[] = [
   {
@@ -63,10 +62,7 @@ const CampusShowcaseSection: React.FC = () => {
         subtitle="Conheça de perto as instalações modernas e os ambientes projetados para o desenvolvimento integral dos nossos alunos."
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
+      <div
         className="relative"
       >
 
@@ -86,7 +82,7 @@ const CampusShowcaseSection: React.FC = () => {
             Arraste para passar
           </span>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

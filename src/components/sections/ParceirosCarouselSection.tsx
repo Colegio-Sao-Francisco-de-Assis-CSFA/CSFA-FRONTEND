@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useRef } from 'react';
-import { motion } from 'motion/react';
 import { PartnerCarousel, PartnerLogo, ScrollSpeed } from "@/components/index/ParceirosCarousel";
 import TitleHeaderComponent from '../shared/TitleHeader';
 import { Icon } from '@iconify/react';
@@ -51,11 +50,8 @@ const ParceirosCarouselSection: React.FC = () => {
                     subtitle='parcerias de valor e que transformam'
                 />
 
-                <motion.div
+                <div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10 mb-12 w-full"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
                 >
                     {beneficiosParceiros.map((beneficio) => (
                         <ParceirosCard
@@ -65,21 +61,18 @@ const ParceirosCarouselSection: React.FC = () => {
                             description={beneficio.description}
                         />
                     ))}
-                </motion.div>
+                </div>
 
                 {/* Carousel de Parceiros */}
-                <motion.div
+                <div
                     className="w-full mt-8"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
                 >
                     <PartnerCarousel
                         logos={partnerLogos}
                         scrollSpeed={scrollSpeed}
                         logoClassName="w-full"
                     />
-                </motion.div>
+                </div>
 
             </div>
         </section>

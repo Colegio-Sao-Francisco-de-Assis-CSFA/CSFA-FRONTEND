@@ -1,35 +1,24 @@
-"use client";
+// src/app/(pages)/o-colegio/informacoes-uteis/page.tsx
+import {
+  HeroSection,
+  InfoGrid,
+  ScheduleSection,
+  CalendarSection,
+  UniformSection,
+  SuppliesSection,
+  MenuSection,
+} from '@/components/informacoes-uteis';
 
-
-import TitleHeaderComponent from '@/components/shared/TitleHeader';
-import { Static as BannerStatic } from '@/components/shared/Banner/Static/Static';
-
-const Metodologia= () => {
-
-    return (
-        <section className='w-full'>
-
-            <BannerStatic
-                image='/images/banner/static/franciscano-1920.png'
-                mobileImage='/images/banner/volta-as-aulas-500.png'
-                alt='Banner página contato'
-                className="mx-auto bg-blue-600"
-            />
-
-            <section className="min-h-screen bg-white text-gray-800 pt-32">
-                {/* Header */}
-                <TitleHeaderComponent
-                    title='Informações Úteis'
-                    subtitle='Horários de atendimento, dúvidas institucionais ou agende sua visita.'
-                />
-            </section>
-
-        </section>
-    );
-
-
-};
-
-export default Metodologia;
-
-
+export default function InformacoesUteisPage() {
+  return (
+    <div>
+      <HeroSection />
+      <InfoGrid />
+      <ScheduleSection />
+      <CalendarSection />
+      <UniformSection />
+      <SuppliesSection />
+      <MenuSection />
+    </div>
+  );
+}
