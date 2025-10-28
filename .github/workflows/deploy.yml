@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ main ]
+    branches: [ test ]
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         port: 22
         script: |
-          cd /home/colsaofrancisco/htdocs/www.colsaofrancisco.com.br/CSFA-FRONTEND
+          cd /home/colsaofrancisco-teste-www/htdocs/teste.www.colsaofrancisco.com.br/CSFA-FRONTEND
           git pull origin main
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
