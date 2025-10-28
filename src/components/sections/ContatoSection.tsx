@@ -37,8 +37,7 @@ const ContactSection: React.FC = () => {
           <div
             className="lg:col-span-1"
           >
-            <ContactHeader
-            />
+            <ContactHeader />
             <ContactForm itemVariants={itemVariants} />
           </div>
 

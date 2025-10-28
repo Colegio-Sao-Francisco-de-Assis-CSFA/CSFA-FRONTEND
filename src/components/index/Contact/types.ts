@@ -67,8 +67,7 @@ export interface SimpleFormProps {
 }
 
 export interface ContactHeaderProps {
-  initial: TargetAndTransition; // Tipo correto para 'initial' e 'animate'
-  animate: TargetAndTransition;
+  
 }
 
 export interface ContactInfoCardComponentProps {
