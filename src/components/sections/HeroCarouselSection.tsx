@@ -11,12 +11,6 @@ const HeroCarouselSection = () => {
             image: '/images/banner/volta-as-aulas-1920.png',
             mobileImage: '/images/banner/volta-as-aulas-500.png',
             alt: 'Volta às aulas',
-            title: 'Volta às aulas',
-            description: 'Volta às aulas é no Magazine são francisco, aprovite nossas ofertas.',
-            cta: {
-                text: 'Compre agora',
-                link: '/'
-            }
         },
     ];
 
@@ -25,7 +19,7 @@ const HeroCarouselSection = () => {
             slides={slides}
             autoPlay={true}
             interval={5000}
-            className="mx-auto bg-blue-600"
+            className="mx-auto"
         />
     );
 };
