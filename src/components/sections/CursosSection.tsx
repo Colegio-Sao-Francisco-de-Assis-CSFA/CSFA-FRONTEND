@@ -1,12 +1,9 @@
 "use client";
 
 import React from 'react';
-import { BookOpen, Users, GraduationCap, Baby } from 'lucide-react';
 
 import TitleHeaderComponent from '../shared/TitleHeader';
 import { CourseCard } from '../shared/Card/CourseCard';
-
-
 
 const CoursesSection = () => {
 
@@ -26,7 +23,7 @@ const CoursesSection = () => {
       description: "Ambiente lúdico e seguro para os primeiros passos no aprendizado. Estímulo à criatividade, socialização e desenvolvimento integral dos pequenos.",
       ageRange: "1 a 5 anos",
       highlights: ["Desenvolvimento motor", "Estimulação cognitiva", "Brincadeiras educativas"],
-      icon: Baby,
+      icon: 'lucide:baby',
       color: colorPalette[0],
       bgColor: `bg-${colorPalette[0]}`,
       textColor: "text-white",
@@ -39,7 +36,7 @@ const CoursesSection = () => {
       description: "Formação integral com foco no desenvolvimento cognitivo, social e emocional. Metodologia lúdica e interativa para despertar o amor pelo aprendizado.",
       ageRange: "6 a 10 anos",
       highlights: ["Alfabetização", "Desenvolvimento motor", "Valores éticos"],
-      icon: BookOpen,
+      icon: 'lucide:book-open',
       color: colorPalette[1],
       bgColor: `bg-${colorPalette[1]}`,
       textColor: "text-white",
@@ -52,7 +49,7 @@ const CoursesSection = () => {
       description: "Preparação para desafios acadêmicos com metodologia inovadora. Desenvolvimento do pensamento crítico e autonomia intelectual.",
       ageRange: "11 a 14 anos",
       highlights: ["Pensamento crítico", "Projetos interdisciplinares", "Tecnologia educacional"],
-      icon: Users,
+      icon: 'lucide:users',
       color: colorPalette[2],
       bgColor: `bg-${colorPalette[2]}`,
       textColor: "text-white",
@@ -65,7 +62,7 @@ const CoursesSection = () => {
       description: "Excelência acadêmica com foco no ingresso ao ensino superior. Orientação vocacional e desenvolvimento de competências para o futuro.",
       ageRange: "15 a 17 anos",
       highlights: ["Preparação ENEM", "Orientação vocacional", "Liderança"],
-      icon: GraduationCap,
+      icon: 'lucide:graduation-cap',
       color: colorPalette[3],
       bgColor: `bg-${colorPalette[3]}`,
       textColor: "text-white",

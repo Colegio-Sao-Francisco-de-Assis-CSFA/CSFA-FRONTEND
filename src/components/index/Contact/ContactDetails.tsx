@@ -33,12 +33,11 @@ const contactDetailsData: ContactDetailProps[] = [
   }
 ];
 
-const ContactDetails: React.FC<ContactDetailsProps> = ({ variants }) => {
+const ContactDetails: React.FC<ContactDetailsProps> = () => {
   return (
     <motion.div
       // Usa bg-card e border-border do globals.css
       className="bg-card/80 backdrop-blur-sm rounded-2xl shadow-lg border border-border p-6"
-      variants={variants}
       whileHover={{ boxShadow: '0 20px 40px -12px rgba(0, 0, 0, 0.15)' }} // Sombra pode ser estática ou definida para dark mode
     >
       <h3 className="text-xl font-bold text-foreground mb-6">Informações de Contato</h3>
@@ -50,7 +49,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ variants }) => {
             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-accent transition-colors duration-200 group"
             whileHover={{ x: 5 }}
           >
-            <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-b from-indigo-800 via-blue-700 to-blue-500 text-white">
+            <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-blue-600 text-white">
               <Icon icon={item.icon} className="w-5 h-5 text-white" />
             </div>
             <div>

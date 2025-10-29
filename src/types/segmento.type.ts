@@ -1,5 +1,7 @@
 
 
+
+
 export type CursoItem = {
   id: number;
   title: string;
