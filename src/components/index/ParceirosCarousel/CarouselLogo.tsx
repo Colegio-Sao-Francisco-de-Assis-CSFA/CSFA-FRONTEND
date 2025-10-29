@@ -15,12 +15,10 @@ const CarouselLogo: React.FC<CarouselLogoProps> = ({ logo, className = '' }) => 
       md:min-w-[120px] md:max-w-[200px]
       flex-shrink-0
       lg:px-6
-      bg-white
-      rounded-2xl
       ${className}
     `}
   >
-    <div className="flex items-center justify-center rounded-lg">
+    <div className="flex items-center justify-center">
       <Image
         src={logo.src}
         alt={logo.alt}
