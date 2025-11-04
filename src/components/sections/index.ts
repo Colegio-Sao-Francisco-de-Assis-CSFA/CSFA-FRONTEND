@@ -8,6 +8,8 @@ export { default as NewsSection } from './NewsSection';
 export { default as ParceirosCarouselSection } from './ParceirosCarouselSection';
 export { default as SobreColegioSection } from './SobreColegioSection';
 export { default as ContactSection } from './ContatoSection';
+export { default as CtaNewsletterSection } from './CtaNewsletterSection';
+
 
 
 

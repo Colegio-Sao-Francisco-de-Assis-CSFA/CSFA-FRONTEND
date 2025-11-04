@@ -6,7 +6,7 @@ import { motion } from 'motion/react';
 
 import { FormInputConfig, SimpleFormProps } from './types';
 
-const SimpleContactForm: React.FC<SimpleFormProps> = ({ itemVariants }) => {
+const SimpleContactForm: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState(''); // Estado para o textarea
@@ -109,11 +109,10 @@ Mensagem: ${message}
   return (
     <motion.div
       className="bg-card/80 backdrop-blur-sm rounded-2xl shadow-lg border border-border p-8"
-      variants={itemVariants}
     >
       <form onSubmit={handleSubmit} className="space-y-6">
         {formInputs.map((inputConfig) => (
-          <motion.div variants={itemVariants} key={inputConfig.id}>
+          <motion.div key={inputConfig.id}>
             <label htmlFor={inputConfig.id} className="block text-sm font-medium text-muted-foreground mb-2 ">
               {inputConfig.label}
             </label>
@@ -149,7 +148,6 @@ Mensagem: ${message}
           className="cursor-pointer w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-3 px-6 rounded-md transition-colors duration-300 border border-border shadow-sm"
           whileHover={{ scale: 1.02, y: -2 }}
           whileTap={{ scale: 0.98 }}
-          variants={itemVariants}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Redirecionando para WhatsApp...' : 'Enviar Mensagem via WhatsApp'}

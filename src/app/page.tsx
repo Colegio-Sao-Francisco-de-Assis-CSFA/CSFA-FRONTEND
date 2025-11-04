@@ -8,6 +8,7 @@ import {
   CampusShowcaseSection,
   NewsSection,
   ParceirosCarouselSection,
+  CtaNewsletterSection,
 } from '@/components/sections';
 
 import dynamic from 'next/dynamic';
@@ -32,6 +33,8 @@ export default function Home() {
       <CampusShowcaseSection />
       <ParceirosCarouselSection />
       <NewsSection />
+      <CtaNewsletterSection />
+      <DynamicContactSection />
     </main>
 
   );

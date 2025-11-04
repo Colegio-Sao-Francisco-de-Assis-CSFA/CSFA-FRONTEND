@@ -6,27 +6,11 @@ import React from 'react';
 import {
   ContactHeader,
   ContactForm,
-  ContactInfoCard,
   ContactDetails,
   SocialMediaLinks,
-  ContactInfoCardProps
 } from '@/components/index/Contact';
 
 const ContactSection: React.FC = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0},
-    show: { opacity: 1},
-  };
 
   return (
     <section className="py-20 bg-background max-w-screen-xl mx-auto" id="contato">
@@ -38,12 +22,12 @@ const ContactSection: React.FC = () => {
             className="lg:col-span-1"
           >
             <ContactHeader />
-            <ContactForm itemVariants={itemVariants} />
+            <ContactForm />
           </div>
 
           {/* Lado Direito - Detalhes e Redes Sociais */}
           <div className="lg:col-span-1 flex flex-col justify-end space-y-8 p-2">
-            <ContactDetails variants={itemVariants} />
+            <ContactDetails variants={''}/>
             <SocialMediaLinks />
           </div>
         </div>
