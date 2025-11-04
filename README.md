@@ -14,63 +14,98 @@ O projeto foi desenvolvido com base em uma arquitetura moderna, utilizando **Cle
 - **Componentes de UI:** shadcn/ui
 - **Gerenciador de Pacotes:** NPM
 
-A arquitetura segue os princípios de **Clean Architecture**, separando as responsabilidades em camadas, e **Atomic Design** para a estruturação dos componentes de UI (átomos, moléculas, organismos).
-
-### Estrutura de Pastas
+### Estrutura de Pastas Detalhada
 
 A estrutura de pastas do projeto é organizada da seguinte forma:
 
 ```
+.vscode/              # Configurações do VSCode
+node_modules/         # Dependências do projeto
+public/               # Arquivos estáticos (imagens, fontes, etc.)
 src/
-  app/                # Páginas e rotas da aplicação
-    api/              # Endpoints de API
-  components/         # Componentes reutilizáveis
-    shared/           # Componentes atômicos e moléculas
-    ui/               # Primitivos de UI (shadcn)
-  hooks/              # Hooks customizados
-  lib/                # Funções utilitárias
+  app/                # Páginas e rotas da aplicação (App Router)
+    (pages)/          # Agrupamento de páginas
+      alunos/
+      como-educamos/
+      o-colegio/
+      segmentos/
+    api/              # Endpoints de API do Next.js
+      instagram/
+    globals.css       # Estilos globais
+    layout.tsx        # Layout principal da aplicação
+    page.tsx          # Página inicial
+  components/         # Componentes React reutilizáveis
+    contato/          # Componentes da página de contato
+    extracurriculares/ # Componentes da página de extracurriculares
+    index/            # Componentes da página inicial
+    layouts/          # Componentes de layout (Header, Footer)
+    shared/           # Componentes atômicos e moléculas (Design System)
+      Banner/
+      Button/
+      Card/
+    ui/               # Primitivos de UI (shadcn/ui)
+  config/             # Configurações do projeto (env, etc.)
+  hooks/              # Hooks React customizados
+  lib/                # Funções utilitárias e helpers
+    data/             # Dados mockados
+    utils.ts          # Funções utilitárias
   services/           # Lógica de negócio e comunicação com o backend
-  types/              # Tipos e interfaces globais
-  ```
+  types/              # Tipos e interfaces TypeScript globais
+.gitignore            # Arquivos e pastas a serem ignorados pelo Git
+components.json       # Configuração do shadcn/ui
+GEMINI.md             # Documentação da arquitetura e convenções do projeto
+next.config.ts        # Configurações do Next.js
+package.json          # Dependências e scripts do projeto
+README.md             # Documentação do projeto
+taiwind.config.ts     # Configurações do Tailwind CSS
+tsconfig.json         # Configurações do TypeScript
+```
 
 ### Padrões Arquiteturais
 
-- **Clean Architecture:** A lógica de negócio é separada da UI e do framework, tornando o código mais testável e independente.
-- **Atomic Design:** Os componentes são divididos em átomos, moléculas e organismos, promovendo a reutilização e a consistência visual.
+#### Clean Architecture
 
-### Modularidade de Componentes
+A Clean Architecture é um modelo de design de software que separa o código em camadas, com o objetivo de isolar a lógica de negócio de dependências externas, como frameworks e bancos de dados. Isso torna o código mais testável, manutenível e independente de tecnologia.
 
-A modularidade dos componentes segue o princípio do Atomic Design:
 
-- **Átomos:** Componentes básicos e indivisíveis, como `Button`, `Input`, `Label`. Eles são encontrados em `src/components/ui`.
-- **Moléculas:** Combinações de átomos que formam componentes mais complexos, como um campo de busca (composto por `Input` e `Button`).
-- **Organismos:** Combinações de moléculas que formam seções de uma página, como um cabeçalho ou um formulário de contato.
+**Responsabilidades das Camadas:**
 
-**Exemplo: `TurmaCard`**
+- **Domain (Entidades):** Contém os objetos de domínio e as regras de negócio mais gerais. No nosso caso, são as interfaces e tipos definidos em `src/types`.
+- **Use Cases (Casos de Uso):** Contém a lógica de negócio específica da aplicação. São as funções que orquestram o fluxo de dados, como buscar uma lista de turmas ou criar um novo aluno. Essa lógica reside principalmente nos arquivos de serviço em `src/services`.
+- **Interface Adapters (Adaptadores de Interface):** Converte os dados do formato mais conveniente para os casos de uso e entidades para o formato mais conveniente para os frameworks e drivers. Isso inclui os `Presenters` que formatam os dados para a UI.
+- **Frameworks & Drivers (Frameworks e Drivers):** É a camada mais externa, que contém os detalhes de implementação, como o Next.js, React, a biblioteca de acesso ao banco de dados, etc.
 
-Um exemplo prático é o `TurmaCard`, que pode ser encontrado em `src/modules/alunos/turmas/components/TurmaCard`. Este componente é um organismo que exibe informações sobre uma turma. Ele é composto por átomos como `Card`, `CardHeader`, `CardTitle`, `CardDescription` e `CardContent`.
+**Fluxo de Dados (Exemplo: Buscar Turmas):**
 
-```tsx
-// src/modules/alunos/turmas/components/TurmaCard/TurmaCard.tsx
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Turma } from '../types';
+1.  O usuário acessa a página de turmas.
+2.  O componente React (UI) chama uma função do endpoint da API em `src/app/api/turmas/route.ts`.
+3.  O endpoint da API (Frameworks & Drivers) chama o `getTurmas` do `turmaService` (Use Cases).
+4.  O `turmaService` faz a requisição para a API externa usando o `axios` (Frameworks & Drivers).
+5.  A API externa retorna os dados.
+6.  O `turmaService` recebe os dados e os retorna para o endpoint da API.
+7.  O endpoint da API retorna os dados para o componente React.
+8.  O componente React renderiza os dados na tela.
 
-interface TurmaCardProps {
-  turma: Turma;
-}
+#### Atomic Design
 
-export const TurmaCard = ({ turma }: TurmaCardProps) => (
-  <Card>
-    <CardHeader>
-      <CardTitle>{turma.nome}</CardTitle>
-      <CardDescription>{turma.descricao}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      {/* Outras informações da turma */}
-    </CardContent>
-  </Card>
-);
-```
+O Atomic Design é uma metodologia para criar sistemas de design de forma hierárquica e componentizada. Ele divide a interface em cinco níveis:
+
+**Diagrama de Níveis:**
+
+
+- **Atoms (Átomos):** Os blocos de construção básicos da interface, como botões, inputs, labels e ícones. Eles são encontrados em `src/components/ui`.
+- **Molecules (Moléculas):** Grupos de átomos que funcionam juntos como uma unidade, como um campo de busca (composto por um input e um botão).
+- **Organisms (Organismos):** Partes relativamente complexas da interface que são compostas por grupos de moléculas e/ou átomos, como um cabeçalho, um rodapé ou um card de produto.
+- **Templates (Modelos):** Estruturas de página que definem o layout do conteúdo, mas sem o conteúdo real.
+- **Pages (Páginas):** Instâncias específicas de templates, com conteúdo real e funcionalidade.
+
+**Exemplo de Composição de Página:**
+
+1.  **Átomos:** `Button`, `Input`, `Card`, `CardHeader`, `CardTitle`.
+2.  **Moléculas:** Um formulário de busca (`Input` + `Button`), um item de menu (`Link` + `Icon`).
+3.  **Organismos:** O `TurmaCard` (composto por `Card`, `CardHeader`, `CardTitle`, etc.), a barra de navegação (composta por itens de menu).
+4.  **Templates:** Um layout de duas colunas com uma barra lateral e uma área de conteúdo principal.
+5.  **Páginas:** A página de turmas, que usa o template de duas colunas, exibe a barra de navegação e uma lista de `TurmaCard`s.
 
 ## Requisições HTTP
 
@@ -241,3 +276,25 @@ const Button = ({ primary, disabled }) => (
   </button>
 );
 ```
+
+## Como Instalar e Rodar o Projeto
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/seu-usuario/CSFA-FRONTEND.git
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Configure as variáveis de ambiente:**
+   Crie um arquivo `.env.local` na raiz do projeto e adicione as variáveis necessárias.
+
+4. **Rode o projeto em modo de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+O site estará disponível em `http://localhost:3000`.
