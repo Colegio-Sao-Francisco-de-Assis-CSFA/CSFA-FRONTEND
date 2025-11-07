@@ -14,8 +14,8 @@ jobs:
       uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.PRIVATE_KEY }}
+        username: ${{ secrets.USERNAME2 }}
+        key: ${{ secrets.PRIVATE_KEY2 }}
         port: 22
         script: |
           cd /home/colsaofrancisco-teste-www/htdocs/teste.www.colsaofrancisco.com.br/CSFA-FRONTEND
